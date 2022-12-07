@@ -7,13 +7,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class FlowerMainAction implements Action {
+import com.flower.dao.FlowerClientDAO;
+
+public class FlowerIdCheckAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "flower/main.jsp";
-
-		RequestDispatcher rd = request.getRequestDispatcher(url);
+		String id = request.getParameter("id");
+		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
+		int result = fdao.confrmID(id);
+		request.setAttribute("id", id);
+		request.setAttribute("result", result);
+		RequestDispatcher rd = request.getRequestDispatcher("flower/idCheckForm.jsp");
 		rd.forward(request, response);
 	}
 

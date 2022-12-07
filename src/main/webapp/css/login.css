@@ -1,0 +1,191 @@
+@charset "UTF-8";
+/*컨테이너*/
+.container {
+	width: 1000px;
+	margin: 0 auto;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 메인 */
+main {
+	width: 100%;
+	position: relative;
+}
+
+main .title {
+	line-height: 80px;
+	font-size: 24px;
+	text-align: center;
+}
+
+main .main {
+	border-top: #d65a50 1px solid;
+}
+
+main .main h1 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+main .main h2 {
+	line-height: 36px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+main .main table {
+	line-height: 36px;
+}
+
+input[type="checkbox" i] {
+	cursor: pointer;
+}
+
+main .main .logBtn {
+	background: #bc5f6a;
+	color: white;
+	font-size: 18px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+main .main .logBtn:hover {
+	background: #b1b1b1;
+}
+
+@media screen and (min-width: 1024px) {
+	main .title {
+		width: 850px;
+		height: 80px;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	main .main {
+		width: 850px;
+		height: 620px;
+		border-top: #d65a50 1px solid;
+		position: absolute;
+		top: 80px;
+		right: 0;
+	}
+	main .main .loginBox {
+		width: 280px;
+		height: 25px;
+	}
+	main .category {
+		width: 130px;
+		height: 700px;
+		padding-left: 20px;
+		line-height: 30px;
+		background: #f2f2f2;
+	}
+	main .category a {
+		color: #363636;
+		font-size: 14px;
+	}
+	main .category li:nth-child(1) {
+		font-size: 16px;
+		padding-top: 50px;
+		border-bottom: #b1b1b1 1px solid;
+		color: black;
+	}
+	main .main .grayBox {
+		width: 500px;
+		height: 380px;
+		border: #b1b1b1 1px solid;
+		margin: 50px auto;
+		padding: 50px;
+	}
+	.btnSet {
+		padding-left: 80px;
+	}
+	main .main .logBtn {
+		margin-top: 10px;
+		width: 150px;
+		height: 50px;
+	}
+	main .main .membershipBtn {
+		margin-left: 20px;
+	}
+	main .main .logBox {
+		padding-left: 100px;
+	}
+	main .main #idSave {
+		margin-left: 95px;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	main .main {
+		width: 100%;
+		height: 1250px;
+	}
+	.container {
+		width: 100%;
+		margin-top: 54px;
+	}
+	main .category a, main .category li {
+		display: none;
+	}
+	main .title {
+		line-height: 130px;
+		font-size: 54px;
+	}
+	main .main h1 {
+		font-size: 54px;
+		margin: 100px auto 50px;
+	}
+	main .main h2 {
+		font-size: 40px;
+	}
+	main .main form {
+		text-align: center;
+		/* 		background: blue; */
+		margin: 30px auto;
+		font-size: 45px;
+	}
+	main .main td.logBox {
+		/* 	text-align: center; */
+		/* 	margin: 0 auto; */
+		width: 1023px;
+		line-height: 80px;
+	}
+	main .main .loginBox {
+		width: 80%;
+		height: 80px;
+	}
+	input[type="text" i], input[type="password" i] {
+		font-size: 36px;
+		color: gray;
+	}
+	main .main .btnSet {
+		padding: 0 10%;
+	}
+	main .main .logBtn {
+		width: 100%;
+		float: left;
+		margin: 30px auto;
+		font-size: 45px;
+		height: 100px;
+	}
+	main .main .membershipBtn {
+		margin-top: 0;
+	}
+	main .main .idFind {
+		width: 100%;
+		font-size: 38px;
+	}
+	main .main #idSave {
+		width: 30px;
+		height: 30px;
+	}
+	span {
+		display: inline-block;
+		width: 80%;
+		text-align: justify;
+	}
+}

@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+.container {
+	width: 1000px;
+	margin: 0 auto;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+main {
+	width: 100%;
+	position: relative;
+}
+
+main .title {
+	line-height: 80px;
+	font-size: 24px;
+	text-align: center;
+}
+
+main .main {
+	border-top: #d65a50 1px solid;
+}
+
+main .main form {
+	text-align: center;
+}
+
+main .main table {
+	text-align: left;
+	line-height: 40px;
+}
+
+main .main th {
+	border-right: 1px solid #6e6e6e;
+	background: #f0f0f0;
+	padding: 0 10px;
+}
+
+main .main td {
+	padding: 3px 10px;
+}
+
+main .main ul {
+	width: 700px;
+	height: 90px;
+	margin: 10px 0 25px 0;
+	border: #6e6e6e 1px solid;
+}
+
+main .main ul {
+	font-size: 14px;
+	line-height: 20px;
+}
+
+main .main ul:first-child {
+	border: none;
+	border-bottom: black 2px solid;
+	margin: 0;
+	height: 50px;
+	overflow: auto;
+}
+
+main .main ul:first-child li {
+	float: left;
+	margin: 25px 10px 0;
+	color: #6e6e6e;
+	font-weight: bold;
+}
+
+main .main ul:first-child li:nth-child(2) {
+	color: black;
+}
+
+main .main .button {
+	background: #bc5f6a;
+	color: #f2f2f2;
+	font-weight: bold;
+	border: none;
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+main .main .button:hover {
+	background: #6e6e6e;
+}
+
+main .main span {
+	color: #6e6e6e;
+}
+
+#phoneBox {
+	width: 50px;
+}
+
+@media screen and (min-width: 1024px) {
+	main .title {
+		width: 850px;
+		height: 80px;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	main .main {
+		width: 850px;
+		height: 620px;
+		position: absolute;
+		top: 80px;
+		right: 0;
+	}
+	main .category {
+		width: 130px;
+		height: 700px;
+		padding-left: 20px;
+		line-height: 30px;
+		background: #f2f2f2;
+	}
+	main .category a {
+		color: #363636;
+		font-size: 14px;
+	}
+	main .category li:nth-child(1) {
+		font-size: 16px;
+		padding-top: 50px;
+		border-bottom: #b1b1b1 1px solid;
+		color: black;
+	}
+	main .main .mainBox {
+		width: 800px;
+		margin-left: 75px;
+	}
+	main .main span {
+		font-size: 13px;
+	}
+	#addrBox {
+		width: 400px;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.container {
+		width: 100%;
+		margin-top: 54px;
+		font-size: 32px;
+	}
+	main .category a, main .category li {
+		display: none;
+	}
+	main .title {
+		line-height: 130px;
+		font-size: 54px;
+	}
+	main .main form {
+		width: 100%;
+		padding-bottom: 55%;
+		text-align: left;
+	}
+	main .main .mainBox {
+		padding: 0 10%;
+	}
+	main .main .mainBox ul {
+		width: 100%;
+	}
+	main .main ul:first-child {
+		font-size: 20px;
+		height: 70px;
+		padding-top: 30px;
+	}
+	main .main ul li {
+		font-size: 18px;
+		line-height: 30px;
+	}
+	main .main ul:first-child li {
+		font-size: 36px;
+	}
+	main .main label {
+		margin-right: 0;
+	}
+	main .main input {
+		width: 30px;
+		height: 30px;
+	}
+	main .main input {
+		width: 55%;
+		height: 80px;
+	}
+	main .main table {
+		line-height: 80px;
+	}
+	main .main th {
+		width: 150px;
+		border-right: 1px solid #6e6e6e;
+		background: #f0f0f0;
+		padding: 10px;
+	}
+	main .main td {
+		padding: 0 10px;
+	}
+	main .main span, main .main input[type="text" i], main .main input[type="button"
+		i], main .main input[type="password" i] {
+		font-size: 28px;
+	}
+	main .main #lev, #gender {
+		width: 30px;
+		height: 28px;
+	}
+	main .main #ckBtn {
+		width: 200px;
+	}
+	main .main th, td {
+		border-bottom: 1px solid #6e6e6e;
+	}
+	main .main input[type="button"] {
+		border-radius: 10px;cursor: pointer;
+	}
+	main .main #phoneBox {
+		width: 15%;
+	}
+	main .main span {
+		display: block;
+	}
+	main .main .btnSet {
+		padding: 0 10%;
+	}
+	main .main .mainBox .button {
+		width: 100%;
+		float: left;
+		margin: 15px auto;
+		font-size: 45px;
+		height: 100px;
+	}
+}
