@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+/* body{ */
+/* 	background: url("gg.png"); */
+/* } */
+#wrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 30px 0;
+	color:green;
+}
+
+table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:12px;
+	line-height:24px;
+	margin: 30px 0;
+}
+
+
+
+table td, th{
+	border: #d3d3d3 solid 1px;
+	padding:5px;
+	text-align:center;
+	vertical-align: middle;
+}
+
+th{
+	background: yellowgreen;
+	width:120px;
+}
+
+td img{
+	width:250px;
+	height:250px;
+	object-fit: cover;
+}
+
+a{
+	text-decoration: none;
+	color:black;	
+}
+a:hover {
+	text-decoration: underline;
+	color:green;
+}

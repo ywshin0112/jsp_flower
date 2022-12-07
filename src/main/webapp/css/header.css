@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/*Noto Sans Kr*/
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap')
+	;
+
+.headerMargin {
+	height: 100px;
+}
+
+header .header {
+	/*     width: 1000px; */
+	/*     margin: 0 auto; */
+	font-family: 'Noto Sans KR', sans-serif;
+}
+/* 헤더 */
+header {
+	width: 100%;
+	height: 100px;
+	border-bottom: solid 2px #d65a50;
+	z-index: 50;
+	top: 0;
+	position: fixed;
+	background: white;
+}
+
+header .logo {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	position: relative;
+}
+
+header .logo img {
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+header .login ul li a:hover {
+	color: #6e6e6e;
+}
+
+header .gnb ul li a:hover, main .category a:hover, main .main a:hover {
+	color: #d65a50;
+}
+
+@media screen and (min-width: 1024px) {
+	header .header {
+		width: 1000px;
+		margin: 0 auto;
+	}
+
+	/* 헤더 로고 */
+	header .logo {
+		float: left;
+	}
+
+	/* 헤더 로그인 */
+	header .login {
+		width: 900px;
+		height: 30px;
+		float: left;
+	}
+	header .login ul li {
+		float: right;
+		line-height: 30px;
+		margin-right: 20px;
+		font-size: 12px;
+	}
+
+	/* 헤더 네비게이션 */
+	header .gnb {
+		width: 900px;
+		height: 70px;
+		float: right;
+	}
+	header .gnb ul li {
+		float: left;
+		line-height: 70px;
+		margin-left: 50px;
+		font-weight: bold
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	header {
+		border-bottom: solid 4px #d65a50;
+		height: 150px;
+	}
+	.headerMargin {
+		height: 150px;
+	}
+	header .mainAside {
+		z-index:-1;
+	}
+	
+	header .logo {
+		margin: 0 auto;
+		width: 150px;
+		height: 150px;
+	}
+	header .side_header {
+		position: absolute;
+	}
+	header .asideButton {
+		width: 70px;
+		height: 42px;
+		position: absolute;
+		right: 40px;
+		top: 50px;
+		cursor: pointer;
+		z-index: 100;
+	}
+	header .asideButton div {
+		width: 100%;
+		height: 5px;
+		background-color: #999999;
+		border-radius: 10px;
+		position: absolute;
+		transition: 0.3s;
+	}
+	header .asideButton div:nth-child(1) {
+		top: 0;
+	}
+	header .asideButton div:nth-child(2) {
+		top: 50%;
+	}
+	header .asideButton div:nth-child(3) {
+		top: 50%;
+	}
+	header .asideButton div:nth-child(4) {
+		top: 100%;
+	}
+	header .asideButton.active div:nth-child(1) {
+		opacity: 0;
+	}
+	header .asideButton.active div:nth-child(2) {
+		transform: rotate(45deg);
+	}
+	header .asideButton.active div:nth-child(3) {
+		transform: rotate(-45deg);
+	}
+	header .asideButton.active div:nth-child(4) {
+		opacity: 0;
+	}
+	header .mainAside {
+		position: fixed;
+		width: 500px;
+/* 		height: 1000vh; */
+		background-color: white;
+		opacity: 0.95;
+		/* 		border-left: 4px solid #d65a50; */
+		right: 0;
+		top: 0;
+		margin-right: -504px;
+		transition: 0.3s;
+	}
+	header .mainAside.active {
+		margin-right: 0;
+	}
+	header .mainAside .login li {
+		display: none;
+	}
+	header .mainAside .login li a, header .mainAside .gnb ul li a {
+		font-weight: bold;
+		font-size: 40px;
+	}
+	header .mainAside .login .visible {
+		text-align: center;
+		font-size: 36px;
+		display: block;
+		margin-top: 200px;
+	}
+	header .mainAside .gnb ul li {
+		text-align: center;
+		margin-top: 100px;
+	}
+}
