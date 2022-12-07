@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-test
+<% 
+	response.sendRedirect("FlowerServlet?command=flower_main");
+%>
 </body>
 </html>
