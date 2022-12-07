@@ -7,6 +7,6 @@
 <title>꽃궁 홈페이지</title>
 </head>
 <body>
-commit test1
+commit test
 </body>
 </html>
