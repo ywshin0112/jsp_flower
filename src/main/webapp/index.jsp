@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>꽃궁</title>
+<title>꽃궁 홈페이지</title>
 </head>
 <body>
 commit test1
