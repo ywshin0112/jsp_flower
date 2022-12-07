@@ -24,7 +24,11 @@
 			<c:otherwise>수정</c:otherwise>
 			</c:choose></h1>
 		<form method="post" enctype="multipart/form-data" name="frm"
-			action="FlowerServlet?command=flower_add_category">
+			<c:choose>
+			<c:when test="${empty param.category}">action="FlowerServlet?command=flower_add_category"</c:when>
+			<c:otherwise>action="FlowerServlet?command=flower_update_category"</c:otherwise>
+			</c:choose>
+			>
 			<input type="hidden" name="updateName" value="${param.category }">
 			<table>
 				<tr>
@@ -39,8 +43,11 @@
 				</tr>
 
 			</table>
-
-			<input type="submit" value="확인"> <input type="reset"
+			<c:choose>
+			<c:when test="${empty param.category}"><input type="submit" value="추가"></c:when>
+			<c:otherwise><input type="submit" value="수정"></c:otherwise>
+			</c:choose>
+			 <input type="reset"
 				value="취소"> <input type="button" value="목록으로"
 				onclick="location.href='FlowerServlet?command=flower_category_list'">
 		</form>

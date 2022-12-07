@@ -22,6 +22,7 @@ import com.flower.controller.action.FlowerMembershipFormAction;
 import com.flower.controller.action.FlowerMoneyBoxAction;
 import com.flower.controller.action.FlowerPlantAction;
 import com.flower.controller.action.FlowerProductForm;
+import com.flower.controller.action.FlowerUpdateCategory;
 import com.flower.controller.action.FlowerWddingBouquetAction;
 
 public class ActionFactory {
@@ -57,6 +58,8 @@ public class ActionFactory {
 			action = new FlowerCategoryList();
 		} else if (command.equals("flower_add_category")) {
 			action = new FlowerAddCategory();
+		} else if (command.equals("flower_update_category")) {
+			action = new FlowerUpdateCategory();
 		} else if (command.equals("flower_delete_category")) {
 			action = new FlowerDeleteCategory();
 		}
