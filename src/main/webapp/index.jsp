@@ -7,6 +7,8 @@
 <title>꽃궁</title>
 </head>
 <body>
-test
+<% 
+	response.sendRedirect("FlowerServlet?command=flower_main");
+%>
 </body>
 </html>
