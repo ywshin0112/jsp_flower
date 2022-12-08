@@ -22,7 +22,7 @@ public class FlowerAddCategory implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String path = request.getServletContext().getRealPath("image");
-		String categoryPath = path + "/category";
+		String categoryPath = path + "\\category";
 		String encType = "utf-8";
 		int maxSize = 20 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, categoryPath, maxSize, encType,
