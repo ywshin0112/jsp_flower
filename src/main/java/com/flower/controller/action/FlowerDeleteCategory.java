@@ -33,7 +33,7 @@ public class FlowerDeleteCategory implements Action {
 		cdao.deleteCategory(category);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
-
+ 
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);

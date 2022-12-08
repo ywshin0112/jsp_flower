@@ -42,7 +42,7 @@ public class FlowerAddCategory implements Action {
 
 		cvo.setCategory(category);
 		cvo.setImage(image);
-		
+		 
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 		cdao.insertCategory(cvo);
 

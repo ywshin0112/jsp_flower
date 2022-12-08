@@ -51,7 +51,7 @@ public class FlowerUpdateCategory implements Action {
 			cdao.updateCategoryOnly(cvo, beforeName);
 			System.out.println("새로운이미지 없음");
 		} else {
-
+ 
 			File file = new File(path + "/" +beforeImage);
 			System.out.println("파일명 : " + path + "/" +beforeImage);
 			if (file.exists()) { // 삭제하고자 하는 파일이 해당 서버에 존재하면 삭제시킨다

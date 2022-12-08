@@ -16,7 +16,7 @@ public class FlowerCategoryList implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
-		
+		 
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);

@@ -47,7 +47,7 @@
 						<c:if test="${!empty flowerClient}">
 							<li class="visible loginTop"><a href="FlowerServlet?command=logout">로그아웃</a></li>
 							<c:if test="${flowerClient.lev eq 'A'}">
-								<li class="visible"><a href="#">관리자페이지</a></li>
+								<li class="visible"><a href="FlowerServlet?command=flower_product_form">관리자페이지</a></li>
 							</c:if>
 							<li><a href="FlowerServlet?command=mypage">${flowerClient.name}</a>님 환영합니다.</li>
 						</c:if>

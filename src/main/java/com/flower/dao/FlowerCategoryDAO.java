@@ -168,7 +168,7 @@ public class FlowerCategoryDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, category);
 			pstmt.executeUpdate();
-
+ 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
