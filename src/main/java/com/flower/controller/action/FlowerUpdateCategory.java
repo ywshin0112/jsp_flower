@@ -14,10 +14,10 @@ import com.flower.vo.FlowerCategoryVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class FlowerUpdateCategory implements Action{
+public class FlowerUpdateCategory implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String path = request.getServletContext().getRealPath("image");
 		String categoryPath = path + "/category";
 		String encType = "utf-8";
@@ -30,44 +30,46 @@ public class FlowerUpdateCategory implements Action{
 		String image = "category/" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
-		
 		System.out.println("category : " + category);
 		System.out.println("path : " + path);
+		System.out.println("categoryPath : " + categoryPath);
 		System.out.println("image : " + image);
 		System.out.println("beforeName : " + beforeName);
 
-		FlowerCategoryDAO fdao = FlowerCategoryDAO.getInstance();
-		FlowerCategoryVO cvo = fdao.selectAllCategory(beforeName).get(1);
-
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+		FlowerCategoryVO cvo = cdao.selectedCategory(beforeName);
+		
+		String beforeImage = cvo.getImage();
+		System.out.println("beforeImage : " + beforeImage);
+		
 		cvo.setCategory(category);
+		
+		
+		cvo.setImage(image);
 
 		if (image.equals("category/null")) {
-
+			cdao.updateCategoryOnly(cvo, beforeName);
+			System.out.println("새로운이미지 없음");
 		} else {
 
-			File file = new File(path + cvo.getImage());
-
+			File file = new File(path + "/" +beforeImage);
+			System.out.println("파일명 : " + path + "/" +beforeImage);
 			if (file.exists()) { // 삭제하고자 하는 파일이 해당 서버에 존재하면 삭제시킨다
 				file.delete();
 
-				cvo.setImage(image);
 			}
-
-			if (beforeName == null || beforeName.equals("")) { // 추가
-				System.out.println("추가");
-				fdao.insertCategory(cvo);
-			} else { // 수정
-				System.out.println("수정");
-				fdao.updateCategory(cvo, beforeName);
-			}
-
-			String url = "/flower/adminPage/flowerCategoryList.jsp";
-			FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
-
-			List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in ('//옵션//')");
-			request.setAttribute("categoryList", categoryList);
-			RequestDispatcher rd = request.getRequestDispatcher(url);
-			rd.forward(request, response);
+			System.out.println("새로운이미지 있음");
+			cdao.updateImageAndCategory(cvo, beforeName);
 		}
+
+		
+
+		String url = "/flower/adminPage/flowerCategoryList.jsp";
+
+		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
+		request.setAttribute("categoryList", categoryList);
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
+
 	}
 }

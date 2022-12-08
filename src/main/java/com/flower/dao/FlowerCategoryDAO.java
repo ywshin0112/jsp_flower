@@ -20,11 +20,11 @@ public class FlowerCategoryDAO {
 
 	// 전체 카테고리 불러오기
 
-	public ArrayList<FlowerCategoryVO> selectAllCategory(String str) {
+	public ArrayList<FlowerCategoryVO> selectAllCategory() {
 
 		ArrayList<FlowerCategoryVO> list = new ArrayList<>();
 
-		String sql = "select * from flower_category " + str;
+		String sql = "select * from flower_category where category not in (\'//옵션//\')";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -52,7 +52,37 @@ public class FlowerCategoryDAO {
 
 		return list;
 	}
-	
+
+	public FlowerCategoryVO selectedCategory(String beforeName) {
+
+		FlowerCategoryVO cvo = new FlowerCategoryVO();
+
+		String sql = "select * from flower_category where category = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, beforeName);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				cvo.setCategory(rs.getString("category"));
+				cvo.setImage(rs.getString("image"));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return cvo;
+	}
+
 	// 카테고리 추가
 
 	public void insertCategory(FlowerCategoryVO fvo) {
@@ -75,21 +105,20 @@ public class FlowerCategoryDAO {
 			DBManager.close(conn, pstmt);
 		}
 
-		
 	}
-	
-	
-	
+
 	// 카테고리 수정
-	public void updateCategory(FlowerCategoryVO fvo, String beforeName) {
+	public void updateImageAndCategory(FlowerCategoryVO cvo, String beforeName) {
+
 		String sql = "update flower_category set category=?, image=? where category=?";
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, fvo.getCategory());
-			pstmt.setString(2, fvo.getImage());
+			pstmt.setString(1, cvo.getCategory());
+			pstmt.setString(2, cvo.getImage());
 			pstmt.setString(3, beforeName);
 			pstmt.executeUpdate();
 			System.out.println("성공");
@@ -98,13 +127,35 @@ public class FlowerCategoryDAO {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt);
-		}		
+		}
 	}
-	
-	
-	
-	
-	
+
+	public void updateCategoryOnly(FlowerCategoryVO cvo, String beforeName) {
+
+		String sql = "update flower_category set category=? where category=?";
+		if (cvo.getImage().equals("category/null")) {
+
+		} else {
+
+		}
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cvo.getCategory());
+			pstmt.setString(2, beforeName);
+			pstmt.executeUpdate();
+			System.out.println("성공");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
+		}
+	}
+
 	public void deleteCategory(String category) {
 
 		String sql = "delete from flower_category where category=?";
@@ -122,8 +173,7 @@ public class FlowerCategoryDAO {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt);
-		}		
+		}
 	}
-	
 
 }

@@ -47,7 +47,7 @@ public class FlowerAddCategory implements Action {
 		cdao.insertCategory(cvo);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
-		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in ('//옵션//')");
+		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
