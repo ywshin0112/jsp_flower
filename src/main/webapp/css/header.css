@@ -91,6 +91,9 @@ header .gnb ul li a:hover, main .category a:hover, main .main a:hover {
 		border-bottom: solid 4px #d65a50;
 		height: 150px;
 	}
+	.headerMargin {
+		height: 150px;
+	}
 	header .logo {
 		margin: 0 auto;
 		width: 150px;
@@ -167,13 +170,13 @@ header .gnb ul li a:hover, main .category a:hover, main .main a:hover {
 		margin-top: 100px;
 	}
 	.mainAside .login .visible {
-		text-align : center;
+		text-align: center;
 		font-size: 36px;
 		display: block;
 		margin-top: 100px;
 		text-align: center;
 	}
 	.mainAside .login .loginTop {
-		padding-top: 100px; 
+		padding-top: 100px;
 	}
 }

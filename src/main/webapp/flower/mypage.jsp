@@ -37,7 +37,9 @@ form {
 		</div>
 
 		<div class="main">
-			<form method="post" name="frm" action="FlowerServlet">
+				
+				<form method="post" name="frm" action="FlowerServlet">
+				<input type="hidden" name="command" value="flowerClient_update" />
 				<h1>기본정보</h1>
 				<table>
 					<tr>
@@ -63,24 +65,25 @@ form {
 					<tr>
 						<td colspan="2" align="center"><input type="button"
 							name="updateBtn" value="회원정보 수정"
-							onclick="open_win('FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}','update')">
+							onclick="location.href='FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}'">
 							<input type="button" name="deleteBtn" value="회원탈퇴"
-							onclick="FlowerServlet?command=flowerClient_delete">
+							onclick="open_win('FlowerServlet?command=flowerClient_delete_form&id=${flowerClient.id}','delete')"/>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2"><br>
 						<h1>장바구니</h1>
-							<br> 장바구니 내역</td>
+							<br>장바구니 내역</td>
 						<td colspan="2"><br>
 						<h1>주문배송</h1>
-							<br> 주문 배송 내역</td>
+							<br>주문 배송 내역</td>
 					</tr>
 				</table>
-			</form>
+				</form>
 		</div>
 	</main>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="js/main.js"></script>
+	<script src="js/mypage.js"></script>
 </body>
 </html>

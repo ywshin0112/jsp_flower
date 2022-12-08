@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ public class FlowerLoginAction implements Action{
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String name = request.getParameter("name");
+		String saveId = request.getParameter("saveId");
 		
 		String url = null;
 		
@@ -25,6 +27,19 @@ public class FlowerLoginAction implements Action{
 		int result = fdao.userCheck(id, pass);
 		
 		if(result == 1) { // 로그인 성공
+			//로그인 성공
+            System.out.println("로그인 성공");
+            //아이디 저장 여부를 보고 쿠키로 아이디값 저장
+            if(saveId!=null) {
+                Cookie c = new Cookie("saveId",id);
+                //쿠키값 저장 시간을 지정함, 숫자당 1초로 계산
+                c.setMaxAge(60*60*24*7); //7일간 저장
+                response.addCookie(c);
+            }else {
+                Cookie c = new Cookie("saveId",id);
+                c.setMaxAge(0);
+                response.addCookie(c);
+            }
 			FlowerClientVO fvo = new FlowerClientVO(); 
 			fvo = fdao.getFlowerClient(id);
 			
