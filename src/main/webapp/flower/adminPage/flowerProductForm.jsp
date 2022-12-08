@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>상품</th>
-				<td>목록보기</td>
+				<td><a href="FlowerServlet?command=flower_product_list">목록보기</a></td>
 			</tr>
 	
 		</table>

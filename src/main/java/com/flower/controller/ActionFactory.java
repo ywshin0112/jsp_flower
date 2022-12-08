@@ -3,6 +3,7 @@ package com.flower.controller;
 import com.flower.controller.action.Action;
 import com.flower.controller.action.FlowerAddCategory;
 import com.flower.controller.action.FlowerAddCategoryForm;
+import com.flower.controller.action.FlowerAddProductForm;
 import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
 import com.flower.controller.action.FlowerCategoryList;
@@ -23,6 +24,7 @@ import com.flower.controller.action.FlowerMembershipFormAction;
 import com.flower.controller.action.FlowerMoneyBoxAction;
 import com.flower.controller.action.FlowerPlantAction;
 import com.flower.controller.action.FlowerProductForm;
+import com.flower.controller.action.FlowerProductList;
 import com.flower.controller.action.FlowerUpdateCategory;
 import com.flower.controller.action.FlowerWddingBouquetAction;
 
@@ -53,7 +55,10 @@ public class ActionFactory {
 			action = new FlowerPlantAction();
 		} else if (command.equals("flower_product_form")) {
 			action = new FlowerProductForm();
-		} else if (command.equals("flower_add_category_form")) {
+		}
+		
+		// 상품 카테고리 테이블
+		else if (command.equals("flower_add_category_form")) {
 			action = new FlowerAddCategoryForm();
 		} else if (command.equals("flower_category_list")) {
 			action = new FlowerCategoryList();
@@ -63,6 +68,14 @@ public class ActionFactory {
 			action = new FlowerUpdateCategory();
 		} else if (command.equals("flower_delete_category")) {
 			action = new FlowerDeleteCategory();
+		}
+
+		// 상품목록 테이블
+
+		else if (command.equals("flower_product_list")) {
+			action = new FlowerProductList();
+		} else if (command.equals("flower_add_product_form")) {
+			action = new FlowerAddProductForm();
 		}
 		// 로그인
 		else if (command.equals("login_page")) {
@@ -97,7 +110,7 @@ public class ActionFactory {
 		// 탈퇴
 		else if (command.equals("flowerClient_delete_form")) {
 			action = new FlowerClientDeleteFormAction();
-		}else if (command.equals("flowerClient_delete")) {
+		} else if (command.equals("flowerClient_delete")) {
 			action = new FlowerClientDeleteAction();
 		}
 
