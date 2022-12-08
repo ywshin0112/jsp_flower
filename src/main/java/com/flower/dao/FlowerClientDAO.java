@@ -17,7 +17,8 @@ public class FlowerClientDAO {
 	public static FlowerClientDAO getInstance() {
 		return instance;
 	}
-
+	
+	// 전체 회원 불러오기 
 	public List<FlowerClientVO> SelectAllFlowerClient() {
 		String sql = "select * from flower_client order by id desc";
 		ArrayList<FlowerClientVO> list = new ArrayList<>();
@@ -72,6 +73,7 @@ public class FlowerClientDAO {
 		}
 	}
 	
+	// 로그인 체크 메소드
 	public int userCheck(String id, String pass) {
 		int result = 0;
 		Connection conn = null;
@@ -108,7 +110,8 @@ public class FlowerClientDAO {
 		}
 		return result;
 	}
-
+	
+	// 아이디로 개인정보 소환
 	public FlowerClientVO getFlowerClient(String id) {
 		FlowerClientVO member = null;
 		Connection conn = null;
@@ -150,46 +153,82 @@ public class FlowerClientDAO {
 		return member;
 	}
 	
-	public FlowerClientVO getFlowerClientIndividual(String id){
-		FlowerClientVO member = null;
-		Connection conn = null;
-		String sql = "select * from flower_client where id=?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	// 아이디로 개인정보 소환
+		public FlowerClientVO FlowerClientPassCk(String id) {
+			FlowerClientVO member = null;
+			Connection conn = null;
+			String sql = "select pass from flower_client where id=?";
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
 
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				member = new FlowerClientVO();
-				member.setId(rs.getString("id"));
-				member.setPass(rs.getString("pass"));
-				member.setName(rs.getString("name"));
-				member.setLev(rs.getString("lev"));
-				member.setPhone(rs.getString("phone"));
-				member.setEmail(rs.getString("email"));
-				member.setAddress(rs.getString("address"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
 			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					member = new FlowerClientVO();
+					member.setPass(rs.getString("pass"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+
 			}
 
+			return member;
 		}
-
-		return member;
-	}
+	
+//	public FlowerClientVO getFlowerClientIndividual(String id){
+//		FlowerClientVO member = null;
+//		Connection conn = null;
+//		String sql = "select * from flower_client where id=?";
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//			conn = DBManager.getConnection();
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, id);
+//			rs = pstmt.executeQuery();
+//			if (rs.next()) {
+//				member = new FlowerClientVO();
+//				member.setId(rs.getString("id"));
+//				member.setPass(rs.getString("pass"));
+//				member.setName(rs.getString("name"));
+//				member.setLev(rs.getString("lev"));
+//				member.setPhone(rs.getString("phone"));
+//				member.setEmail(rs.getString("email"));
+//				member.setAddress(rs.getString("address"));
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (rs != null)
+//					rs.close();
+//				if (pstmt != null)
+//					pstmt.close();
+//				if (conn != null)
+//					conn.close();
+//			} catch (Exception e2) {
+//				// TODO: handle exception
+//			}
+//
+//		}
+//
+//		return member;
+//	}
 	
 	// 아이디 중복 체크 메소드
 	public int confrmID(String userid) {
@@ -224,7 +263,7 @@ public class FlowerClientDAO {
 		}
 		return result;
 	}
-	// 수정
+		//  회원 정보 수정 메소드
 		public void updateFlowerClient(FlowerClientVO fvo) {
 			String sql = "update flower_client set lev=?, pass=?, name=?, phone=?, email=?, address=? where id=?";
 			Connection conn = null;
@@ -247,7 +286,7 @@ public class FlowerClientDAO {
 			}
 		}
 		
-		// 탈퇴
+		// 회원 탈퇴 메소드
 		public void deleteFlowerClient(String id) {
 			String sql = "delete from flower_client where id=?";
 			Connection conn = null;

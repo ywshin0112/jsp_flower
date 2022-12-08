@@ -2,11 +2,19 @@
  * 
  */
  function open_win(url, name){
-	window.open(url, name, "width=500, height=300");
+	window.open(url, name, "width=450, height=250");
+}
+
+function WinClose(){
+	window.open('','_self').close();   
+	url = "FlowerServlet?command=FlowerServlet?command=flower_main";  
 }
 
  function passCk(){
-	
+	if(document.frm.pass.value.length==0){
+		alert("비밀번호를 입력해 주세요");
+		return false;
+	}
 }
 
 // 회원가입 조건 확인

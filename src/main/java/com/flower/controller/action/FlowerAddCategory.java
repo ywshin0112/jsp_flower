@@ -30,7 +30,7 @@ public class FlowerAddCategory implements Action {
 
 		String category = multi.getParameter("category");
 		String imageName = multi.getFilesystemName("uploadFile");
-		String image = "category/" + imageName;
+		String image = "category\\" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
 		System.out.println("category : " + category);

@@ -86,7 +86,7 @@
 					<tr>
 						<td colspan="2" align="center">
 						<input type="submit" name="updateBtn" value="회원정보 수정" onclick="return updateCheck()">
-							<input type="reset" value="취소" /></td>
+							<input type="button" value="뒤로가기" onclick="location.href='FlowerServlet?command=mypage'"/></td>
 					</tr>
 					
 				</table>
