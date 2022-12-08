@@ -16,11 +16,10 @@ public class FlowerClientMypageAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/mypage.jsp";
-		FlowerClientDAO fdao =FlowerClientDAO.getInstance();
-		
-		List<FlowerClientVO> fcList = fdao.SelectAllFlowerClient();
-		
-		request.setAttribute("fcList", fcList);
+		String id = request.getParameter("id");
+		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
+	    FlowerClientVO fvo = fdao.getFlowerClient(id);
+	    request.setAttribute("fvo", fvo);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

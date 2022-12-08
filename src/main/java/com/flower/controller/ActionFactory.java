@@ -7,6 +7,7 @@ import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
 import com.flower.controller.action.FlowerCategoryList;
 import com.flower.controller.action.FlowerClientDeleteAction;
+import com.flower.controller.action.FlowerClientDeleteFormAction;
 import com.flower.controller.action.FlowerClientMypageAction;
 import com.flower.controller.action.FlowerClientUpdateAction;
 import com.flower.controller.action.FlowerClientUpdateFormAction;
@@ -94,7 +95,9 @@ public class ActionFactory {
 			action = new FlowerClientUpdateAction();
 		}
 		// 탈퇴
-		else if (command.equals("flowerClient_delete")) {
+		else if (command.equals("flowerClient_delete_form")) {
+			action = new FlowerClientDeleteFormAction();
+		}else if (command.equals("flowerClient_delete")) {
 			action = new FlowerClientDeleteAction();
 		}
 

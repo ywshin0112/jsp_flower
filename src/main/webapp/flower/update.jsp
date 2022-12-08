@@ -85,7 +85,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-						<input type="button" name="updateBtn" value="회원정보 수정" onclick="return joinCheck()">
+						<input type="submit" name="updateBtn" value="회원정보 수정" onclick="return updateCheck()">
 							<input type="reset" value="취소" /></td>
 					</tr>
 					
@@ -94,6 +94,7 @@
 		</div>
 	</main>
 	<script src="js/main.js"></script>
+	<script src="js/mypage.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

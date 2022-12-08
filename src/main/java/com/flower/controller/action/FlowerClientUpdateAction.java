@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.flower.dao.FlowerClientDAO;
 import com.flower.vo.FlowerClientVO;
@@ -16,7 +17,7 @@ public class FlowerClientUpdateAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); 
-		
+		String url = "/flower/mypage.jsp";
 		FlowerClientVO fvo = new FlowerClientVO();
 
 		fvo.setLev(request.getParameter("lev"));
@@ -29,8 +30,12 @@ public class FlowerClientUpdateAction implements Action{
 		
 		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 		fdao.updateFlowerClient(fvo);
-	    
-	    new FlowerClientMypageAction().execute(request, response);
+		System.out.println(fvo);
+		HttpSession session = request.getSession();
+		session.setAttribute("flowerClient", fvo);
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
+		
 	}
 
 }
