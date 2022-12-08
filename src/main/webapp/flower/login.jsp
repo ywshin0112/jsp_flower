@@ -24,7 +24,7 @@
                 cookieVal=i.getValue();
             }
         }
-    }
+}
     
 %>
 	<jsp:include page="header.jsp"></jsp:include>
