@@ -25,63 +25,70 @@
 		<div class="title">
 			<h2>마이페이지</h2>
 		</div>
-
 		<div class="main">
-			<form method="post" name="frm" action="FlowerServlet">
-				<input type="hidden" name="command" value="flowerClient_update" />
-				<h1>기본정보</h1>
+		<form method="post" name="frm" action="FlowerServlet">
+				<input type="hidden" name="command" value="flowerClient_update"/>
+			<h2>회원정보수정</h2>
 				<table>
 					<tr>
 						<th>회원 형태</th>
 						<td>
 							<c:choose>
-								<c:when test="${flowerClient.lev=='A'}">
+								<c:when test="${flowerClient.lev=='B'}">
 									<input type="checkbox" name="lev" id="lev" value="B"
-									checked="checked" onclick="return false;" /> 일반회원 <input
-									type="checkbox" name="lev" id="lev" value="A"
+									checked="checked" onclick="return false;" /> 일반회원 
+									<input type="checkbox" name="lev" id="lev" value="A"
 									onclick="return false;" /> 관리자
 								
 								</c:when>
 		
 								<c:otherwise>
-									<td><input type="checkbox" name="lev" id="lev" value="B"
-									onclick="return false;" /> 일반회원 <input
-									type="checkbox" name="lev" id="lev" value="A" checked="checked" 
+									<input type="checkbox" name="lev" id="lev" value="B"
+									onclick="return false;" /> 일반회원 
+									<input type="checkbox" name="lev" id="lev" value="A" checked="checked" 
 									onclick="return false;" /> 관리자
 								</c:otherwise>
 							</c:choose>
 						</td>
 					</tr>
 					<tr>
-						<td>성명</td>
+						<th>성명</th>
 						<td><input type="text" name="name"
 							value="${flowerClient.name}" /></td>
 					</tr>
 					<tr>
-						<td>아이디</td>
-						<td><input type="text" name="id" value="${flowerClient.id}"
-							readonly /></td>
+						<th>아이디</th>
+						<td><input type="text" name="id" value="${flowerClient.id}" readonly /></td>
 					</tr>
 					<tr>
-						<td>이메일</td>
+						<th>비밀번호</th>
+						<td><input type="password" name="pass" value="${flowerClient.pass}"/></td>
+					</tr>
+					<tr>
+						<th>비번 확인</th>
+						<td><input type="password" name="passCk"/></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
 						<td><input type="text" name="email"
 							value="${flowerClient.email}" /></td>
 					</tr>
 					<tr>
-						<td>전화번호</td>
-						<td><input type="text" name="phone"
+						<th>전화번호</th>
+						<td><input type="text" name="phone" onkeyup="test(this);" maxlength="13"
 							value="${flowerClient.phone}" /></td>
 					</tr>
 					<tr>
-						<td>주소</td>
+						<th>주소</th>
 						<td><input type="text" name="address"
 							value="${flowerClient.address}" /></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><input type="button"
-							name="updateBtn" value="회원정보 수정" onclick="return joinCheck()">
+						<td colspan="2" align="center">
+						<input type="button" name="updateBtn" value="회원정보 수정" onclick="return joinCheck()">
 							<input type="reset" value="취소" /></td>
 					</tr>
+					
 				</table>
 			</form>
 		</div>

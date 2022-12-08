@@ -14,7 +14,7 @@ public class FlowerMembershipAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "flower/membership3.jsp";
+		String url = "/flower/membership3.jsp";
 
 		FlowerClientVO fvo = new FlowerClientVO();
 		fvo.setId(request.getParameter("id"));

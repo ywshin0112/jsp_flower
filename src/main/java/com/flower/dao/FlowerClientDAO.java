@@ -184,28 +184,31 @@ public class FlowerClientDAO {
 		return result;
 	}
 	// 수정
-		public void updateFlowerClient(FlowerClientVO fvo) {
-			String sql = "update flower_client set lev=?, id=?, pass=?, name=?, phone=?, email=?, address=? where id=?";
+		public int updateFlowerClient(FlowerClientVO fvo) {
+			int result = -1;
+			String sql = "update flower_client set lev=?, pass=?, name=?, phone=?, email=?, address=? where id=?";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {
 				conn = DBManager.getConnection();
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, fvo.getLev());
-				pstmt.setString(2, fvo.getId());
-				pstmt.setString(3, fvo.getPass());
-				pstmt.setString(4, fvo.getName());
-				pstmt.setString(5, fvo.getPhone());
-				pstmt.setString(6, fvo.getEmail());
-				pstmt.setString(7, fvo.getAddress());
-				pstmt.executeUpdate();
+				pstmt.setString(2, fvo.getPass());
+				pstmt.setString(3, fvo.getName());
+				pstmt.setString(4, fvo.getPhone());
+				pstmt.setString(5, fvo.getEmail());
+				pstmt.setString(6, fvo.getAddress());
+				pstmt.setString(7, fvo.getId());
+				result = pstmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				DBManager.close(conn, pstmt);
 			}
+			return result;
 		}
 		
+		// 탈퇴
 		public void deleteFlowerClient(String id) {
 			String sql = "delete from flower_client where id=?";
 			Connection conn = null;

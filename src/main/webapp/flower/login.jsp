@@ -13,6 +13,20 @@
 <link rel="stylesheet" href="css/slick.css">
 </head>
 <body>
+<!-- 쿠키값으로 id정보 받아오기 -->
+<%
+    String msg = (String)request.getAttribute("msg");
+    Cookie[] c = request.getCookies();
+    String cookieVal="";
+    if(c!=null){
+        for(Cookie i:c){
+            if(i.getName().equals("saveId")){
+                cookieVal=i.getValue();
+            }
+        }
+    }
+    
+%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<main class=container>
 		<ul class="category">
@@ -30,21 +44,20 @@
 				<h1>환영합니다</h1>
 				<h2>회원님의 아이디와 비밀번호를 입력해주세요.</h2>
 				<br>
-
 				<form action="FlowerServlet" method="post" name="frm">
 					<input type="hidden" name="command" value="login">
 					<table>
 						<tr>
-							<td class="logBox"><span>아이디 :</span><br> <input
-								type="text" name="id" class="loginBox"
-								onfocus="this.value=''; return true;" value="아이디" /></td>
+							<td class="logBox"><span>아이디 :</span><br> 
+							<input type="text" name="id" class="loginBox form-control" 
+								value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="로그인" required>
+							</td>
 						</tr>
 
 						<tr>
 							<td class="logBox"><span>비밀번호 :</span><br> <input
-								type="text" id="userpwd" name="pass" class="loginBox"
-								value="비밀번호"
-								onfocus="this.value=''; this.type='password'; return true;"
+								type="password" id="userpwd" name="pass" class="loginBox"
+								placeholder="비밀번호"
 								onkeypress="enterKey(event)" /></td>
 						</tr>
 
@@ -57,18 +70,24 @@
 						</tr>
 
 						<tr align="center" class=idFind>
-							<td><label for="idSave" style="cursor: pointer"> <input
-									type="checkbox" name="vehicle1" value="Bike" id=idSave>&nbsp;아이디
-									저장
-							</label>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">아이디 찾기</a>&nbsp;/ <a
-								href="#">비밀번호 찾기</a></td>
+							<td>
+								<label for="idSave" style="cursor: pointer"> 
+									<input type="checkbox" name="saveId" id="idSave" <%=cookieVal!=""?"checked" : ""%>>
+									&nbsp;아이디 저장
+								</label>
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a href="#">아이디 찾기</a>&nbsp;/ 
+								<a href="#">비밀번호 찾기</a>
+							</td>
 						</tr>
+						
 					</table>
 					${message}
 				</form>
 			</div>
 		</div>
 	</main>
+	<script src="js/main.js"></script>
 	<script src="js/login.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

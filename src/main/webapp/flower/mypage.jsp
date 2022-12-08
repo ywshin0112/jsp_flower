@@ -63,9 +63,9 @@ form {
 					<tr>
 						<td colspan="2" align="center"><input type="button"
 							name="updateBtn" value="회원정보 수정"
-							onclick="open_win('FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}','update')">
+							onclick="location.href='FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}'">
 							<input type="button" name="deleteBtn" value="회원탈퇴"
-							onclick="FlowerServlet?command=flowerClient_delete">
+							onclick="open_win('FlowerServlet?command=flowerClient_delete&id=${flowerClient.id}','delete')"/>
 						</td>
 					</tr>
 					<tr>
@@ -82,5 +82,6 @@ form {
 	</main>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="js/main.js"></script>
+	<script src="js/mypage.js"></script>
 </body>
 </html>

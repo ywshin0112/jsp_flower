@@ -15,28 +15,22 @@ public class FlowerClientUpdateAction implements Action{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "flower/mypage.jsp";
-
-		FlowerClientVO fvo = new FlowerClientVO();
+		request.setCharacterEncoding("UTF-8"); 
 		
+		FlowerClientVO fvo = new FlowerClientVO();
+
+		fvo.setLev(request.getParameter("lev"));
+		fvo.setName(request.getParameter("name"));
 		fvo.setId(request.getParameter("id"));
 		fvo.setPass(request.getParameter("pass"));
-		fvo.setName(request.getParameter("name"));
+		fvo.setEmail(request.getParameter("email"));
 		fvo.setPhone(request.getParameter("phone"));
-		fvo.setEmail(request.getParameter("emaill"));
-		fvo.setAddress(request.getParameter("address"));
-		fvo.setLev(request.getParameter("lev"));
-		
+		fvo.setAddress(request.getParameter("address"));	
 		
 		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 		fdao.updateFlowerClient(fvo);
-		
-		List<FlowerClientVO> boardList = fdao.SelectAllFlowerClient();
-		
-		request.setAttribute("boardList", boardList);
-		
-		RequestDispatcher rd = request.getRequestDispatcher(url);
-		rd.forward(request, response);
+	    
+	    new FlowerClientMypageAction().execute(request, response);
 	}
 
 }
