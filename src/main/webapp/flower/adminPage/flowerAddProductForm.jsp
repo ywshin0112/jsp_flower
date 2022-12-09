@@ -19,45 +19,65 @@
 
 	<div id="wrap" align="center">
 
-		<h1>상품 <c:choose>
-			<c:when test="${empty param.code}">추가</c:when>
-			<c:otherwise>수정</c:otherwise>
-			</c:choose></h1>
+		<h1>상품 추가</h1>
 			
-		<form method="post" enctype="multipart/form-data" name="frm"
-			<c:choose>
-			<c:when test="${empty param.category}">action="FlowerServlet?command=flower_add_category"</c:when>
-			<c:otherwise>action="FlowerServlet?command=flower_update_category"</c:otherwise>
-			</c:choose>
-			>
-			<input type="hidden" name="updateName" value="${param.category }">
+		<form method="post" name="frm" action="FlowerServlet?command=flower_add_product">
 			<table>
 				<tr>
 					<th>카테고리</th>
-					<td><input type="text" name="category"
-						value="${param.category}"></td>
+					<td colspan="3">
+						<select name="category">
+							<c:forEach var="categoryVO" items="${categoryList}">
+								<option value="${categoryVO.category }">${categoryVO.category }</option>
+							</c:forEach>							
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<th>이미지</th>
-					<td><input type="file" name="uploadFile"></td>
+					<th>상품코드</th>
+					<td colspan="3"><input type="text" name="code"></td>
 
 				</tr>
+				<tr>
+					<th>상품명</th>
+					<td colspan="3"><input type="text" name="name"></td>
+
+				</tr>
+				<tr>
+					<th>가격</th>
+					<td colspan="3"><input type="text" name="price"></td>
+
+				</tr>
+				<tr>
+					<th>상품안내</th>
+					<td colspan="3"> <textarea rows="5" cols="50" name="information"></textarea> </td>
+
+				</tr>
+				
+				<tr>
+					<th>추가문구1 사용</th>
+					<td><input type="checkbox" name="text1" value="1"></td>
+					
+
+				</tr>
+				<tr>
+				<th>추가문구2 사용</th>
+					<td><input type="checkbox" name="text2" value="1"></td>
+				</tr>
+			
+			
 
 			</table>
-			<c:choose>
-			<c:when test="${empty param.category}"><input type="submit" value="추가"></c:when>
-			<c:otherwise><input type="submit" value="수정"></c:otherwise>
-			</c:choose>
+			<input type="submit" value="추가">
 			 <input type="reset"
 				value="취소"> <input type="button" value="목록으로"
-				onclick="location.href='FlowerServlet?command=flower_category_list'">
+				onclick="location.href='FlowerServlet?command=flower_product_list'">
 		</form>
-
 
 
 
 	</div>
 	<jsp:include page="/flower/footer.jsp"></jsp:include>
-	<script src="js/main.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>

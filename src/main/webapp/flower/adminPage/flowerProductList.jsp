@@ -18,30 +18,28 @@
 <h1>상품 리스트 - 관리자 페이지</h1>
 <table class="list">
 	<tr>
-		<td colspan="7" style="border:white; text-align:right">
+		<td colspan="9" style="border:white; text-align:right">
 		<a href="FlowerServlet?command=flower_add_product_form">상품 등록</a>
 		</td>
 	</tr>
 	
 	<tr>
-		<th>카테고리</th><th>상품코드</th><th>상품명</th><th>가격</th><th>상품안내</th><th>추가문구1 사용</th><th>추가문구2 사용</th>
+		<th>카테고리</th><th>상품코드</th><th>상품명</th><th>가격</th><th>상품안내</th><th>추가문구1 사용</th><th>추가문구2 사용</th><th>수정</th><th>삭제</th>
 	</tr>
 	
-	<c:forEach var="categoryVO" items="${categoryList}">
+	<c:forEach var="productVO" items="${productList}">
 		<c:if test="${categoryVO.category}"></c:if>
 		<tr class="record">
-			<td>${categoryVO.category}</td>
-			<td><c:choose>
-							<c:when test="${empty categoryVO.image}">
-								<img src="image/wheelwind.gif">
-							</c:when>
-							<c:otherwise>
-								<img src="image/${categoryVO.image}">
-							</c:otherwise>
-						</c:choose></td>
+			<td>${productVO.category}</td>
+			<td>${productVO.code}</td>
+			<td>${productVO.name}</td>
+			<td>${productVO.price} 원</td>
+			<td>${productVO.information}</td>
+			<td>${productVO.text1}</td>
+			<td>${productVO.text2}</td>
 			
-			<td><a href="FlowerServlet?command=flower_add_category_form&category=${categoryVO.category}&update=1">카테고리 수정</a></td>
-			<td><a href="FlowerServlet?command=flower_delete_category&category=${categoryVO.category}" onclick="return removeCheck()">카테고리 삭제</a></td>
+			<td><a href="FlowerServlet?command=flower_update_product&code=${productVO.code}">상품 수정</a></td>
+			<td><a href="FlowerServlet?command=flower_delete_product&code=${productVO.code}" onclick="return removeCheck()">상품 삭제</a></td>
 		</tr>
 	
 	</c:forEach>
