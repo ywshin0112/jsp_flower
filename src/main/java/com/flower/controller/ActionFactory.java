@@ -3,6 +3,7 @@ package com.flower.controller;
 import com.flower.controller.action.Action;
 import com.flower.controller.action.FlowerAddCategory;
 import com.flower.controller.action.FlowerAddCategoryForm;
+import com.flower.controller.action.FlowerAddProduct;
 import com.flower.controller.action.FlowerAddProductForm;
 import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
@@ -23,6 +24,7 @@ import com.flower.controller.action.FlowerMembershipAgreementAction;
 import com.flower.controller.action.FlowerMembershipFormAction;
 import com.flower.controller.action.FlowerMoneyBoxAction;
 import com.flower.controller.action.FlowerPlantAction;
+import com.flower.controller.action.FlowerDeleteProduct;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
 import com.flower.controller.action.FlowerUpdateCategory;
@@ -76,6 +78,12 @@ public class ActionFactory {
 			action = new FlowerProductList();
 		} else if (command.equals("flower_add_product_form")) {
 			action = new FlowerAddProductForm();
+		} else if (command.equals("flower_add_product")) {
+			action = new FlowerAddProduct();
+		} else if (command.equals("flower_update_product")) {
+			action = new FlowerAddProductForm();
+		} else if (command.equals("flower_delete_product")) {
+			action = new FlowerDeleteProduct();
 		}
 		// 로그인
 		else if (command.equals("login_page")) {
