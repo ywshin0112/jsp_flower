@@ -14,6 +14,7 @@ import com.flower.controller.action.FlowerClientUpdateAction;
 import com.flower.controller.action.FlowerClientUpdateFormAction;
 import com.flower.controller.action.FlowerDeleteCategory;
 import com.flower.controller.action.FlowerIdCheckAction;
+import com.flower.controller.action.FlowerIdPassCheckAction;
 import com.flower.controller.action.FlowerLoginAction;
 import com.flower.controller.action.FlowerLoginFormAction;
 import com.flower.controller.action.FlowerLogoutAction;
@@ -84,6 +85,8 @@ public class ActionFactory {
 			action = new FlowerLoginAction();
 		} else if (command.equals("id_Ck")) {
 			action = new FlowerIdCheckAction();
+		}else if (command.equals("id_pass_Ck")) {
+			action = new FlowerIdPassCheckAction();
 		}
 		// 로그아웃
 		else if (command.equals("logout")) {

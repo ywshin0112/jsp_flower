@@ -113,7 +113,7 @@ public class FlowerClientDAO {
 	
 	// 아이디로 개인정보 소환
 	public FlowerClientVO getFlowerClient(String id) {
-		FlowerClientVO member = null;
+		FlowerClientVO fvo = null;
 		Connection conn = null;
 		String sql = "select * from flower_client where id=?";
 		PreparedStatement pstmt = null;
@@ -125,14 +125,14 @@ public class FlowerClientDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				member = new FlowerClientVO();
-				member.setId(rs.getString("id"));
-				member.setPass(rs.getString("pass"));
-				member.setName(rs.getString("name"));
-				member.setLev(rs.getString("lev"));
-				member.setPhone(rs.getString("phone"));
-				member.setEmail(rs.getString("email"));
-				member.setAddress(rs.getString("address"));
+				fvo = new FlowerClientVO();
+				fvo.setId(rs.getString("id"));
+				fvo.setPass(rs.getString("pass"));
+				fvo.setName(rs.getString("name"));
+				fvo.setLev(rs.getString("lev"));
+				fvo.setPhone(rs.getString("phone"));
+				fvo.setEmail(rs.getString("email"));
+				fvo.setAddress(rs.getString("address"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -150,10 +150,10 @@ public class FlowerClientDAO {
 
 		}
 
-		return member;
+		return fvo;
 	}
 	
-	// 아이디로 개인정보 소환
+	// 아이디로 비밀번호 찾기
 		public FlowerClientVO FlowerClientPassCk(String id) {
 			FlowerClientVO member = null;
 			Connection conn = null;

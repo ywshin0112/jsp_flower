@@ -63,8 +63,8 @@ form {
 						<td>${flowerClient.address}</td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><input type="button"
-							name="updateBtn" value="회원정보 수정"
+						<td colspan="2" align="center">
+							<input type="button" name="updateBtn" value="회원정보 수정"
 							onclick="location.href='FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}'">
 							<input type="button" name="deleteBtn" value="회원탈퇴"
 							onclick="open_win('FlowerServlet?command=flowerClient_delete_form&id=${flowerClient.id}','delete')"/>

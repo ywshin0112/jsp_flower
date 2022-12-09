@@ -20,6 +20,7 @@ public class FlowerClientUpdateFormAction implements Action{
 	    FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 	    FlowerClientVO fvo = fdao.getFlowerClient(id);
 	    request.setAttribute("fvo", fvo);
+	    System.out.println(fvo);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

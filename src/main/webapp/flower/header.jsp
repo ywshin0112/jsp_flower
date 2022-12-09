@@ -13,14 +13,13 @@
 <body>
 	<%
 	String category = "../";
- if(request.getServletPath().equals("/index.jsp")){
-	 category="";
+	if (request.getServletPath().equals("/index.jsp")) {
+		category = "";
 
- }
- System.out.println("경로 : " + request.getContextPath());
- System.out.println("경로2 : " + request.getRequestURI());
- 
-%>
+	}
+	System.out.println("경로 : " + request.getContextPath());
+	System.out.println("경로2 : " + request.getRequestURI());
+	%>
 
 
 	<header>
@@ -37,19 +36,32 @@
 			<div class="mainAside">
 				<div class=login>
 					<ul>
-						<li><a href="FlowerServlet?command=mypage">마이페이지</a></li>
+						<c:choose>
+							<c:when test="${!empty flowerClient}">
+								<li><a href="FlowerServlet?command=mypage">마이페이지</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="#">마이페이지</a></li>
+							</c:otherwise>
+						</c:choose>
+
 						<li><a href="delivery.jsp">주문배송조회</a></li>
 						<li><a href="shoppingBasket.jsp">장바구니</a></li>
 						<c:if test="${empty flowerClient}">
 							<li><a href="FlowerServlet?command=membership_page">회원가입</a></li>
-							<li class="visible loginTop"><a href="FlowerServlet?command=flower_product_form">관리자페이지(임시)</a><a href="FlowerServlet?command=login_page">로그인</a></li>
+							<li class="visible loginTop"><a
+								href="FlowerServlet?command=flower_product_form">관리자페이지(임시)</a><a
+								href="FlowerServlet?command=login_page">로그인</a></li>
 						</c:if>
 						<c:if test="${!empty flowerClient}">
-							<li class="visible loginTop"><a href="FlowerServlet?command=logout">로그아웃</a></li>
+							<li class="visible loginTop"><a
+								href="FlowerServlet?command=logout">로그아웃</a></li>
 							<c:if test="${flowerClient.lev eq 'A'}">
-								<li class="visible"><a href="FlowerServlet?command=flower_product_form">관리자페이지</a></li>
+								<li class="visible"><a
+									href="FlowerServlet?command=flower_product_form">관리자페이지</a></li>
 							</c:if>
-							<li><a href="FlowerServlet?command=mypage">${flowerClient.name}</a>님 환영합니다.</li>
+							<li><a href="FlowerServlet?command=mypage">${flowerClient.name}</a>님
+								환영합니다.</li>
 						</c:if>
 					</ul>
 				</div>
@@ -68,9 +80,8 @@
 
 		</div>
 	</header>
-	
-	<div class="headerMargin">
-	</div>
-	
+
+	<div class="headerMargin"></div>
+
 </body>
 </html>
