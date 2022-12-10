@@ -17,7 +17,7 @@ public class FlowerCategoryList implements Action {
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 		 
-		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
+		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

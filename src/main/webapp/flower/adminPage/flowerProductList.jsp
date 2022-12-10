@@ -24,21 +24,21 @@
 	</tr>
 	
 	<tr>
-		<th>카테고리</th><th>상품코드</th><th>상품명</th><th>가격</th><th>상품안내</th><th>추가문구1 사용</th><th>추가문구2 사용</th><th>수정</th><th>삭제</th>
+		<th>카테고리</th><th>상품코드</th><th>상품명</th><th>가격</th><th>상품안내</th><th>추가문구1 사용</th><th>추가문구2 사용</th><th>상품이미지 추가</th><th>삭제</th>
 	</tr>
 	
 	<c:forEach var="productVO" items="${productList}">
 		<c:if test="${categoryVO.category}"></c:if>
 		<tr class="record">
 			<td>${productVO.category}</td>
-			<td>${productVO.code}</td>
-			<td>${productVO.name}</td>
+			<td><a href="FlowerServlet?command=flower_update_product_form&code=${productVO.code}">${productVO.code}</a></td>
+			<td><a href="FlowerServlet?command=flower_update_product_form&code=${productVO.code}">${productVO.name}</a></td>
 			<td>${productVO.price} 원</td>
 			<td>${productVO.information}</td>
 			<td>${productVO.text1}</td>
 			<td>${productVO.text2}</td>
 			
-			<td><a href="FlowerServlet?command=flower_update_product&code=${productVO.code}">상품 수정</a></td>
+			<td><a href="FlowerServlet?command=flower_add_product_image&code=${productVO.code}">이미지 추가</a></td>
 			<td><a href="FlowerServlet?command=flower_delete_product&code=${productVO.code}" onclick="return removeCheck()">상품 삭제</a></td>
 		</tr>
 	
@@ -49,6 +49,6 @@
 
 </div>
 <jsp:include page="/flower/footer.jsp"></jsp:include>
-<script src="js/script.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

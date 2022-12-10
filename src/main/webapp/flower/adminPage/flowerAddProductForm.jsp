@@ -35,22 +35,29 @@
 				</tr>
 				<tr>
 					<th>상품코드</th>
-					<td colspan="3"><input type="text" name="code"></td>
+					<td><input type="text" name="code" onchange="productCodeCheck(${codeList }, this)"></td>
+
+				</tr>
+				<tr>
+					<th> </th>
+					<td><input id="codeCheckValue" type="hidden" value="0">
+					<span id="codeCheck" style="color:red;">상품코드를 입력해 주세요</span></td>
+					
 
 				</tr>
 				<tr>
 					<th>상품명</th>
-					<td colspan="3"><input type="text" name="name"></td>
+					<td><input type="text" name="name"></td>
 
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td colspan="3"><input type="text" name="price"></td>
+					<td><input type="text" name="price"></td>
 
 				</tr>
 				<tr>
 					<th>상품안내</th>
-					<td colspan="3"> <textarea rows="5" cols="50" name="information"></textarea> </td>
+					<td> <textarea rows="5" cols="50" name="information"></textarea> </td>
 
 				</tr>
 				
@@ -62,13 +69,13 @@
 				</tr>
 				<tr>
 				<th>추가문구2 사용</th>
-					<td><input type="checkbox" name="text2" value="1"></td>
+					<td><input type="checkbox" name="text2" value="1"}"></td>
 				</tr>
 			
 			
 
 			</table>
-			<input type="submit" value="추가">
+			<input type="submit" value="추가" onclick="return productUpdateSubmit()">
 			 <input type="reset"
 				value="취소"> <input type="button" value="목록으로"
 				onclick="location.href='FlowerServlet?command=flower_product_list'">
@@ -78,6 +85,6 @@
 
 	</div>
 	<jsp:include page="/flower/footer.jsp"></jsp:include>
-	<script src="js/script.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

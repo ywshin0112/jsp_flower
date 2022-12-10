@@ -18,7 +18,7 @@ $(".slider").slick({
 	responsive: [ // 반응형 웹 구현 옵션
 
 		{
-			breakpoint: 700, //화면 사이즈 768px
+			breakpoint: 700, //화면 사이즈
 			settings: {
 				slidesToShow: 1
 			}
@@ -32,13 +32,13 @@ $(".box2_slider").slick({
 	slidesToShow: 5,
 	responsive: [ // 반응형 웹 구현 옵션
 		{
-			breakpoint: 900, //화면 사이즈 768px
+			breakpoint: 900, //화면 사이즈
 			settings: {
 				slidesToShow: 3
 			}
 		},
 		{
-			breakpoint: 700, //화면 사이즈 768px
+			breakpoint: 700, //화면 사이즈
 			settings: {
 				slidesToShow: 1
 			}
@@ -209,7 +209,64 @@ function joinCheck() {
 
 
 
+// 삭제 확인
+function removeCheck() {
+	if (confirm("정말 삭제하시겠습니까??") == true) { 
 
+		return true;
 
+	} else {   
 
+		return false;
 
+	}
+
+}
+
+// 코드 중복시 문구
+function productCodeCheck(codeList, target) {
+	for(var i = 0; i<codeList.length; i++) {
+		if(codeList[i]===target.value){
+			document.querySelector("#codeCheck").innerHTML='사용이 가능하지 않은 상품코드 입니다.';
+			document.querySelector("#codeCheck").style.color='red';
+			document.querySelector("#codeCheckValue").value='1';
+			return;
+		} else {
+			document.querySelector("#codeCheck").innerHTML='사용 가능한 상품코드 입니다.'
+			document.querySelector("#codeCheck").style.color='green';
+			document.querySelector("#codeCheckValue").value='0';
+		}
+	};
+}
+
+// 상품 등록시 확인조건
+function productAddUpdateSubmit() {
+	if(document.querySelector(".code").value==""){
+		alert("상품코드를 입력하세요");
+		document.frm.code.focus();
+		return false;
+	}
+	if(document.querySelector("#codeCheckValue").value=='1') {
+		alert("상품코드가 중복입니다.");
+		document.frm.code.focus();
+		return false;
+	}
+	if(document.querySelector(".name").value==""){
+		alert("상품명을 입력하세요");
+		document.frm.name.focus();
+		return false;
+	}
+	if(document.querySelector(".price").value==""){
+		alert("가격을 입력하세요");
+		document.frm.price.focus();
+		return false;
+	}
+	if(isNaN(document.querySelector(".price").value)){
+		alert("가격은 숫자로 입력하세요");
+		document.frm.price.focus();
+		return false;
+	}
+	
+	return true;
+	
+}

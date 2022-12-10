@@ -5,6 +5,7 @@ import com.flower.controller.action.FlowerAddCategory;
 import com.flower.controller.action.FlowerAddCategoryForm;
 import com.flower.controller.action.FlowerAddProduct;
 import com.flower.controller.action.FlowerAddProductForm;
+import com.flower.controller.action.FlowerAddProductImage;
 import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
 import com.flower.controller.action.FlowerCategoryList;
@@ -29,6 +30,8 @@ import com.flower.controller.action.FlowerDeleteProduct;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
 import com.flower.controller.action.FlowerUpdateCategory;
+import com.flower.controller.action.FlowerUpdateProduct;
+import com.flower.controller.action.FlowerUpdateProductForm;
 import com.flower.controller.action.FlowerWddingBouquetAction;
 
 public class ActionFactory {
@@ -81,10 +84,14 @@ public class ActionFactory {
 			action = new FlowerAddProductForm();
 		} else if (command.equals("flower_add_product")) {
 			action = new FlowerAddProduct();
+		} else if (command.equals("flower_update_product_form")) {
+			action = new FlowerUpdateProductForm();
 		} else if (command.equals("flower_update_product")) {
-			action = new FlowerAddProductForm();
+			action = new FlowerUpdateProduct();
 		} else if (command.equals("flower_delete_product")) {
 			action = new FlowerDeleteProduct();
+		} else if (command.equals("flower_add_product_image")) {
+			action = new FlowerAddProductImage();
 		}
 		// 로그인
 		else if (command.equals("login_page")) {

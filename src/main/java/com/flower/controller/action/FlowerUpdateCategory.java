@@ -30,17 +30,12 @@ public class FlowerUpdateCategory implements Action {
 		String image = "category\\" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
-		System.out.println("category : " + category);
-		System.out.println("path : " + path);
-		System.out.println("categoryPath : " + categoryPath);
-		System.out.println("image : " + image);
-		System.out.println("beforeName : " + beforeName);
 
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 		FlowerCategoryVO cvo = cdao.selectedCategory(beforeName);
 		
 		String beforeImage = cvo.getImage();
-		System.out.println("beforeImage : " + beforeImage);
+
 		
 		cvo.setCategory(category);
 		
@@ -49,7 +44,6 @@ public class FlowerUpdateCategory implements Action {
 
 		if (image.equals("category\\null")) {
 			cdao.updateCategoryOnly(cvo, beforeName);
-			System.out.println("새로운이미지 없음");
 		} else {
  
 			File file = new File(path + "\\" +beforeImage);
@@ -58,7 +52,6 @@ public class FlowerUpdateCategory implements Action {
 				file.delete();
 
 			}
-			System.out.println("새로운이미지 있음");
 			cdao.updateImageAndCategory(cvo, beforeName);
 		}
 
@@ -66,7 +59,7 @@ public class FlowerUpdateCategory implements Action {
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
 
-		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
+		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

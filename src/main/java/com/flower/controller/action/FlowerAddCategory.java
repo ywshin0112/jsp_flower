@@ -33,10 +33,6 @@ public class FlowerAddCategory implements Action {
 		String image = "category\\" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
-		System.out.println("category : " + category);
-		System.out.println("path : " + path);
-		System.out.println("image : " + image);
-		System.out.println("beforeName : " + beforeName);
 
 		FlowerCategoryVO cvo = new FlowerCategoryVO();
 
@@ -47,7 +43,7 @@ public class FlowerAddCategory implements Action {
 		cdao.insertCategory(cvo);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
-		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
+		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

@@ -20,11 +20,11 @@ public class FlowerCategoryDAO {
 
 	// 전체 카테고리 불러오기
 
-	public ArrayList<FlowerCategoryVO> selectAllCategory() {
+	public ArrayList<FlowerCategoryVO> selectAllCategory(String option) {
 
 		ArrayList<FlowerCategoryVO> list = new ArrayList<>();
 
-		String sql = "select * from flower_category where category not in (\'//옵션//\')";
+		String sql = "select * from flower_category " + option;
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
