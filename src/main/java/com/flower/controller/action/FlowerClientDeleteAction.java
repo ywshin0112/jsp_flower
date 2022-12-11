@@ -21,8 +21,6 @@ public class FlowerClientDeleteAction implements Action {
 		String pass = request.getParameter("pass");
 		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 		FlowerClientVO fvo = fdao.getFlowerClient(id);
-		System.out.println(fvo);
-
 		if (fvo.getPass().equals(pass)) { // 성공
 			fdao.deleteFlowerClient(id);
 			HttpSession session = request.getSession();
@@ -42,7 +40,6 @@ public class FlowerClientDeleteAction implements Action {
 		} else { // 실패
 			url = "FlowerServlet?command=flowerClient_delete_form";
 			request.setAttribute("massage", "비밀번호가 틀렸습니다.");
-			request.setCharacterEncoding("utf-8");
 		}
 
 		RequestDispatcher rd = request.getRequestDispatcher(url);

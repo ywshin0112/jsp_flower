@@ -16,18 +16,28 @@ text-align: center;
 	<h2>아이디 중복확인</h2>
 	<form method="post" name="frm" action="FlowerServlet">
 	<input type="hidden" name="command" value="id_Ck"/>
-		아이디 <input type="text" name="id" value="${id}"> 
+		아이디 <input type="text" name="id" value="${id}" maxlength="12"> 
 			<input type="submit" value="중복 체크"> <br>
+			
 		<c:if test="${result == 1}">
 			<script type="text/javascript">
 				opener.document.frm.id.value = "";
 			</script>
 			<span style="color: red;">${id}는 이미 사용 중인 아이디입니다.</span>
 		</c:if>
+		
+		<c:if test="${result == 2}">
+			<script type="text/javascript">
+				opener.document.frm.id.value = "";
+			</script>
+			<span style="color: red;">아이디는 영문, 숫자를 포함하여 4~12자 사이로 공백 없이 작성해 주세요.</span>
+		</c:if>
+		
 		<c:if test="${result==-1}">
-		<span style="color: red;">${id}는 사용 가능한 아이디입니다.</span>
+		<span style="color: black;">${id}는 사용 가능한 아이디입니다.</span>
 		<input type="button" value="사용" class="cancel" onclick="idok('${id}')">
 		</c:if>
+		
 	</form>
 	<script src="js/main.js"></script>
 </body>

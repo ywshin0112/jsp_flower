@@ -15,3 +15,8 @@ function idCheck() {
 	}
 	return true;
 }
+
+function findId() {
+	var url = "FlowerServlet?command=id_Ck&id=" + document.frm.id.value;
+	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no,   width=450, height=200")
+}

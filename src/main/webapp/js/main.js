@@ -3,11 +3,6 @@ document.querySelector(".asideButton").addEventListener("click", function() {
 	document.querySelector(".asideButton").classList.toggle("active");
 });
 
-
-
-
-
-
 $(".slider").slick({
 	arrows: true,
 	prevArrow: $(".prevBtn"),
@@ -118,25 +113,39 @@ function test(e) {
 
 // 아이디 중복 체크
 // id 중복 체크 모듈
-function idCheck(){
-	if(document.frm.id.value==""){
+function idCheck() {
+	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,11}$/g;
+
+	if (document.frm.id.value == "") {
 		alert("아이디를 입력해주세요");
 		document.frm.id.focus();
 		return;
+	} if (!idLimit.test(document.frm.id.value)) {
+		alert("아이디는 영문, 숫자를 포함하여 4~12자 사이로 공백 없이 작성해 주세요.");
+		return false;
 	}
-	//중복 확인 팝업창
-	var url = "FlowerServlet?command=id_Ck&id="+document.frm.id.value;
+
+	// 중복 확인 팝업창
+	var url = "FlowerServlet?command=id_Ck&id=" + document.frm.id.value;
 	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no,   width=450, height=200")
+	
+	// 중복체크 value 값 지정(가입버튼 비활성화 느낌(?)만 줌)
+	var Myelement = document.querySelector('input[name="checked_id"]');
+	console.log(Myelement.value);
+	Myelement.value = "Y";
+	console.log(Myelement.value);
 }
 
-function idok(){
-	
+function idok() {
+
 	// opener 부모창 > 회원가입창
 	opener.frm.id.value = document.frm.id.value;
 	// reid 히든값 다시 확인
 	opener.frm.reid.value = document.frm.id.value;
 	self.close();
 }
+
+
 
 // 회원가입 조건 확인
 function joinCheck() {
@@ -147,10 +156,13 @@ function joinCheck() {
 	let emailLimit = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/g;
 
 	// 아이디 조건
-	if (document.frm.id.value == '') {
+	if (document.frm.checked_id.value != 'Y') {
+		alert("아이디 중복체크를 해주세요.");
+		return false;
+	} if (document.frm.id.value == '') {
 		alert("아이디를 입력하세요.");
 		return false;
-	}if (!idLimit.test(document.frm.id.value)) {
+	} if (!idLimit.test(document.frm.id.value)) {
 		alert("아이디는 영문, 숫자를 포함하여 4~12자 사이로 공백 없이 작성해 주세요.");
 		return false;
 	}
@@ -159,7 +171,7 @@ function joinCheck() {
 	if (document.frm.pass.value == '') {
 		alert("비밀번호를 입력하세요.");
 		return false;
-	}if (!passLimit.test(document.frm.pass.value)) {
+	} if (!passLimit.test(document.frm.pass.value)) {
 		alert("비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자 사이로 공백 없이 작성해 주세요.");
 		return false;
 	}
@@ -168,7 +180,7 @@ function joinCheck() {
 	if (document.frm.passCk.value == '') {
 		alert("비번 확인을 입력해 주세요.");
 		return false;
-	}if (document.frm.pass.value != document.frm.passCk.value) {
+	} if (document.frm.pass.value != document.frm.passCk.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
@@ -177,7 +189,7 @@ function joinCheck() {
 	if (document.frm.name.value == '') {
 		alert("성함을 입력하세요.");
 		return false;
-	}if (!nameLimit.test(document.frm.name.value)) {
+	} if (!nameLimit.test(document.frm.name.value)) {
 		alert("공백 없이 한글 성함 혹은 영문 성함으로 작성해 주세요.");
 		return false;
 	}
@@ -194,11 +206,11 @@ function joinCheck() {
 	if (document.frm.email.value == '') {
 		alert("이메일을 입력하세요.");
 		return false;
-	}if (!emailLimit.test(document.frm.email.value)) {
+	} if (!emailLimit.test(document.frm.email.value)) {
 		alert("이메일을 확인해 주세요.");
 		return false;
 	}
-	
+
 	// 주소 조건
 	if (document.frm.address.value == '') {
 		alert("주소를 입력하세요.");
@@ -211,11 +223,11 @@ function joinCheck() {
 
 // 삭제 확인
 function removeCheck() {
-	if (confirm("정말 삭제하시겠습니까??") == true) { 
+	if (confirm("정말 삭제하시겠습니까??") == true) {
 
 		return true;
 
-	} else {   
+	} else {
 
 		return false;
 
@@ -225,48 +237,48 @@ function removeCheck() {
 
 // 코드 중복시 문구
 function productCodeCheck(codeList, target) {
-	for(var i = 0; i<codeList.length; i++) {
-		if(codeList[i]===target.value){
-			document.querySelector("#codeCheck").innerHTML='사용이 가능하지 않은 상품코드 입니다.';
-			document.querySelector("#codeCheck").style.color='red';
-			document.querySelector("#codeCheckValue").value='1';
+	for (var i = 0; i < codeList.length; i++) {
+		if (codeList[i] === target.value) {
+			document.querySelector("#codeCheck").innerHTML = '사용이 가능하지 않은 상품코드 입니다.';
+			document.querySelector("#codeCheck").style.color = 'red';
+			document.querySelector("#codeCheckValue").value = '1';
 			return;
 		} else {
-			document.querySelector("#codeCheck").innerHTML='사용 가능한 상품코드 입니다.'
-			document.querySelector("#codeCheck").style.color='green';
-			document.querySelector("#codeCheckValue").value='0';
+			document.querySelector("#codeCheck").innerHTML = '사용 가능한 상품코드 입니다.'
+			document.querySelector("#codeCheck").style.color = 'green';
+			document.querySelector("#codeCheckValue").value = '0';
 		}
 	};
 }
 
 // 상품 등록시 확인조건
 function productAddUpdateSubmit() {
-	if(document.querySelector(".code").value==""){
+	if (document.querySelector(".code").value == "") {
 		alert("상품코드를 입력하세요");
 		document.frm.code.focus();
 		return false;
 	}
-	if(document.querySelector("#codeCheckValue").value=='1') {
+	if (document.querySelector("#codeCheckValue").value == '1') {
 		alert("상품코드가 중복입니다.");
 		document.frm.code.focus();
 		return false;
 	}
-	if(document.querySelector(".name").value==""){
+	if (document.querySelector(".name").value == "") {
 		alert("상품명을 입력하세요");
 		document.frm.name.focus();
 		return false;
 	}
-	if(document.querySelector(".price").value==""){
+	if (document.querySelector(".price").value == "") {
 		alert("가격을 입력하세요");
 		document.frm.price.focus();
 		return false;
 	}
-	if(isNaN(document.querySelector(".price").value)){
+	if (isNaN(document.querySelector(".price").value)) {
 		alert("가격은 숫자로 입력하세요");
 		document.frm.price.focus();
 		return false;
 	}
-	
+
 	return true;
-	
+
 }

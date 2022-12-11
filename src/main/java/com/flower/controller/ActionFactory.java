@@ -27,6 +27,8 @@ import com.flower.controller.action.FlowerMembershipFormAction;
 import com.flower.controller.action.FlowerMoneyBoxAction;
 import com.flower.controller.action.FlowerPlantAction;
 import com.flower.controller.action.FlowerDeleteProduct;
+import com.flower.controller.action.FlowerFindIdAction;
+import com.flower.controller.action.FlowerFindPassAction;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
 import com.flower.controller.action.FlowerUpdateCategory;
@@ -102,6 +104,10 @@ public class ActionFactory {
 			action = new FlowerIdCheckAction();
 		}else if (command.equals("id_pass_Ck")) {
 			action = new FlowerIdPassCheckAction();
+		}else if (command.equals("find_id")) {
+			action = new FlowerFindIdAction();
+		}else if (command.equals("find_pass")) {
+			action = new FlowerFindPassAction();
 		}
 		// 로그아웃
 		else if (command.equals("logout")) {

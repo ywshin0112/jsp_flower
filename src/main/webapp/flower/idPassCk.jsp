@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/slick.css">
+<style type="text/css">
+</style>
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -26,42 +28,54 @@
 		</div>
 
 		<div class="main">
-			<div class="grayBox">
-				<br>
+<!-- 			<div class="grayBox"> -->
 				<form action="FlowerServlet" method="post" name="frm">
-					<input type="hidden" name="command" value="id_pass_Ck">
+					<input type="hidden" name="command" value="find_id">
+					<h1>아이디 찾기</h1>
 					<table>
 						<tr>
 							<td class="logBox"><span>성함 :</span><br> 
-								<input type="text" name="name">
+								<input type="text" name="name" class="loginBox">
 							</td>
 						</tr>
 						<tr>
-							<td class="logBox"><span>이메일 :</span><br> 
-								<input type="text" name="email">
+							<td class="logBox"><span>전화번호 :</span><br> 
+								<input type="text" name="phone" class="loginBox">
+							</td>
+						</tr>
+						<tr>
+							<td class="logBox btnSet">
+							<input type="submit" value="아이디 찾기" name="idCk" class="logBtn">
 							</td>
 						</tr>
 					</table>
-					<input type="submit" value="아이디 찾기" name="idCk">	
+					
 					</form>
-				<form action="FlowerServlet" method="post" name="frm">
-					<input type="hidden" name="command" value="Find_id">
+					<hr>
+					<form action="FlowerServlet" method="post" name="frm">
+					<input type="hidden" name="command" value="find_pass">
+					<h1>비밀번호 찾기</h1>
 					<table>
 						<tr>
-							<td class="logBox"><span>성함 :</span><br> 
-								<input type="text" name="name">
+							<td class="logBox"><span>아이디 :</span><br> 
+								<input type="text" name="id" class="loginBox">
 							</td>
 						</tr>
 						<tr>
 							<td class="logBox"><span>이메일 :</span><br> 
-								<input type="text" name="email">
+								<input type="text" name="email" class="loginBox">
+							</td>
+						</tr>
+						<tr>
+							<td class="logBox btnSet">
+							<input type="submit" value="비밀번호 찾기" name="passCk" class="logBtn">	
 							</td>
 						</tr>
 					</table>
-					<input type="submit" value="비밀번호 찾기" name="passCk">	
+					
 				</form>
 			</div>
-		</div>
+<!-- 		</div> -->
 	</main>
 	<script src="js/main.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>

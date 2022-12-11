@@ -50,8 +50,9 @@
 							<th>아이디</th>
 							<td>
 								<input type="text" name="id" maxlength="12"/>* &nbsp;
-								<input type="hidden" name="reid" size="20">
+								<input type="hidden" name="reid" size="20"/>
 								<input type="button" name="idCk" value="ID중복확인" id="ckBtn" onclick="return idCheck()"/> &nbsp;
+								<input type="hidden" name="checked_id" value=""/>
 								<span>4~12자리 영문/숫자 조합</span>
 							</td>
 						</tr>

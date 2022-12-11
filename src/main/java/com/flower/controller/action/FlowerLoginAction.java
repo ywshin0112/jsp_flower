@@ -1,6 +1,7 @@
 package com.flower.controller.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +19,6 @@ public class FlowerLoginAction implements Action{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		String name = request.getParameter("name");
 		String saveId = request.getParameter("saveId");
 		
 		String url = null;
@@ -51,12 +51,10 @@ public class FlowerLoginAction implements Action{
 			url = "flower/main.jsp";
 		}else{
 			url ="flower/login.jsp";
-			if(result == 0) {
-				request.setAttribute("message", "아이디와 비밀번호를 다시 확인해 주세요");
-			}else if(result == 2) {
+			if(result == 2) {
 				request.setAttribute("message", "비밀번호를 확인해 주세요.");
-			}else if(result == 3) {
-				request.setAttribute("message", "아이디를 확인해 주세요.");
+			}else if(result == 0) {
+				request.setAttribute("message", "존재하는 아이디가 없습니다.");
 			}
 		}
 

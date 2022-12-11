@@ -50,15 +50,18 @@
 						<tr>
 							<td class="logBox"><span>아이디 :</span><br> 
 							<input type="text" name="id" class="loginBox form-control" 
-								value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="로그인" required>
+								value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder="4~12자리 영문/숫자" required>
 							</td>
 						</tr>
 
 						<tr>
 							<td class="logBox"><span>비밀번호 :</span><br> <input
 								type="password" id="userpwd" name="pass" class="loginBox"
-								placeholder="비밀번호"
+								placeholder="8~16자리 영문/숫자/특수문자"
 								onkeypress="enterKey(event)" /></td>
+						</tr>
+						<tr align="center" style="color: red;">
+							<td>${message}</td>
 						</tr>
 
 						<tr>
@@ -76,13 +79,12 @@
 									&nbsp;아이디 저장
 								</label>
 								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<a href="#">아이디 찾기</a>&nbsp;/ 
-								<a href="#">비밀번호 찾기</a>
+								<a href="FlowerServlet?command=id_pass_Ck">아이디 찾기</a>&nbsp;/ 
+								<a href="FlowerServlet?command=id_pass_Ck">비밀번호 찾기</a>
 							</td>
 						</tr>
-						
 					</table>
-					${message}
+					
 				</form>
 			</div>
 		</div>
