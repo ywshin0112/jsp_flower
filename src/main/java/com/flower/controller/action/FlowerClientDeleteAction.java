@@ -33,8 +33,9 @@ public class FlowerClientDeleteAction implements Action {
 			String str = "";
 			str = "<script language='javascript'>";
 			str += "opener.window.location.reload();"; // 오프너 새로고침
-			str += "window.opener.parent.location.href = \"FlowerServlet?command=flower_main\";"; // 오프너 새로고침
+			str += "window.opener.parent.location.href = \"FlowerServlet?command=flower_main\";";
 			str += "self.close();"; // 창닫기
+			str += "alert(\"정상적으로 회원 탈퇴되었습니다.\");";
 			str += "</script>";
 			out.print(str);
 			

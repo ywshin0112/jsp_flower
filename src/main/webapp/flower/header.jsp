@@ -38,10 +38,10 @@
 					<ul>
 						<c:choose>
 							<c:when test="${!empty flowerClient}">
-								<li><a href="FlowerServlet?command=mypage">마이페이지</a></li>
+								<li class="visible loginTop"><a href="FlowerServlet?command=mypage">마이페이지</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="#">마이페이지</a></li>
+								<li><a href="FlowerServlet?command=login_page">마이페이지</a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -54,7 +54,7 @@
 								href="FlowerServlet?command=login_page">로그인</a></li>
 						</c:if>
 						<c:if test="${!empty flowerClient}">
-							<li class="visible loginTop"><a
+							<li class="visible"><a
 								href="FlowerServlet?command=logout">로그아웃</a></li>
 							<c:if test="${flowerClient.lev eq 'A'}">
 								<li class="visible"><a

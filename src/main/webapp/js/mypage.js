@@ -2,7 +2,7 @@
  * 
  */
  function open_win(url, name){
-	window.open(url, name, "width=450, height=250");
+	window.open(url, name, "width=480, height=210");
 }
 
 function WinClose(){

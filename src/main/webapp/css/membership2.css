@@ -6,6 +6,13 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+h1 {
+text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
 main {
 	width: 100%;
 	position: relative;
@@ -80,6 +87,7 @@ main .main .button {
 	height: 50px;
 	border-radius: 10px;
 	cursor: pointer;
+	margin: 10px 0;
 }
 
 main .main .button:hover {
@@ -141,14 +149,15 @@ main .main span {
 @media screen and (max-width: 1023px) {
 	.container {
 		width: 100%;
-		margin-top: 54px;
 		font-size: 32px;
 	}
+	
 	main .category a, main .category li {
 		display: none;
 	}
 	main .title {
-		line-height: 130px;
+	padding: 40px 0;
+		line-height: 54px;
 		font-size: 54px;
 	}
 	main .main form {
@@ -158,6 +167,7 @@ main .main span {
 	}
 	main .main .mainBox {
 		padding: 0 10%;
+
 	}
 	main .main .mainBox ul {
 		width: 100%;
@@ -195,6 +205,7 @@ main .main span {
 		padding: 10px;
 	}
 	main .main td {
+	width:80%;
 		padding: 0 10px;
 	}
 	main .main span, main .main input[type="text" i], main .main input[type="button"
@@ -221,6 +232,7 @@ main .main span {
 		display: block;
 	}
 	main .main .btnSet {
+		margin: 15px auto;
 		padding: 0 10%;
 	}
 	main .main .mainBox .button {
@@ -229,5 +241,9 @@ main .main span {
 		margin: 15px auto;
 		font-size: 45px;
 		height: 100px;
+	}
+	h1{
+	font-size: 40px;
+	margin: 25px 0;
 	}
 }

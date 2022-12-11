@@ -11,7 +11,7 @@
 <form method="post" name="frm" action="FlowerServlet">
 <input type="hidden" name="command" value="flowerClient_delete" />
 <input type="hidden" name="id" value="${flowerClient.id}"/>
-<table>
+<table style="margin: 0 auto;">
 	<tr align="center">
 		<td>
 			<h2>회원 탈퇴를 진행하시겠습니까?</h2>
@@ -25,7 +25,7 @@
 		</td>
 	</tr>
 	<tr>
-	<td>${massage} </td>
+	<td align="center" style="color: red;">${massage}</td>
 	</tr>
 	
 </table>

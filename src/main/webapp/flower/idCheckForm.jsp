@@ -22,10 +22,10 @@ text-align: center;
 			<script type="text/javascript">
 				opener.document.frm.id.value = "";
 			</script>
-			${id}는 이미 사용 중인 아이디입니다.
+			<span style="color: red;">${id}는 이미 사용 중인 아이디입니다.</span>
 		</c:if>
 		<c:if test="${result==-1}">
-		${id}는 사용 가능한 아이디입니다.
+		<span style="color: red;">${id}는 사용 가능한 아이디입니다.</span>
 		<input type="button" value="사용" class="cancel" onclick="idok('${id}')">
 		</c:if>
 	</form>

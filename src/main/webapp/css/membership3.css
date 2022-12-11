@@ -113,13 +113,15 @@ main .main ul:first-child li:nth-child(3) {
 @media screen and (max-width: 1023px) {
 	.container {
 		width: 100%;
-		margin-top: 54px;
+		font-size: 32px;
 	}
+	
 	main .category a, main .category li {
 		display: none;
 	}
 	main .title {
-		line-height: 130px;
+	padding: 40px 0;
+		line-height: 54px;
 		font-size: 54px;
 	}
 	main .main form {

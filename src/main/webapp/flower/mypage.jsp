@@ -11,16 +11,6 @@
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/membership2.css">
 <link rel="stylesheet" href="css/slick.css">
-<style type="text/css">
-h1 {
-	font-size: 28px;
-	font-weight: bold;
-}
-
-form {
-	padding: 0 20%;
-}
-</style>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -37,49 +27,53 @@ form {
 		</div>
 
 		<div class="main">
-				
-				<form method="post" name="frm" action="FlowerServlet">
+
+			<form method="post" name="frm" action="FlowerServlet">
 				<input type="hidden" name="command" value="flowerClient_update" />
-				<h1>기본정보</h1>
-				<table>
-					<tr>
-						<td>이름</td>
-						<td>${flowerClient.name}</td>
-					</tr>
-					<tr>
-						<td>아이디</td>
-						<td>${flowerClient.id}</td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td>${flowerClient.email}</td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td>${flowerClient.phone}</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>${flowerClient.address}</td>
-					</tr>
-					<tr>
-						<td colspan="2" align="center">
-							<input type="button" name="updateBtn" value="회원정보 수정"
+
+				<div class="mainBox">
+					<h1>기본정보</h1>
+					<table>
+						<tr>
+							<th>이름</th>
+							<td>${flowerClient.name}</td>
+						</tr>
+						<tr>
+							<th>아이디</th>
+							<td>${flowerClient.id}</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>${flowerClient.email}</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>${flowerClient.phone}</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td>${flowerClient.address}</td>
+						</tr>
+					</table>
+					<div class="btnSet">
+						<input type="button" class="button" name="updateBtn" value="회원정보 수정"
 							onclick="location.href='FlowerServlet?command=flowerClient_update_form&id=${flowerClient.id}'">
-							<input type="button" name="deleteBtn" value="회원탈퇴"
-							onclick="open_win('FlowerServlet?command=flowerClient_delete_form&id=${flowerClient.id}','delete')"/>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><br>
-						<h1>장바구니</h1>
-							<br>장바구니 내역</td>
-						<td colspan="2"><br>
-						<h1>주문배송</h1>
-							<br>주문 배송 내역</td>
-					</tr>
-				</table>
-				</form>
+						
+					</div>
+					<table>
+						<tr>
+							<th>장바구니</th>
+							<td>장바구니 내역</td>
+						</tr>
+						<tr>
+							<th>주문배송</th>
+							<td>주문 배송 내역</td>
+						</tr>
+					</table>
+					<input type="button" name="deleteBtn" value="회원탈퇴" style="all: unset; float: left; margin-top: 10px; border-bottom: 1px solid black;"
+							onclick="open_win('FlowerServlet?command=flowerClient_delete_form&id=${flowerClient.id}','delete')" />
+				</div>
+			</form>
 		</div>
 	</main>
 	<jsp:include page="footer.jsp"></jsp:include>

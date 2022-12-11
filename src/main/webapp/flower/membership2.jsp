@@ -22,7 +22,7 @@
 		</ul>
 
 		<div class="title">
-			<h1>회원가입</h1>
+			<h2>회원가입</h2>
 		</div>
 
 		<!-- 가입 내용 -->
@@ -36,7 +36,7 @@
 					<li>02 개인정보 입력</li>
 					<li>03 가입완료</li>
 				</ul>
-					<table border="1">
+					<table>
 						<tr>
 							<th>회원 형태</th>
 							<td><input type="checkbox" name="lev" id="lev" value="B"
