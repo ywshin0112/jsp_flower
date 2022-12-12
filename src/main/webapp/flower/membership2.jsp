@@ -60,8 +60,8 @@
 						<tr>
 							<th>비밀번호</th>
 							<td>
-								<input type="password" name="pass" maxlength="16"/>*
-								&nbsp;<span>8~16자리 영문/숫자/특수문자 조합</span>
+								<input type="password" name="pass" maxlength="16"/>* &nbsp;
+								<span>8~16자리 영문/숫자/특수문자 조합</span>
 							</td>
 						</tr>
 
@@ -80,21 +80,25 @@
 
 						<tr>
 							<th>전화번호</th>
-							<td><input type="text" name="phone" onkeyup="test(this);" maxlength="13"/>* &nbsp;
-								<input type="button" value="인증번호 발송" id="ckBtn" onclick=""/>
+							<td><input type="text" name="phone" onchange="phoneCheck(${phoneList}, this)" onkeyup="test(this);" maxlength="13"/>* &nbsp;
+								<input type="hidden" id="phoneCkValue" value="0"> 
+<!-- 								<input type="button" value="인증번호 발송" id="ckBtn" onclick=""/> -->
+							<span id="phoneCk" style="color: red;">전화번호를 입력해 주세요.</span>
 							</td>
 						</tr>
 
-						<tr>
-							<th>인증번호</th>
-							<td><input type="text" name="phoneCk"/>* &nbsp;
-								<input type="button" value="인증번호 확인" id="ckBtn" onclick="" /></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<th>인증번호</th> -->
+<!-- 							<td><input type="text" name="phoneCk"/>* &nbsp; -->
+<!-- 								<input type="button" value="인증번호 확인" id="ckBtn" onclick="" /></td> -->
+<!-- 						</tr> -->
 						
 						<tr>
 							<th>이메일</th>
 							<td>
-								<input type="text" name="email"/>*
+								<input type="text" name="email" onchange="emailCheck(${emailList}, this)" />* &nbsp;
+								<input type="hidden" id="emailCkValue" value="0"> 
+		 						<span id="emailCk" style="color: red;">이메일을 입력해 주세요.</span>
 							</td>
 						</tr>
 

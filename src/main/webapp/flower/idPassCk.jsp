@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="main">
-<!-- 			<div class="grayBox"> -->
+			<div class="grayBox" style="height: 500px;">
 				<form action="FlowerServlet" method="post" name="frm">
 					<input type="hidden" name="command" value="find_id">
 					<h1>아이디 찾기</h1>
@@ -40,18 +40,18 @@
 						</tr>
 						<tr>
 							<td class="logBox"><span>전화번호 :</span><br> 
-								<input type="text" name="phone" class="loginBox">
+								<input type="text" name="phone" onkeyup="test(this);" class="loginBox">
 							</td>
 						</tr>
 						<tr>
-							<td class="logBox btnSet">
+							<td class="logBox btnSet" style="padding-left: 40%;">
 							<input type="submit" value="아이디 찾기" name="idCk" class="logBtn">
 							</td>
 						</tr>
 					</table>
 					
-					</form>
-					<hr>
+					</form><br>
+					<hr><br>
 					<form action="FlowerServlet" method="post" name="frm">
 					<input type="hidden" name="command" value="find_pass">
 					<h1>비밀번호 찾기</h1>
@@ -67,7 +67,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="logBox btnSet">
+							<td class="logBox btnSet" style="padding-left: 40%;">
 							<input type="submit" value="비밀번호 찾기" name="passCk" class="logBtn">	
 							</td>
 						</tr>
@@ -75,7 +75,7 @@
 					
 				</form>
 			</div>
-<!-- 		</div> -->
+		</div>
 	</main>
 	<script src="js/main.js"></script>
 	<jsp:include page="footer.jsp"></jsp:include>
