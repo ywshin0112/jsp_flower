@@ -145,14 +145,57 @@ function idok() {
 	self.close();
 }
 
+// 전화번호 중복시 문구
+function phoneCheck(phoneList, target) {
+	let phoneLimit = /^\d{3}-\d{3,4}-\d{4}$/g;
+	for (var i = 0; i < phoneList.length; i++) {
+		if (phoneList[i] === target.value) {
+			document.querySelector("#phoneCk").innerHTML = '가입된 전화번호가 있습니다.';
+			document.querySelector("#phoneCk").style.color = 'red';
+			document.querySelector("#phoneCkValue").value = '1';
+			return;
+		}else if (!phoneLimit.test(document.frm.phone.value)) {
+			document.querySelector("#phoneCk").innerHTML = '전화번호를 다시 확인해 주세요.';
+			document.querySelector("#phoneCk").style.color = 'red';
+			document.querySelector("#phoneCkValue").value = '1';
+			return;
+		}	
+		 else {
+			document.querySelector("#phoneCk").innerHTML = '사용 가능한 전화번호입니다.'
+			document.querySelector("#phoneCk").style.color = 'green';
+			document.querySelector("#phoneCkValue").value = '0';
+		}
+	};
+}
 
+// 이메일 중복시 문구
+function emailCheck(emailList, target) {
+	let emailLimit = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/g;
+	for (var i = 0; i < emailList.length; i++) {
+		if (emailList[i] === target.value) {
+			document.querySelector("#emailCk").innerHTML = '가입된 이메일이 있습니다.';
+			document.querySelector("#emailCk").style.color = 'red';
+			document.querySelector("#emailCkValue").value = '1';
+			return;
+		}	else if (!emailLimit.test(document.frm.email.value)){
+			document.querySelector("#emailCk").innerHTML = '이메일을 다시 확인해 주세요.'
+			document.querySelector("#emailCk").style.color = 'red';
+			document.querySelector("#emailCkValue").value = '1';
+		} else {
+			document.querySelector("#emailCk").innerHTML = '사용 가능한 이메일입니다.'
+			document.querySelector("#emailCk").style.color = 'green';
+			document.querySelector("#emailCkValue").value = '0';
+		}
+	};
+}
 
-// 회원가입 조건 확인
+// 회원가입 유효성 검사
 function joinCheck() {
 	// 정규식 모음
 	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,11}$/g;
 	let passLimit = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
 	let nameLimit = /^[a-zA-Zㄱ-ㅎ가-힣]{0,30}$/g;
+	let phoneLimit = /^\d{3}-\d{3,4}-\d{4}$/g;
 	let emailLimit = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/g;
 
 	// 아이디 조건
@@ -198,16 +241,25 @@ function joinCheck() {
 	if (document.frm.phone.value == '') {
 		alert("전화번호를 입력하세요.");
 		return false;
+	}if (!phoneLimit.test(document.frm.phone.value)) {
+		alert("전화번호를 확인해 주세요.");
+		return false;
+	}if (document.querySelector("#phoneCkValue").value == '1') {
+		alert("가입된 전화번호가 있습니다.");
+		document.frm.phone.focus();
+		return false;
 	}
-
-	// 인증번호 조건
-
+	
 	// 이메일 조건
 	if (document.frm.email.value == '') {
 		alert("이메일을 입력하세요.");
 		return false;
 	} if (!emailLimit.test(document.frm.email.value)) {
 		alert("이메일을 확인해 주세요.");
+		return false;
+	}if (document.querySelector("#emailCkValue").value == '1') {
+		alert("가입된 이메일이 있습니다.");
+		document.frm.phone.focus();
 		return false;
 	}
 
@@ -218,6 +270,7 @@ function joinCheck() {
 	}
 	return true;
 }
+
 
 
 

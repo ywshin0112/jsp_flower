@@ -78,7 +78,7 @@ main .main .logBtn:hover {
 	}
 	main .category {
 		width: 130px;
-		height: 700px;
+		height: 780px;
 		padding-left: 20px;
 		line-height: 30px;
 		background: #f2f2f2;
@@ -134,8 +134,7 @@ main .main .logBtn:hover {
 		font-size: 54px;
 	}
 	main .main {
-		width: 100%;
-		height: 1250px;
+		padding-bottom:150%; 
 	}
 	main .main h1 {
 		font-size: 54px;
@@ -146,13 +145,10 @@ main .main .logBtn:hover {
 	}
 	main .main form {
 		text-align: center;
-		/* 		background: blue; */
 		margin: 30px auto;
 		font-size: 45px;
 	}
 	main .main td.logBox {
-		/* 	text-align: center; */
-		/* 	margin: 0 auto; */
 		width: 1023px;
 		line-height: 80px;
 	}

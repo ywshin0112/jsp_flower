@@ -49,7 +49,64 @@ public class FlowerClientDAO {
 		}
 		return list;
 	}
+	
+	// 전화번호 중복확인
+	public ArrayList<String> selectPhone() {
+		ArrayList<String> list = new ArrayList<>();
+		
+		String sql = "select phone from flower_client";
 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				list.add("'"+rs.getString("phone")+"'");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return list;
+	}
+	
+	// 이메일 중복확인
+	public ArrayList<String> selectEmail() {
+		ArrayList<String> list = new ArrayList<>();
+		
+		String sql = "select email from flower_client";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				list.add("'"+rs.getString("email")+"'");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return list;
+	}
 	// 회원등록 메소드
 	public void insertflowerClient(FlowerClientVO fvo) {
 		String sql = "insert into flower_Client(lev, id, pass, name, phone, email, address) values(?,?,?,?,?,?,?)";
