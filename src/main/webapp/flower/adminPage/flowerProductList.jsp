@@ -38,7 +38,7 @@
 			<td>${productVO.text1}</td>
 			<td>${productVO.text2}</td>
 			
-			<td><a href="FlowerServlet?command=flower_add_product_image&code=${productVO.code}">이미지 추가</a></td>
+			<td><a href="FlowerServlet?command=flower_add_product_image_form&code=${productVO.code}">이미지 추가</a></td>
 			<td><a href="FlowerServlet?command=flower_delete_product&code=${productVO.code}" onclick="return removeCheck()">상품 삭제</a></td>
 		</tr>
 	
