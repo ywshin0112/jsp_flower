@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/header.css"> 
+<link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/boardForm.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/slick.css">
@@ -56,22 +56,22 @@
 				</td>
 			</tr>
 
-			
+
 		</table>
 		<form method="post" enctype="multipart/form-data" name="frm"
-				action="FlowerServlet?command=flower_add_product_image">
-				<input type="hidden" name="code" value="${code }">
-				<input type="file" name="uploadFile"> <input type="submit"
-					value="추가"><input type="button" value="목록으로"
-					onclick="location.href='FlowerServlet?command=flower_product_list'">
-					
-			</form>
+			action="FlowerServlet?command=flower_add_product_image">
+			<input type="hidden" name="code" value="${code }"> <input
+				type="file" name="uploadFile"> <input type="submit"
+				value="추가"><input type="button" value="목록으로"
+				onclick="location.href='FlowerServlet?command=flower_product_list'">
+
+		</form>
 
 	</div>
 
 	<jsp:include page="/flower/footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/main.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

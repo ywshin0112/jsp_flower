@@ -33,7 +33,7 @@ public class FlowerAddCategory implements Action {
 		String image = "category\\" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
-
+		System.out.println(path);
 		FlowerCategoryVO cvo = new FlowerCategoryVO();
 
 		cvo.setCategory(category);
