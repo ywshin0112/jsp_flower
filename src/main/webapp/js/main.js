@@ -29,7 +29,7 @@ $(".sliderImage").slick({
 	autoplay: true,
 	slidesToShow: 5,
 	pauseOnHover: true,
-	
+	variableWidth : true,
 });
 
 

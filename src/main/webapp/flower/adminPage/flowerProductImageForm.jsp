@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/boardForm.css">
-<link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/slick.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/boardForm2.css">
+<link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 	<jsp:include page="/flower/header.jsp"></jsp:include>
