@@ -347,3 +347,17 @@ function productAddUpdateSubmit() {
 	return true;
 
 }
+
+// 상품이미지 등록시 사진 선택 안할경우
+function productImageCheck() {
+	
+	if (document.frm.uploadFile.value.length===0) {
+		alert("이미지를 선택하세요");
+		return false;
+	} else {
+		return true;
+	}
+	
+	
+	
+}

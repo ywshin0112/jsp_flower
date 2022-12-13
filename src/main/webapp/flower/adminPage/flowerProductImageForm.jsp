@@ -62,7 +62,7 @@
 			action="FlowerServlet?command=flower_add_product_image">
 			<input type="hidden" name="code" value="${code }"> <input
 				type="file" name="uploadFile"> <input type="submit"
-				value="추가"><input type="button" value="목록으로"
+				value="추가" onclick="return productImageCheck()"><input type="button" value="목록으로"
 				onclick="location.href='FlowerServlet?command=flower_product_list'">
 
 		</form>
