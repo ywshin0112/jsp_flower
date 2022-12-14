@@ -34,9 +34,12 @@
 
 						<div class="sliderImage">
 
-							<c:forEach var="image" items="${imageList}">
-								<div>
-									<img src="image/${image}">
+							<c:forEach var="imageVO" items="${imageList}">
+								<div > 
+									<img src="image/${imageVO.image}"><br>
+									<a href="FlowerServlet?command=flower_update_product_image&code=${imageVO.code}&num=${imageVO.num}&main=${imageVO.main}" class="cursorPointer" onclick="return productImageUpdate()">메인사진</a>&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="FlowerServlet?command=flower_delete_product_image&code=${imageVO.code}&num=${imageVO.num}" class="cursorPointer" onclick="return productImageDelete()">삭제</a>
+									
 								</div>
 							</c:forEach>
 

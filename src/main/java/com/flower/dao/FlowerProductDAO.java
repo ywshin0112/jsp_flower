@@ -170,36 +170,7 @@ public class FlowerProductDAO {
 
 		return list;
 	}
-	public ArrayList<String> selectProductImage(String code) {
-		ArrayList<String> list = new ArrayList<>();
-		
-		String sql = "select image from flower_image where code=?";
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, code);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				list.add(rs.getString("image"));
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt, rs);
-		}
-
-		return list;
-	}
 	
-	// 코드번호로 모든 이미지 불러오기
 	
 	
 	
@@ -232,27 +203,5 @@ public class FlowerProductDAO {
 		}
 	}
 	
-	// 상품 이미지 업로드
-	public void insertProductImage(String code, String image) {
-
-		String sql = "insert into flower_image values(?,?)";
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-
-		try {
-			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, code);
-			pstmt.setString(2, image);
-
-
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBManager.close(conn, pstmt);
-		}
-	}
+	
 }

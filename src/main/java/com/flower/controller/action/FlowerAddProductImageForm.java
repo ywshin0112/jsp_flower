@@ -9,21 +9,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerProductDAO;
+import com.flower.dao.FlowerProductImageDAO;
+import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
 
 public class FlowerAddProductImageForm implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String code = request.getParameter("code");
+		
+		
 		String url = "/flower/adminPage/flowerProductImageForm.jsp";
 		
-		String code = request.getParameter("code");
 		request.setAttribute("code", code);
 		
-		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
-		List<String> imageList = pdao.selectProductImage(code);
+		
+		
+		FlowerProductImageDAO idao = FlowerProductImageDAO.getInstance();
+		List<FlowerProductImageVO> imageList = idao.selectProductImage(code);
 		request.setAttribute("imageList", imageList);
 		
+		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 		FlowerProductVO pvo = pdao.selectProduct(code);
 		String name = pvo.getName();
 		request.setAttribute("name", name);

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerProductDAO;
+import com.flower.dao.FlowerProductImageDAO;
+import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -45,12 +47,13 @@ public class FlowerAddProductImage implements Action {
 		
 		request.setAttribute("code", code);
 
-		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
-		pdao.insertProductImage(code, image);
-		List<String> imageList = pdao.selectProductImage(code);
+		FlowerProductImageDAO pidao = FlowerProductImageDAO.getInstance();
+		pidao.insertProductImage(code, image);
+		List<FlowerProductImageVO> imageList = pidao.selectProductImage(code);
 		
 		request.setAttribute("imageList", imageList);
-
+		
+		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 		FlowerProductVO pvo = pdao.selectProduct(code);
 		String name = pvo.getName();
 		request.setAttribute("name", name);

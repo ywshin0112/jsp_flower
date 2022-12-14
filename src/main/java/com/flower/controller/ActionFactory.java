@@ -28,6 +28,7 @@ import com.flower.controller.action.FlowerMembershipFormAction;
 import com.flower.controller.action.FlowerMoneyBoxAction;
 import com.flower.controller.action.FlowerPlantAction;
 import com.flower.controller.action.FlowerDeleteProduct;
+import com.flower.controller.action.FlowerDeleteProductImage;
 import com.flower.controller.action.FlowerFindIdAction;
 import com.flower.controller.action.FlowerFindPassAction;
 import com.flower.controller.action.FlowerProductForm;
@@ -35,6 +36,7 @@ import com.flower.controller.action.FlowerProductList;
 import com.flower.controller.action.FlowerUpdateCategory;
 import com.flower.controller.action.FlowerUpdateProduct;
 import com.flower.controller.action.FlowerUpdateProductForm;
+import com.flower.controller.action.FlowerUpdateProductImage;
 import com.flower.controller.action.FlowerWddingBouquetAction;
 
 public class ActionFactory {
@@ -97,6 +99,10 @@ public class ActionFactory {
 			action = new FlowerAddProductImageForm();
 		} else if (command.equals("flower_add_product_image")) {
 			action = new FlowerAddProductImage();
+		} else if (command.equals("flower_update_product_image")) {
+			action = new FlowerUpdateProductImage();
+		} else if (command.equals("flower_delete_product_image")) {
+			action = new FlowerDeleteProductImage();
 		}
 		
 		// 로그인

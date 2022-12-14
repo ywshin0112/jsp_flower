@@ -356,8 +356,28 @@ function productImageCheck() {
 		return false;
 	} else {
 		return true;
+	}	
+	
+}
+
+function productImageUpdate(code, image, main) {
+	if (confirm("메인으로 등록하겠습니까?") == true) {
+		return true;
+
+	} else {
+
+		return false;
+
 	}
-	
-	
-	
+}
+
+function productImageDelete(code, image) {
+	if (confirm("정말 삭제하시겠습니까?") == true) {
+		return true;
+
+	} else {
+
+		return false;
+
+	}
 }

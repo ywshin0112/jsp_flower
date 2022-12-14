@@ -60,8 +60,8 @@ a:hover {
 		position: relative;
 	}
 	.slider00 .sliderImage {
-		height: 200px;
-		position: relative;
+		/* height: 230px;
+		position: relative; */
 	}
 	.slider00 .sliderImage div {
 		position: relative;
@@ -104,8 +104,16 @@ a:hover {
 	}
 	 .slider00 .nextBtn {
 		right: 0;
+		
 	}
 
+.cursorPointer {
+	cursor: pointer;
+}
+
+.cursorPointer:hover {
+	color: red;
+}
 
 @media screen and (min-width: 1024px) {
 	#wrap {
