@@ -32,7 +32,6 @@
 				</div>
 			</div>
 			<form method="post" name="frm" action="FlowerServlet">
-				<input type="hidden" name="command" value="membership_completion" />
 				<div class="buyBox">
 					<div class="code">상품 코드 : B1</div>
 					<div class="title">기본 꽃다발</div>
@@ -61,18 +60,25 @@
 
 
 						<div>총 금액 :</div>
-
-						<div>
-							<button id="buyNow">
-								<a href="#">바로구매</a>
-							</button>
-							<button>
-								<a href="shoppingBasket.html">장바구니</a>
-							</button>
-							<button>
-								<i class="fa fa-heart" aria-hidden="true"></i>
-							</button>
+						
+						<div class=btnSet>
+						<input type="submit" class="button" name="buy" id="buyNow" value="바로구매"/>
+						<input type="button" class="button" name="shoppingBasket" value="장바구니"/>
+						<button class="button">
+							<i class="fa fa-heart" aria-hidden="true"></i>
+						</button>
 						</div>
+<!-- 						<div> -->
+<!-- 							<button id="buyNow"> -->
+<!-- 								<a href="#">바로구매</a> -->
+<!-- 							</button> -->
+<!-- 							<button> -->
+<!-- 								<a href="shoppingBasket.html">장바구니</a> -->
+<!-- 							</button> -->
+<!-- 							<button> -->
+<!-- 								<i class="fa fa-heart" aria-hidden="true"></i> -->
+<!-- 							</button> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</form>

@@ -17,9 +17,7 @@
 
 	<jsp:include page="/flower/header.jsp"></jsp:include>
 
-
-	<div class=container>
-		<main>
+		<main class=container>
 
 
 			<section class="slider00">

@@ -63,9 +63,10 @@ $('.smallPhoto').slick({
     slidesToScroll: 1,
     asNavFor: '.photoBig',
     focusOnSelect:true,
-	variableWidth : true,
 	//centerMode: true,
 	arrows: false,
+	pauseOnHover: true,
+	variableWidth : true,
 });
 // 회원가입
 // 회원가입 동의
