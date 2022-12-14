@@ -73,7 +73,7 @@
 						<li><a href="FlowerServlet?command=flower_money_box">용돈박스</a></li>
 						<li><a href="FlowerServlet?command=flower_wdding_bouquet">웨딩부케</a></li>
 						<li><a href="FlowerServlet?command=flower_plant">관엽식물</a></li>
-						<li><a href="jsp/notice.jsp">고객 게시판</a></li>
+						<li><a href="FlowerServlet?command=client_board">고객 게시판</a></li>
 					</ul>
 				</div>
 			</div>

@@ -45,6 +45,7 @@ public class FlowerAddCategory implements Action {
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
+		System.out.println(categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

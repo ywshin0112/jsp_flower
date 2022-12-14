@@ -27,7 +27,7 @@ $(".sliderImage").slick({
 	prevArrow: $(".prevBtn"),
 	nextArrow: $(".nextBtn"),
 	autoplay: true,
-	slidesToShow: 5,
+	slidesToShow: 4,
 	pauseOnHover: true,
 	variableWidth : true,
 });

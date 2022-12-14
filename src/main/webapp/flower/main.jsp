@@ -26,7 +26,6 @@
 
 				<div class="slider">
 
-
 					<div>
 						<a href="FlowerServlet?command=flower_bouquet"><h2>꽃다발</h2>
 							<h3>특별한 당신의 하루에 꽃을 더하다</h3> <img src="image/slider01.jpg" alt=""></a>
@@ -34,7 +33,7 @@
 					<div>
 						<a href="FlowerServlet?command=flower_basket"><img src="image/slider02.jpg"
 							alt="">
-							<h2>꽃바구니</h2>
+							<h2>${categoryList}</h2>
 							<h3>특별한 당신의 하루에 꽃을 더하다</h3></a>
 					</div>
 					<div>
@@ -56,7 +55,6 @@
 					</div>
 				</div>
 
-
 				<div class="prevBtn">
 					<i class="fa fa-chevron-left" aria-hidden="true"></i>
 				</div>
@@ -75,8 +73,7 @@
 				<div class="box1">
 					<a href="FlowerServlet?command=flower_bouquet" class="hr-sect">꽃다발 상품</a>
 					
-					<button>
-						<a href="FlowerServlet?command=flower_bouquet">더보기 >></a>
+					<button onclick="location.href='FlowerServlet?command=flower_bouquet'" >더보기>>
 					</button>
 				</div>
 

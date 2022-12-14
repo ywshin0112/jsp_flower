@@ -10,6 +10,10 @@
 	margin: 0 auto;
 }
 
+#wrap .list .slider00 .sliderImage.slick-initialized.slick-slider{
+	width:1000px;
+}
+
 h1 {
 	margin: 30px 0;
 	color:green;
