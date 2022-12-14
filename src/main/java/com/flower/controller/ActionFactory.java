@@ -35,6 +35,7 @@ import com.flower.controller.action.FlowerFindIdAction;
 import com.flower.controller.action.FlowerFindPassAction;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
+import com.flower.controller.action.FlowerSelectCategory;
 import com.flower.controller.action.FlowerUpdateCategory;
 import com.flower.controller.action.FlowerUpdateProduct;
 import com.flower.controller.action.FlowerUpdateProductForm;
@@ -81,6 +82,8 @@ public class ActionFactory {
 			action = new FlowerUpdateCategory();
 		} else if (command.equals("flower_delete_category")) {
 			action = new FlowerDeleteCategory();
+		} else if (command.equals("flower_category_select")) {
+			action = new FlowerSelectCategory();
 		}
 
 		// 상품목록 테이블
