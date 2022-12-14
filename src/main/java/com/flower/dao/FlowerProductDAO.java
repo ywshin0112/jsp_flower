@@ -177,7 +177,7 @@ public class FlowerProductDAO {
 	// 상품 수정
 	public void updateProduct(FlowerProductVO pvo, String constCode) {
 
-		String sql = "update flower_product set (code, name, price, category, information, text1, text2) = (?,?,?,?,?,?,?) where code=?";
+		String sql = "update flower_product set code=?, name=?, price=?, category=?, information=?, text1=?, text2=? where code=?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
