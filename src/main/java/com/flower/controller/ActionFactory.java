@@ -9,7 +9,9 @@ import com.flower.controller.action.FlowerAddProductImage;
 import com.flower.controller.action.FlowerAddProductImageForm;
 import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
+import com.flower.controller.action.FlowerBuyForm;
 import com.flower.controller.action.FlowerCategoryList;
+import com.flower.controller.action.FlowerClientBoardFormAction;
 import com.flower.controller.action.FlowerClientDeleteAction;
 import com.flower.controller.action.FlowerClientDeleteFormAction;
 import com.flower.controller.action.FlowerClientMypageAction;
@@ -104,6 +106,10 @@ public class ActionFactory {
 		} else if (command.equals("flower_delete_product_image")) {
 			action = new FlowerDeleteProductImage();
 		}
+		// 상품 구매 페이지
+				else if (command.equals("flower_buy_form")) {
+					action = new FlowerBuyForm();
+				}
 		
 		// 로그인
 		else if (command.equals("login_page")) {
@@ -147,6 +153,10 @@ public class ActionFactory {
 		} else if (command.equals("flowerClient_delete")) {
 			action = new FlowerClientDeleteAction();
 		}
+		// 고객게시판
+				else if (command.equals("client_board_form")) {
+				action = new FlowerClientBoardFormAction();
+				}
 
 		return action;
 	}

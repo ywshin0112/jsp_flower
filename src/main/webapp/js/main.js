@@ -52,7 +52,21 @@ $(".box2_slider").slick({
 		}
 	]
 });
-
+$('.photoBig').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+});
+$('.smallPhoto').slick({
+   	//slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: '.photoBig',
+    focusOnSelect:true,
+	variableWidth : true,
+	//centerMode: true,
+	arrows: false,
+});
 // 회원가입
 // 회원가입 동의
 function checkSelectAll() {

@@ -28,7 +28,7 @@
 		</div>
 
 		<ul class="main">
-			<li><a href="/flowerbouquet1.jsp"><img
+			<li><a href="FlowerServlet?command=flower_buy_form"><img
 					src="image/bouquet1.jpg" alt="">
 					<h3>기본 꽃다발</h3> <span>40,000원</span></a></li>
 			<li><a href="#"><img src="image/bouquet2.jpg" alt="">
