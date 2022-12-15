@@ -37,8 +37,11 @@
 					<input name="checkboxCounter" type="checkbox" value="${categoryVO.image}" checked onclick="return getCheckedCount(this)">
 				</c:when>
 				<c:otherwise>
-					<input name="checkboxCounter" type="checkbox" value="${categoryVO.image}" onclick="return getCheckedCount(this)">
+					<input type="checkbox" name="checkboxCounter" value="${categoryVO.image}" onclick="return getCheckedCount(this)">
+					<input type="text" name="mainOrder" value="${categoryVO.image}">
 				</c:otherwise>
+				
+				
 			</c:choose></td>
 			
 			<td>${categoryVO.category}</td>

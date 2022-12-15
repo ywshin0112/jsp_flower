@@ -24,6 +24,7 @@ import com.flower.controller.action.FlowerLoginAction;
 import com.flower.controller.action.FlowerLoginFormAction;
 import com.flower.controller.action.FlowerLogoutAction;
 import com.flower.controller.action.FlowerMainAction;
+import com.flower.controller.action.FlowerMainProductForm;
 import com.flower.controller.action.FlowerMembershipAction;
 import com.flower.controller.action.FlowerMembershipAgreementAction;
 import com.flower.controller.action.FlowerMembershipFormAction;
@@ -69,6 +70,8 @@ public class ActionFactory {
 			action = new FlowerPlantAction();
 		} else if (command.equals("flower_product_form")) {
 			action = new FlowerProductForm();
+		} else if (command.equals("flower_main_product_form")) {
+			action = new FlowerMainProductForm();
 		}
 		
 		// 상품 카테고리 테이블

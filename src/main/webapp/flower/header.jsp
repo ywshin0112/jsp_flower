@@ -70,11 +70,11 @@
 					<ul>
 					
 					<c:forEach var="categoryVO" items="${mainList}">
-								<li><a href="FlowerServlet?command=flower_bouquet">${categoryVO.category}</a></li>
+								<li><a href="FlowerServlet?command=flower_main_product_form&category=${categoryVO.category}">${categoryVO.category}</a></li>
 					</c:forEach>
 						
 						
-						<li><a href="FlowerServlet?command=flower_plant">전체보기</a></li>
+						<!-- <li><a href="FlowerServlet?command=flower_plant">전체보기</a></li> -->
 						<li><a href="FlowerServlet?command=client_board_form">고객 게시판</a></li>
 					</ul>
 				</div>

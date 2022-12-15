@@ -404,8 +404,8 @@ function getCheckedCount(target) {
 	// 선택된 목록의 갯수 세기
 	const count = selectedElements.length;
 
-	if (count>4) {
-		alert('5개 이상 체크할 수 없습니다.')
+	if (count>5) {
+		alert('6개 이상 체크할 수 없습니다.')
 		target.checked = false;
 		return false;
 	}
