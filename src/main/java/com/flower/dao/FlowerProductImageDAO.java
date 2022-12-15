@@ -156,17 +156,12 @@ public class FlowerProductImageDAO {
 				pstmt.setString(1, code);
 				pstmt.setString(2, "1");
 				rs = pstmt.executeQuery();
-				System.out.println(rs.next());
-				while (rs.next()) {
+				if (rs.next()) {
 					FlowerProductImageVO ivo = new FlowerProductImageVO();
 
 					ivo.setCode(rs.getString("code"));
 					ivo.setImage(rs.getString("image"));
-//					ivo.setMain(rs.getString("main"));
-//					ivo.setNum(rs.getInt("num"));
-
 					list.add(ivo);
-
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

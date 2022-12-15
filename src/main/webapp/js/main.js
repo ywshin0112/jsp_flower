@@ -410,3 +410,15 @@ function getCheckedCount(target) {
 		return false;
 	}
 }
+
+function selectOption(target) {
+	const query = 'select[name="order"]';
+	const selectedElements = document.querySelectorAll(query);
+	
+	
+	for(let i=0; i<selectedElements.length; i++) {
+		
+		alert(selectedElements[i].value);
+	}
+	
+}	

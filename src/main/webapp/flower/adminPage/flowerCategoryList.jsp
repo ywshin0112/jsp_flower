@@ -32,17 +32,17 @@
 		
 		<tr class="record">
 		
-			<td><c:choose>
-				<c:when test="${categoryVO.selected=='1'}">
-					<input name="checkboxCounter" type="checkbox" value="${categoryVO.image}" checked onclick="return getCheckedCount(this)">
-				</c:when>
-				<c:otherwise>
-					<input type="checkbox" name="checkboxCounter" value="${categoryVO.image}" onclick="return getCheckedCount(this)">
-					<input type="text" name="mainOrder" value="${categoryVO.image}">
-				</c:otherwise>
-				
-				
-			</c:choose></td>
+			<td>
+			
+				<select name="order" class="selectOrder" onchange="return selectOption(this)">
+					<option value="8">--선택안함--</option>
+					<option value="1">1번째</option>
+					<option value="2">2번째</option>
+					<option value="3">3번째</option>
+					<option value="4">4번째</option>
+					<option value="5">5번째</option>
+				</select>
+			</td>
 			
 			<td>${categoryVO.category}</td>
 			<td><c:choose>
@@ -70,6 +70,5 @@
 </div>
 <jsp:include page="/flower/footer.jsp"></jsp:include>
 <script src="js/main.js"></script>
-<script src="js/main100.js"></script>
 </body>
 </html>
