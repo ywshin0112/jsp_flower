@@ -15,10 +15,12 @@ import com.flower.vo.FlowerCategoryVO;
 public class FlowerDeleteCategory implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
 		String category = request.getParameter("category");
 
-		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 		FlowerCategoryVO cvo = cdao.selectedCategory(category);
 
 		String image = cvo.getImage();
@@ -33,7 +35,7 @@ public class FlowerDeleteCategory implements Action {
 		cdao.deleteCategory(category);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
- 
+
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);

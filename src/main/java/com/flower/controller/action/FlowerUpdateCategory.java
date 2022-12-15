@@ -17,7 +17,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class FlowerUpdateCategory implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
+		
 		String path = request.getServletContext().getRealPath("image");
 		String categoryPath = path + "\\category";
 		String encType = "utf-8";
@@ -30,32 +34,26 @@ public class FlowerUpdateCategory implements Action {
 		String image = "category\\" + imageName;
 		String beforeName = multi.getParameter("updateName");
 
-
-		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 		FlowerCategoryVO cvo = cdao.selectedCategory(beforeName);
-		
+
 		String beforeImage = cvo.getImage();
 
-		
 		cvo.setCategory(category);
-		
-		
+
 		cvo.setImage(image);
 
 		if (image.equals("category\\null")) {
 			cdao.updateCategoryOnly(cvo, beforeName);
 		} else {
- 
-			File file = new File(path + "\\" +beforeImage);
-			System.out.println("파일명 : " + path + "\\" +beforeImage);
+
+			File file = new File(path + "\\" + beforeImage);
+			System.out.println("파일명 : " + path + "\\" + beforeImage);
 			if (file.exists()) { // 삭제하고자 하는 파일이 해당 서버에 존재하면 삭제시킨다
 				file.delete();
 
 			}
 			cdao.updateImageAndCategory(cvo, beforeName);
 		}
-
-		
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
 

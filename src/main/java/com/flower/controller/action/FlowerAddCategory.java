@@ -20,7 +20,11 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class FlowerAddCategory implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
+		
 		String path = request.getServletContext().getRealPath("image");
 		String categoryPath = path + "\\category";
 		String encType = "utf-8";
@@ -38,8 +42,7 @@ public class FlowerAddCategory implements Action {
 
 		cvo.setCategory(category);
 		cvo.setImage(image);
-		 
-		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+
 		cdao.insertCategory(cvo);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";

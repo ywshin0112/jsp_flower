@@ -15,8 +15,11 @@ public class FlowerCategoryList implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/adminPage/flowerCategoryList.jsp";
+		
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
-		 
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
+		
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("where category not in (\'--추가상품--\')");
 		request.setAttribute("categoryList", categoryList);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
