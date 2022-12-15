@@ -29,7 +29,7 @@ $(".sliderImage").slick({
 	autoplay: true,
 	slidesToShow: 4,
 	pauseOnHover: true,
-	variableWidth : true,
+	variableWidth: true,
 });
 
 
@@ -53,17 +53,17 @@ $(".box2_slider").slick({
 	]
 });
 $('.photoBig').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    fade: true,
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	arrows: false,
+	fade: true,
 });
 $('.smallPhoto').slick({
-   	//slidesToShow: 5,
-    slidesToScroll: 1,
-    asNavFor: '.photoBig',
-    focusOnSelect:true,
-	variableWidth : true,
+	//slidesToShow: 5,
+	slidesToScroll: 1,
+	asNavFor: '.photoBig',
+	focusOnSelect: true,
+	variableWidth: true,
 	//centerMode: true,
 	arrows: false,
 });
@@ -154,7 +154,7 @@ function idCheck() {
 	// 중복 확인 팝업창
 	var url = "FlowerServlet?command=id_Ck&id=" + document.frm.id.value;
 	window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no,   width=450, height=200")
-	
+
 	// 중복체크 value 값 지정(가입버튼 비활성화 느낌(?)만 줌)
 	var Myelement = document.querySelector('input[name="checked_id"]');
 	console.log(Myelement.value);
@@ -180,13 +180,13 @@ function phoneCheck(phoneList, target) {
 			document.querySelector("#phoneCk").style.color = 'red';
 			document.querySelector("#phoneCkValue").value = '1';
 			return;
-		}else if (!phoneLimit.test(document.frm.phone.value)) {
+		} else if (!phoneLimit.test(document.frm.phone.value)) {
 			document.querySelector("#phoneCk").innerHTML = '전화번호를 다시 확인해 주세요.';
 			document.querySelector("#phoneCk").style.color = 'red';
 			document.querySelector("#phoneCkValue").value = '1';
 			return;
-		}	
-		 else {
+		}
+		else {
 			document.querySelector("#phoneCk").innerHTML = '사용 가능한 전화번호입니다.'
 			document.querySelector("#phoneCk").style.color = 'green';
 			document.querySelector("#phoneCkValue").value = '0';
@@ -203,7 +203,7 @@ function emailCheck(emailList, target) {
 			document.querySelector("#emailCk").style.color = 'red';
 			document.querySelector("#emailCkValue").value = '1';
 			return;
-		}	else if (!emailLimit.test(document.frm.email.value)){
+		} else if (!emailLimit.test(document.frm.email.value)) {
 			document.querySelector("#emailCk").innerHTML = '이메일을 다시 확인해 주세요.'
 			document.querySelector("#emailCk").style.color = 'red';
 			document.querySelector("#emailCkValue").value = '1';
@@ -267,15 +267,15 @@ function joinCheck() {
 	if (document.frm.phone.value == '') {
 		alert("전화번호를 입력하세요.");
 		return false;
-	}if (!phoneLimit.test(document.frm.phone.value)) {
+	} if (!phoneLimit.test(document.frm.phone.value)) {
 		alert("전화번호를 확인해 주세요.");
 		return false;
-	}if (document.querySelector("#phoneCkValue").value == '1') {
+	} if (document.querySelector("#phoneCkValue").value == '1') {
 		alert("가입된 전화번호가 있습니다.");
 		document.frm.phone.focus();
 		return false;
 	}
-	
+
 	// 이메일 조건
 	if (document.frm.email.value == '') {
 		alert("이메일을 입력하세요.");
@@ -283,7 +283,7 @@ function joinCheck() {
 	} if (!emailLimit.test(document.frm.email.value)) {
 		alert("이메일을 확인해 주세요.");
 		return false;
-	}if (document.querySelector("#emailCkValue").value == '1') {
+	} if (document.querySelector("#emailCkValue").value == '1') {
 		alert("가입된 이메일이 있습니다.");
 		document.frm.phone.focus();
 		return false;
@@ -364,14 +364,14 @@ function productAddUpdateSubmit() {
 
 // 상품이미지 등록시 사진 선택 안할경우
 function productImageCheck() {
-	
-	if (document.frm.uploadFile.value.length===0) {
+
+	if (document.frm.uploadFile.value.length === 0) {
 		alert("이미지를 선택하세요");
 		return false;
 	} else {
 		return true;
-	}	
-	
+	}
+
 }
 
 function productImageUpdate(code, image, main) {
@@ -404,21 +404,31 @@ function getCheckedCount(target) {
 	// 선택된 목록의 갯수 세기
 	const count = selectedElements.length;
 
-	if (count>5) {
+	if (count > 5) {
 		alert('6개 이상 체크할 수 없습니다.')
 		target.checked = false;
 		return false;
 	}
 }
 
+
+// select태그 중복 제거
 function selectOption(target) {
 	const query = 'select[name="order"]';
 	const selectedElements = document.querySelectorAll(query);
-	
-	
-	for(let i=0; i<selectedElements.length; i++) {
-		
-		alert(selectedElements[i].value);
+
+
+	const temValue = target.value;
+	for (let i = 0; i < selectedElements.length; i++) {
+
+
+
+		if (selectedElements[i].value === target.value) {
+			selectedElements[i].value = "8";
+		}
+
+		target.value = temValue;
 	}
-	
+
+
 }	

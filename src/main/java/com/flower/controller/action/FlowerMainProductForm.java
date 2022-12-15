@@ -58,6 +58,9 @@ public class FlowerMainProductForm implements Action {
 			
 		}
 		
+
+		
+		
 		System.out.println("imageList.size() : " + imageList.size());
 //		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
 //		List<FlowerProductImageVO> imageList = fpidao.selectMainImage(code);

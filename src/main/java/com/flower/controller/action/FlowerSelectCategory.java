@@ -19,15 +19,16 @@ public class FlowerSelectCategory implements Action {
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
 		
-		String images[] = request.getParameterValues("checkboxCounter");
+		String image[] = request.getParameterValues("categoryimage");
+		String order[] = request.getParameterValues("order");
 
-		// 메인카테고리 리셋
-		cdao.resetMainCategory();
+//		// 메인카테고리 리셋
+//		cdao.resetMainCategory();
 
 		// 선택항목만 메인카테고리로 변경
 
-		for (int i = 0; i < images.length; i++) {
-			cdao.updateMainCategory(images[i]);
+		for (int i = 0; i < image.length; i++) {
+			cdao.updateMainCategory(image[i], order[i]);
 		}
 
 		// 카테고리 리스트로 이동

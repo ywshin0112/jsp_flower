@@ -42,7 +42,8 @@ public class FlowerAddCategory implements Action {
 
 		cvo.setCategory(category);
 		cvo.setImage(image);
-
+		
+		System.out.println(cvo);
 		cdao.insertCategory(cvo);
 
 		String url = "/flower/adminPage/flowerCategoryList.jsp";

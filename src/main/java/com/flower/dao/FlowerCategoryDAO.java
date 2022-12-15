@@ -24,7 +24,7 @@ public class FlowerCategoryDAO {
 
 		ArrayList<FlowerCategoryVO> list = new ArrayList<>();
 
-		String sql = "select * from flower_category " + option;
+		String sql = "select * from flower_category " + option + "order by selected";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -97,7 +97,7 @@ public class FlowerCategoryDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fvo.getCategory());
 			pstmt.setString(2, fvo.getImage());
-			pstmt.setString(3, fvo.getCategory());
+			pstmt.setString(3, "8");
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -111,7 +111,7 @@ public class FlowerCategoryDAO {
 	// 카테고리 수정
 	public void updateImageAndCategory(FlowerCategoryVO cvo, String beforeName) {
 
-		String sql = "update flower_category set category=?, image=?, selected=? where category=?";
+		String sql = "update flower_category set category=?, image=? where category=?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -120,8 +120,7 @@ public class FlowerCategoryDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cvo.getCategory());
 			pstmt.setString(2, cvo.getImage());
-			pstmt.setString(3, cvo.getSelected());
-			pstmt.setString(4, beforeName);
+			pstmt.setString(3, beforeName);
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -193,7 +192,7 @@ public class FlowerCategoryDAO {
 	}
 
 	// 선택항목만 selected로 변경
-	public void updateMainCategory(String image) {
+	public void updateMainCategory(String image, String order) {
 
 		String sql = "update flower_category set selected=? where image=?";
 
@@ -203,7 +202,7 @@ public class FlowerCategoryDAO {
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "1");
+			pstmt.setString(1, order);
 			pstmt.setString(2, image);
 			pstmt.executeUpdate();
 
@@ -219,7 +218,7 @@ public class FlowerCategoryDAO {
 
 		ArrayList<FlowerCategoryVO> list = new ArrayList<>();
 
-		String sql = "select * from flower_category where selected=?";
+		String sql = "select * from flower_category where selected!=? order by selected";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -228,7 +227,7 @@ public class FlowerCategoryDAO {
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "1");
+			pstmt.setString(1, "8");
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
