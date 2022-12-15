@@ -203,5 +203,40 @@ public class FlowerProductDAO {
 		}
 	}
 	
+	// 카테고리로 코드랑 이름 가격 가져오기
+	public ArrayList<FlowerProductVO> selectOneCategory(String category) {
+
+		ArrayList<FlowerProductVO> list = new ArrayList<>();
+
+		String sql = "select * from flower_product where category=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				FlowerProductVO pvo = new FlowerProductVO();
+				pvo.setCategory(rs.getString("category"));
+				pvo.setCode(rs.getString("code"));
+				pvo.setName(rs.getString("name"));
+				pvo.setPrice(rs.getInt("price"));
+
+				list.add(pvo);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return list;
+	}
 	
 }
