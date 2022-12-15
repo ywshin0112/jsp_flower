@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-	<%
+<%-- 	<%
 	String category = "../";
 	if (request.getServletPath().equals("/index.jsp")) {
 		category = "";
@@ -19,7 +19,7 @@
 	}
 	System.out.println("경로 : " + request.getContextPath());
 	System.out.println("경로2 : " + request.getRequestURI());
-	%>
+	%> --%>
 
 
 	<header>
@@ -68,11 +68,13 @@
 
 				<div class=gnb>
 					<ul>
-						<li><a href="FlowerServlet?command=flower_bouquet">꽃다발</a></li>
-						<li><a href="FlowerServlet?command=flower_basket">꽃바구니</a></li>
-						<li><a href="FlowerServlet?command=flower_money_box">용돈박스</a></li>
-						<li><a href="FlowerServlet?command=flower_wdding_bouquet">웨딩부케</a></li>
-						<li><a href="FlowerServlet?command=flower_plant">관엽식물</a></li>
+					
+					<c:forEach var="categoryVO" items="${mainList}">
+								<li><a href="FlowerServlet?command=flower_bouquet">${categoryVO.category}</a></li>
+					</c:forEach>
+						
+						
+						<li><a href="FlowerServlet?command=flower_plant">전체보기</a></li>
 						<li><a href="FlowerServlet?command=client_board_form">고객 게시판</a></li>
 					</ul>
 				</div>

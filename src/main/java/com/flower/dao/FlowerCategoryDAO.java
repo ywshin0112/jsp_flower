@@ -213,5 +213,39 @@ public class FlowerCategoryDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
+	
+	// 메인 선택한 항목 불러오기
+	public ArrayList<FlowerCategoryVO> selectMainCategory() {
 
+		ArrayList<FlowerCategoryVO> list = new ArrayList<>();
+
+		String sql = "select * from flower_category where selected=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "1");
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				FlowerCategoryVO cvo = new FlowerCategoryVO();
+				cvo.setCategory(rs.getString("category"));
+				cvo.setImage(rs.getString("image"));
+				cvo.setSelected(rs.getString("selected"));
+
+				list.add(cvo);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return list;
+	}
 }
