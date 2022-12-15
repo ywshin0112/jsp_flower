@@ -13,6 +13,7 @@ import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerProductDAO;
 import com.flower.dao.FlowerProductImageDAO;
 import com.flower.vo.FlowerCategoryVO;
+import com.flower.vo.FlowerDetailListVO;
 import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
 
@@ -31,6 +32,7 @@ public class FlowerMainProductForm implements Action {
 		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 		List<FlowerProductVO> pvoList = pdao.selectOneCategory(category);
 		request.setAttribute("pvoList", pvoList);	
+		request.setAttribute("category", category);	
 		
 		System.out.println("카테고리에서 가져온 값 : "+pvoList);
 		
@@ -42,11 +44,7 @@ public class FlowerMainProductForm implements Action {
 		System.out.println("헤더 메인 카테고리에서 가져온 값 : "+mainList);
 		
 		// 카테고리 리스트
-		//List<FlowerCategoryVO> categoryList = cdao.selectAllCategory();
-		//request.setAttribute("mainList", mainList);		
-		
-//		String code = request.getParameter("code");
-//		String main = request.getParameter("main");
+
 		
 		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
 		ArrayList<FlowerProductImageVO> imageList = new ArrayList<FlowerProductImageVO>();
@@ -58,15 +56,25 @@ public class FlowerMainProductForm implements Action {
 			
 		}
 		
+		ArrayList<FlowerDetailListVO> detailList = new ArrayList<FlowerDetailListVO>();
+		for(int i=0; i<pvoList.size(); i++) {
+			String code = pvoList.get(i).getCode();
+			String name = pvoList.get(i).getName();
+			int price = pvoList.get(i).getPrice();
+			String image = imageList.get(i).getImage();
+			
+			FlowerDetailListVO dvo = new FlowerDetailListVO();
+			
+			dvo.setCode(code);
+			dvo.setImage(image);
+			dvo.setName(name);
+			dvo.setPrice(price);
+			
+			detailList.add(dvo);		
+		}
+		
+		request.setAttribute("detailList", detailList);	
 
-		
-		
-		System.out.println("imageList.size() : " + imageList.size());
-//		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
-//		List<FlowerProductImageVO> imageList = fpidao.selectMainImage(code);
-		
-		
-		
 		
 		// 이미지테이블에서 코드값으로 가져오고 이미지 뿌리기
 
@@ -75,7 +83,7 @@ public class FlowerMainProductForm implements Action {
 		for(int i=0; i<imageList.size(); i++) {
 			System.out.println("이미지 리스트 값 : "+imageList.get(i));
 		}
-//		System.out.println("이미지 리스트 값 : "+imageList);
+
 		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
