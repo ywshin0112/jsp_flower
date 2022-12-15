@@ -16,15 +16,19 @@ public class FlowerAddProductForm implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/adminPage/flowerAddProductForm.jsp";
-
-		// 카테고리 리스트 불러오기
+		
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
+		
+		// 카테고리 리스트 불러오기
 		List<FlowerCategoryVO> categoryList = cdao.selectAllCategory("");
 		request.setAttribute("categoryList", categoryList);
 
 		// 모든 상품코드 가져오기
-		
-		FlowerProductDAO pdao = FlowerProductDAO.getInstance(); 
+
+		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 		List<String> codeList = pdao.selectProductCode("");
 		request.setAttribute("codeList", codeList);
 

@@ -8,7 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerProductDAO;
+import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerProductVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -16,6 +18,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class FlowerAddProduct implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
 		
 		FlowerProductVO pvo = new FlowerProductVO();
 
@@ -31,7 +37,6 @@ public class FlowerAddProduct implements Action {
 		pdao.insertProduct(pvo);
 
 		String url = "/flower/adminPage/flowerProductList.jsp";
-
 
 		List<FlowerProductVO> productList = pdao.selectAllCategory();
 		request.setAttribute("productList", productList);

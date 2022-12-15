@@ -138,4 +138,71 @@ public class FlowerProductImageDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
+	
+	// 첫번째 상세페이지에서 메인 이미지 가져오기
+
+		public ArrayList<FlowerProductImageVO> selectMainImage(ArrayList<FlowerProductImageVO> list0, String code) {
+			ArrayList<FlowerProductImageVO> list = list0;
+
+			String sql = "select * from flower_image where code=? and main=?";
+
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, code);
+				pstmt.setString(2, "1");
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					FlowerProductImageVO ivo = new FlowerProductImageVO();
+
+					ivo.setCode(rs.getString("code"));
+					ivo.setImage(rs.getString("image"));
+					list.add(ivo);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+
+			return list;
+		}
+		
+		// 단일 코드로 이미지 전부 가져오기
+
+				public ArrayList<FlowerProductImageVO> selectImage(String code) {
+					ArrayList<FlowerProductImageVO> list = new ArrayList<>();
+					String sql = "select * from flower_image where code=?";
+
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+
+					try {
+						conn = DBManager.getConnection();
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, code);
+						rs = pstmt.executeQuery();
+						System.out.println(rs.next());
+						if (rs.next()) {
+							FlowerProductImageVO ivo = new FlowerProductImageVO();
+
+							ivo.setCode(rs.getString("code"));
+							ivo.setImage(rs.getString("image"));
+							ivo.setMain(rs.getString("main"));
+							ivo.setNum(rs.getInt("num"));
+							list.add(ivo);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						DBManager.close(conn, pstmt, rs);
+					}
+
+					return list;
+				}
 }

@@ -8,19 +8,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerProductDAO;
 import com.flower.dao.FlowerProductImageDAO;
+import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
 
 public class FlowerUpdateProductImage implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		String main = request.getParameter("main");
 		String code = request.getParameter("code");
-		
+
 		FlowerProductImageVO ivo = new FlowerProductImageVO();
 		ivo.setCode(code);
 		ivo.setNum(num);
@@ -31,7 +37,7 @@ public class FlowerUpdateProductImage implements Action {
 		request.setAttribute("code", code);
 
 		FlowerProductImageDAO idao = FlowerProductImageDAO.getInstance();
-		
+
 		idao.updateProductMainImage(ivo);
 
 		List<FlowerProductImageVO> imageList = idao.selectProductImage(code);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,34 +18,35 @@
 		<section class="mainTop">
 			<div class="photo">
 				<div class="photoBig">
-					<img src="image/bouquet1.jpg" alt=""> <img
-						src="image/bouquet2.jpg" alt=""> <img
-						src="image/bouquet3.jpg" alt=""> <img
-						src="image/bouquet4.jpg" alt=""> <img
-						src="image/bouquet5.jpg" alt="">
+					<c:forEach var="imageVO" items="${imageList}">
+						<img src="image/${imageVO.image}" alt="">
+					</c:forEach>
 				</div>
 				<div class="smallPhoto">
-					<img src="image/bouquet1.jpg" alt=""> <img
-						src="image/bouquet2.jpg" alt=""> <img
-						src="image/bouquet3.jpg" alt=""> <img
-						src="image/bouquet4.jpg" alt=""> <img
-						src="image/bouquet5.jpg" alt="">
+				<c:forEach var="imageVO" items="${imageList}">
+						<img src="image/${imageVO.image}" alt="">
+					</c:forEach>
+<!-- 					<img src="image/bouquet1.jpg" alt=""> <img -->
+<!-- 						src="image/bouquet2.jpg" alt=""> <img -->
+<!-- 						src="image/bouquet3.jpg" alt=""> <img -->
+<!-- 						src="image/bouquet4.jpg" alt=""> <img -->
+<!-- 						src="image/bouquet5.jpg" alt=""> -->
 				</div>
 			</div>
 			<form method="post" name="frm" action="FlowerServlet">
 				<div class="buyBox">
-					<div class="code">상품 코드 : B1</div>
-					<div class="title">기본 꽃다발</div>
+					<div class="code">상품 코드 : ${productList.code}</div>
+					<div class="title">${productList.name}</div>
 
 					<div class="price">
 						판매 가격
-						<h4>40,000원</h4>
+						<h4>${productList.price}원</h4>
 					</div>
 
 					<div class="add">
-						추가 옵션 <br><br>
-						<select class="addBox">
-							<option value='' selected>-- 추가 옵션 --</option>
+						추가 옵션 <br>
+						<br> <select class="addBox">
+							<option value='' selected>-- 선택 안함 --</option>
 							<option value='text1'>메시지 카드</option>
 							<option value='text2'>리본 문구</option>
 						</select>
@@ -60,25 +62,26 @@
 
 
 						<div>총 금액 :</div>
-						
+
 						<div class=btnSet>
-						<input type="submit" class="button" name="buy" id="buyNow" value="바로구매"/>
-						<input type="button" class="button" name="shoppingBasket" value="장바구니"/>
-						<button class="button">
-							<i class="fa fa-heart" aria-hidden="true"></i>
-						</button>
+							<input type="submit" class="button" name="buy" id="buyNow"
+								value="바로구매" /> <input type="button" class="button"
+								name="shoppingBasket" value="장바구니" />
+							<button class="button">
+								<i class="fa fa-heart" aria-hidden="true"></i>
+							</button>
 						</div>
-<!-- 						<div> -->
-<!-- 							<button id="buyNow"> -->
-<!-- 								<a href="#">바로구매</a> -->
-<!-- 							</button> -->
-<!-- 							<button> -->
-<!-- 								<a href="shoppingBasket.html">장바구니</a> -->
-<!-- 							</button> -->
-<!-- 							<button> -->
-<!-- 								<i class="fa fa-heart" aria-hidden="true"></i> -->
-<!-- 							</button> -->
-<!-- 						</div> -->
+						<!-- 						<div> -->
+						<!-- 							<button id="buyNow"> -->
+						<!-- 								<a href="#">바로구매</a> -->
+						<!-- 							</button> -->
+						<!-- 							<button> -->
+						<!-- 								<a href="shoppingBasket.html">장바구니</a> -->
+						<!-- 							</button> -->
+						<!-- 							<button> -->
+						<!-- 								<i class="fa fa-heart" aria-hidden="true"></i> -->
+						<!-- 							</button> -->
+						<!-- 						</div> -->
 					</div>
 				</div>
 			</form>
@@ -86,8 +89,8 @@
 
 
 		<section>
-			<h3>상품안내</h3>
-
+			<h3>상품안내</h3><br>
+		${productList.information}
 		</section>
 
 		<section>

@@ -29,17 +29,43 @@
 	</tr>
 	
 	<c:forEach var="categoryVO" items="${categoryList}">
-		
+		<input type="hidden" name="categoryimage" value="${categoryVO.image}">
 		<tr class="record">
 		
-			<td><c:choose>
-				<c:when test="${categoryVO.selected=='1'}">
-					<input name="checkboxCounter" type="checkbox" value="${categoryVO.image}" checked onclick="return getCheckedCount(this)">
-				</c:when>
-				<c:otherwise>
-					<input name="checkboxCounter" type="checkbox" value="${categoryVO.image}" onclick="return getCheckedCount(this)">
-				</c:otherwise>
-			</c:choose></td>
+			<td>
+			
+				<select name="order" onchange="selectOption(this)">
+					<c:choose>
+						<c:when test="${categoryVO.selected =='8'}"><option value="8" selected>--선택안함--</option></c:when>
+						<c:otherwise><option value="8">--선택안함--</option></c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${categoryVO.selected == '1'}"><option value="1" selected>1번째</option></c:when>
+						<c:otherwise><option value="1">1번째</option></c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${categoryVO.selected == '2'}"><option value="2" selected>2번째</option></c:when>
+						<c:otherwise><option value="2">2번째</option></c:otherwise>
+					</c:choose>					
+					<c:choose>
+						<c:when test="${categoryVO.selected == '3'}"><option value="3" selected>3번째</option></c:when>
+						<c:otherwise><option value="3">3번째</option></c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${categoryVO.selected == '4'}"><option value="4" selected>4번째</option></c:when>
+						<c:otherwise><option value="4">4번째</option></c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${categoryVO.selected == '5'}"><option value="5" selected>5번째</option></c:when>
+						<c:otherwise><option value="5">5번째</option></c:otherwise>
+					</c:choose>
+					
+					
+					
+					
+					
+				</select> 
+			</td>
 			
 			<td>${categoryVO.category}</td>
 			<td><c:choose>
@@ -67,6 +93,5 @@
 </div>
 <jsp:include page="/flower/footer.jsp"></jsp:include>
 <script src="js/main.js"></script>
-<script src="js/main100.js"></script>
 </body>
 </html>
