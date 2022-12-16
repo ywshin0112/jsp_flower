@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerProductDAO;
+import com.flower.dao.FlowerProductImageDAO;
 import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerProductVO;
 import com.oreilly.servlet.MultipartRequest;
@@ -24,9 +25,11 @@ public class FlowerAddProduct implements Action {
 		request.setAttribute("mainList", mainList);
 		
 		FlowerProductVO pvo = new FlowerProductVO();
-
+		
+		String code = request.getParameter("code");
+		
 		pvo.setCategory(request.getParameter("category"));
-		pvo.setCode(request.getParameter("code"));
+		pvo.setCode(code);
 		pvo.setInformation(request.getParameter("information"));
 		pvo.setName(request.getParameter("name"));
 		pvo.setPrice(Integer.parseInt(request.getParameter("price")));
@@ -35,6 +38,14 @@ public class FlowerAddProduct implements Action {
 
 		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 		pdao.insertProduct(pvo);
+		
+		
+		FlowerProductImageDAO pidao = FlowerProductImageDAO.getInstance();
+		pidao.insertProductImage(code, "product\\wheelwind.gif");
+		
+		pidao.updateProductMainImage(code);
+		
+		
 
 		String url = "/flower/adminPage/flowerProductList.jsp";
 

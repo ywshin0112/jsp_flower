@@ -75,16 +75,8 @@ public class FlowerMainProductForm implements Action {
 		
 		request.setAttribute("detailList", detailList);	
 
-		
-		
-
 		request.setAttribute("imageList", imageList);	
-		
-//		for(int i=0; i<imageList.size(); i++) {
-//			System.out.println("이미지 리스트 값 : "+imageList.get(i));
-//		}
-
-		
+				
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

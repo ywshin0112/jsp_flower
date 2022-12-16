@@ -117,6 +117,32 @@ public class FlowerProductImageDAO {
 		}
 		
 	}
+	
+	// 상품 초기 기본 이미지 메인으로
+		public void updateProductMainImage(String code) {
+
+			String sql = "update flower_image set main=? where code=?";
+
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+
+			try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "1");
+				pstmt.setString(2, code);
+
+				pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+			
+			
+			
+		}
 
 	// 상품 이미지 삭제
 	public void deleteProductMainImage(int num) {
