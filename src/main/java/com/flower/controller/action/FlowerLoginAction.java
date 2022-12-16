@@ -20,16 +20,12 @@ public class FlowerLoginAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
-
-		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
-		request.setAttribute("mainList", mainList);
 		
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String saveId = request.getParameter("saveId");
 
-		String url = null;
+		String url = "flower/main.jsp";
 
 		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 		int result = fdao.userCheck(id, pass);
@@ -65,6 +61,10 @@ public class FlowerLoginAction implements Action {
 				request.setAttribute("message", "존재하는 아이디가 없습니다.");
 			}
 		}
+		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
+		
+		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
+		request.setAttribute("mainList", mainList);
 
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

@@ -43,7 +43,6 @@ public class FlowerReviewDAO {
 				rvo.setWritedate(rs.getDate("writedate"));
 				
 				list.add(rvo);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

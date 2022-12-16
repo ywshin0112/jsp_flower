@@ -92,21 +92,24 @@
 							<input style="all: unset; " type="button" value="리뷰 등록" onclick="location.href='FlowerServlet?command=flower_review_form'"></input>
 						</td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<th>번호</th><th>제목</th><th>작성자</th><th>내용</th><th>작성일</th><th>조회수</th> -->
-<!-- 					</tr> -->
-<!-- 					<tr>	 -->
-<!-- 						<td>1</td><td>좋아요</td><td>김콩이</td><td>최고의 선택!!</td><td>2022/12/16</td><td>0</td> -->
-<!-- 					<tr> -->
 					<tr>
-					<th style="text-align:left">
-					 qwe*** | 2022.12.16 | no1 | 조회수 | 상품 정보 | 평점 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></th> 
+					<c:forEach var="reviewList" items="${reviewList}">
+						<th style="text-align:left">
+							${reviewList.id} | ${reviewList.writedate} | no${reviewList.num} | ${reviewList.readcount} | ${reviewList.code} | 평점 
+							<c:forEach var="i" begin="1" end="${reviewList.score}">
+								 <i class="fa fa-star" aria-hidden="true"></i>
+							</c:forEach>
+						</th> 
+					</c:forEach>
+					 
 					</tr>
 					
 					<tr>
+					<c:forEach var="reviewList" items="${reviewList}">
 					<td style="text-align:left">
-					 내용 <br>
-					이미지 </td>
+					 ${reviewList.contents} <br>
+					<img src="image/${reviewList.image}"> </td>
+					</c:forEach>
 					</tr>
 				</table>
 			</form>
