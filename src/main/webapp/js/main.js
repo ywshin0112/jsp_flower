@@ -173,7 +173,7 @@ function idok() {
 
 // 전화번호 중복시 문구
 function phoneCheck(phoneList, target) {
-	let phoneLimit = /^\d{3}-\d{3,4}-\d{4}$/g;
+	let phoneLimit = /^\d{2,3}-\d{3,4}-\d{4}$/;
 	for (var i = 0; i < phoneList.length; i++) {
 		if (phoneList[i] === target.value) {
 			document.querySelector("#phoneCk").innerHTML = '가입된 전화번호가 있습니다.';
@@ -196,7 +196,7 @@ function phoneCheck(phoneList, target) {
 
 // 이메일 중복시 문구
 function emailCheck(emailList, target) {
-	let emailLimit = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/g;
+	let emailLimit = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	for (var i = 0; i < emailList.length; i++) {
 		if (emailList[i] === target.value) {
 			document.querySelector("#emailCk").innerHTML = '가입된 이메일이 있습니다.';
@@ -221,8 +221,8 @@ function joinCheck() {
 	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,11}$/g;
 	let passLimit = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
 	let nameLimit = /^[a-zA-Zㄱ-ㅎ가-힣]{0,30}$/g;
-	let phoneLimit = /^\d{3}-\d{3,4}-\d{4}$/g;
-	let emailLimit = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/g;
+	let phoneLimit = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	let emailLimit = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 	// 아이디 조건
 	if (document.frm.checked_id.value != 'Y') {
