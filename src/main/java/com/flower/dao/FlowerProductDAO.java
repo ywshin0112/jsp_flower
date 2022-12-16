@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.flower.unit.DBManager;
+import com.flower.vo.FlowerCategoryOptionVO;
 import com.flower.vo.FlowerProductVO;
 
 public class FlowerProductDAO {
@@ -238,5 +239,44 @@ public class FlowerProductDAO {
 
 		return list;
 	}
+	
+	// 추가상품 카테고리 가져오기
+		public ArrayList<FlowerCategoryOptionVO> selectOptionCategory() {
+
+			ArrayList<FlowerCategoryOptionVO> list = new ArrayList<>();
+
+			String sql = "select * from flower_product where category=?";
+
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "--추가상품-–");
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					FlowerCategoryOptionVO pvo = new FlowerCategoryOptionVO();
+					pvo.setCategory(rs.getString("category"));
+					pvo.setCode(rs.getString("code"));
+					pvo.setInformation(rs.getString("information"));
+					pvo.setName(rs.getString("name"));
+					pvo.setPrice(rs.getInt("price"));
+					pvo.setText1(rs.getString("text1"));
+					pvo.setText2(rs.getString("text2"));
+
+					list.add(pvo);
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt, rs);
+			}
+
+			return list;
+		}
+		
 	
 }

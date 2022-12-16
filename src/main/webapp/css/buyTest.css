@@ -11,7 +11,7 @@
 
 /* 메인 */
 main {
-	width: 100%;
+	position: relative;
 }
 
 main section {

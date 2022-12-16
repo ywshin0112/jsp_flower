@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerProductDAO;
 import com.flower.dao.FlowerProductImageDAO;
+import com.flower.vo.FlowerCategoryOptionVO;
 import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
@@ -22,24 +23,23 @@ public class FlowerBuyForm implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/buy/flowerBuyPage.jsp";
 		String code = request.getParameter("code");
-		//System.out.println(code);
-		
+
 		// 메인 카테고리
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
-		
-		//selectProduct
+
+		// selectProduct
 		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 
 		FlowerProductVO productList = pdao.selectProduct(code);
 		request.setAttribute("productList", productList);
-		
-		//selectImage
+
+		// selectImage
 		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
 		ArrayList<FlowerProductImageVO> imageList = fpidao.selectImage(code);
-		
+
 //		for(int i=0; i<imageList.size(); i++) {
 ////			String code = pvoList.get(i).getCode();
 //			//System.out.println("code : "+code);
@@ -47,12 +47,21 @@ public class FlowerBuyForm implements Action {
 //			System.out.println("이미지 리스트 값 : "+imageList);
 //		}
 		request.setAttribute("imageList", imageList);
-		//System.out.println(imageList);
+		// System.out.println(imageList);
 //		for(int i=0; i<imageList.size(); i++) {
 //			
 //		}
+		//String category = productList.getCategory();
 		
+		//System.out.println(category);
 		
+		// selectProduct
+		ArrayList<FlowerCategoryOptionVO> coList = pdao.selectOptionCategory();
+		request.setAttribute("coList", coList);
+		
+		int productPrice = productList.getPrice();
+		//int optionPrice = ((FlowerCategoryOptionVO) coList).getPrice();
+
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

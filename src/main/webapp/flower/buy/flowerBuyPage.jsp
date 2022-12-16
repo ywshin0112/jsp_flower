@@ -23,14 +23,14 @@
 					</c:forEach>
 				</div>
 				<div class="smallPhoto">
-				<c:forEach var="imageVO" items="${imageList}">
+					<c:forEach var="imageVO" items="${imageList}">
 						<img src="image/${imageVO.image}" alt="">
 					</c:forEach>
-<!-- 					<img src="image/bouquet1.jpg" alt=""> <img -->
-<!-- 						src="image/bouquet2.jpg" alt=""> <img -->
-<!-- 						src="image/bouquet3.jpg" alt=""> <img -->
-<!-- 						src="image/bouquet4.jpg" alt=""> <img -->
-<!-- 						src="image/bouquet5.jpg" alt=""> -->
+					<!-- 					<img src="image/bouquet1.jpg" alt=""> <img -->
+					<!-- 						src="image/bouquet2.jpg" alt=""> <img -->
+					<!-- 						src="image/bouquet3.jpg" alt=""> <img -->
+					<!-- 						src="image/bouquet4.jpg" alt=""> <img -->
+					<!-- 						src="image/bouquet5.jpg" alt=""> -->
 				</div>
 			</div>
 			<form method="post" name="frm" action="FlowerServlet">
@@ -44,24 +44,27 @@
 					</div>
 
 					<div class="add">
-						추가 옵션 <br>
-						<br> <select class="addBox">
-							<option value='' selected>-- 선택 안함 --</option>
-							<option value='text1'>메시지 카드</option>
-							<option value='text2'>리본 문구</option>
+						추가 옵션 <br> <br> <select class="addBox">
+							<c:forEach var="OptionVO" items="${coList}">
+								<option value='${OptionVO.information}'>${OptionVO.name}</option>
+							</c:forEach>
+							<!-- 							<option value='' selected>-- 선택 안함 --</option> -->
+							<!-- 							<option value='text1'>메시지 카드</option> -->
+							<!-- 							<option value='text2'>리본 문구</option> -->
 						</select>
 					</div>
 
 					<div class="buy">
-						<div>
-							수량 :
-							<button>-</button>
-							<span> 0 </span>
-							<button>+</button>
+						<div>수량 : 
+							<input type='button' onclick='count("minus")' value='-' />
+							<span id='result'>1</span>
+							<input type='button' onclick='count("plus")' value='+' /> 
 						</div>
 
 
-						<div>총 금액 :</div>
+						<div>총 금액 :
+							<span onchange="">${productList.price}</span> 원
+						</div>
 
 						<div class=btnSet>
 							<input type="submit" class="button" name="buy" id="buyNow"
@@ -89,8 +92,8 @@
 
 
 		<section>
-			<h3>상품안내</h3><br>
-		${productList.information}
+			<h3>상품안내</h3>
+			<br> ${productList.information}
 		</section>
 
 		<section>
@@ -108,5 +111,6 @@
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/buy.js"></script>
 </body>
 </html>
