@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.flower.dao.FlowerCategoryDAO;
 import com.flower.vo.FlowerCategoryVO;
 
-public class FlowerMoneyBoxAction implements Action {
+public class FlowerReviewForm implements Action{
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/flower/moneyBox.jsp";
-
+		String url = "/flower/buy/review.jsp";
+		
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
-
+		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
-
 	}
 
 }

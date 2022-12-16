@@ -188,7 +188,7 @@ public class FlowerProductImageDAO {
 						pstmt.setString(1, code);
 						rs = pstmt.executeQuery();
 						System.out.println(rs.next());
-						if (rs.next()) {
+						while (rs.next()) {
 							FlowerProductImageVO ivo = new FlowerProductImageVO();
 
 							ivo.setCode(rs.getString("code"));

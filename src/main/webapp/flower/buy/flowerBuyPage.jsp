@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/buyTest.css">
+<link rel="stylesheet" href="css/boardForm.css">
 </head>
 <body>
 	<jsp:include page="/flower/header.jsp"></jsp:include>
@@ -48,9 +49,6 @@
 							<c:forEach var="OptionVO" items="${coList}">
 								<option value='${OptionVO.information}'>${OptionVO.name}</option>
 							</c:forEach>
-							<!-- 							<option value='' selected>-- 선택 안함 --</option> -->
-							<!-- 							<option value='text1'>메시지 카드</option> -->
-							<!-- 							<option value='text2'>리본 문구</option> -->
 						</select>
 					</div>
 
@@ -74,17 +72,6 @@
 								<i class="fa fa-heart" aria-hidden="true"></i>
 							</button>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<button id="buyNow"> -->
-						<!-- 								<a href="#">바로구매</a> -->
-						<!-- 							</button> -->
-						<!-- 							<button> -->
-						<!-- 								<a href="shoppingBasket.html">장바구니</a> -->
-						<!-- 							</button> -->
-						<!-- 							<button> -->
-						<!-- 								<i class="fa fa-heart" aria-hidden="true"></i> -->
-						<!-- 							</button> -->
-						<!-- 						</div> -->
 					</div>
 				</div>
 			</form>
@@ -98,12 +85,51 @@
 
 		<section>
 			<h3>사용후기</h3>
-
+			<form>
+				<table>
+					<tr>
+						<td colspan="6" style="border:white; text-align:right">
+							<input style="all: unset; " type="button" value="리뷰 등록" onclick="location.href='FlowerServlet?command=flower_review_form'"></input>
+						</td>
+					</tr>
+<!-- 					<tr> -->
+<!-- 						<th>번호</th><th>제목</th><th>작성자</th><th>내용</th><th>작성일</th><th>조회수</th> -->
+<!-- 					</tr> -->
+<!-- 					<tr>	 -->
+<!-- 						<td>1</td><td>좋아요</td><td>김콩이</td><td>최고의 선택!!</td><td>2022/12/16</td><td>0</td> -->
+<!-- 					<tr> -->
+					<tr>
+					<th style="text-align:left">
+					 qwe*** | 2022.12.16 | no1 | 조회수 | 상품 정보 | 평점 <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></th> 
+					</tr>
+					
+					<tr>
+					<td style="text-align:left">
+					 내용 <br>
+					이미지 </td>
+					</tr>
+				</table>
+			</form>
 		</section>
 
 		<section>
 			<h3>상품문의</h3>
-
+			<form>
+				<table>
+					<tr>
+						<td colspan="6" style="border:white; text-align:right">
+							<input style="all: unset; " type="button" value="문의하기" onclick=""></input>
+						</td>
+					</tr>
+					<tr>
+						<th>번호</th><th>제목</th><th>작성자</th><th>내용</th><th>작성일</th><th>조회수</th>
+					</tr>
+					<tr>	
+						<td>1</td><td>좋아요</td><td>김콩이</td><td>최고의 선택!!</td><td>2022/12/16</td><td>0</td>
+					<tr>
+					
+				</table>
+			</form>
 		</section>
 
 	</main>

@@ -40,13 +40,13 @@ main .mainTop .photo .photoBig {
 main .mainTop .smallPhoto {
     width: 500px;
     height: 92px;
-/*     margin-left: 5px; */
+    margin-left: 5px;
 }
 
 main .mainTop .photo .smallPhoto img{
     width: 92px;
     height: 92px;
-/*     margin-right: 10px; */
+    margin-right: 10px;
 }
 
 /*구매창*/

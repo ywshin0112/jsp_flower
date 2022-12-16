@@ -7,7 +7,6 @@ import com.flower.controller.action.FlowerAddProduct;
 import com.flower.controller.action.FlowerAddProductForm;
 import com.flower.controller.action.FlowerAddProductImage;
 import com.flower.controller.action.FlowerAddProductImageForm;
-import com.flower.controller.action.FlowerBasketAction;
 import com.flower.controller.action.FlowerBouquetAction;
 import com.flower.controller.action.FlowerBuyForm;
 import com.flower.controller.action.FlowerCategoryList;
@@ -28,20 +27,18 @@ import com.flower.controller.action.FlowerMainProductForm;
 import com.flower.controller.action.FlowerMembershipAction;
 import com.flower.controller.action.FlowerMembershipAgreementAction;
 import com.flower.controller.action.FlowerMembershipFormAction;
-import com.flower.controller.action.FlowerMoneyBoxAction;
-import com.flower.controller.action.FlowerPlantAction;
 import com.flower.controller.action.FlowerDeleteProduct;
 import com.flower.controller.action.FlowerDeleteProductImage;
 import com.flower.controller.action.FlowerFindIdAction;
 import com.flower.controller.action.FlowerFindPassAction;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
+import com.flower.controller.action.FlowerReviewForm;
 import com.flower.controller.action.FlowerSelectCategory;
 import com.flower.controller.action.FlowerUpdateCategory;
 import com.flower.controller.action.FlowerUpdateProduct;
 import com.flower.controller.action.FlowerUpdateProductForm;
 import com.flower.controller.action.FlowerUpdateProductImage;
-import com.flower.controller.action.FlowerWddingBouquetAction;
 
 public class ActionFactory {
 	private ActionFactory() {
@@ -60,14 +57,6 @@ public class ActionFactory {
 			action = new FlowerMainAction();
 		} else if (command.equals("flower_bouquet")) {
 			action = new FlowerBouquetAction();
-		} else if (command.equals("flower_basket")) {
-			action = new FlowerBasketAction();
-		} else if (command.equals("flower_money_box")) {
-			action = new FlowerMoneyBoxAction();
-		} else if (command.equals("flower_wdding_bouquet")) {
-			action = new FlowerWddingBouquetAction();
-		} else if (command.equals("flower_plant")) {
-			action = new FlowerPlantAction();
 		} else if (command.equals("flower_product_form")) {
 			action = new FlowerProductForm();
 		} else if (command.equals("flower_main_product_form")) {
@@ -113,9 +102,11 @@ public class ActionFactory {
 			action = new FlowerDeleteProductImage();
 		}
 		// 상품 구매 페이지
-				else if (command.equals("flower_buy_form")) {
-					action = new FlowerBuyForm();
-				}
+		else if (command.equals("flower_buy_form")) {
+			action = new FlowerBuyForm();
+		}else if (command.equals("flower_review_form")) {
+			action = new FlowerReviewForm();
+		}
 		
 		// 로그인
 		else if (command.equals("login_page")) {
