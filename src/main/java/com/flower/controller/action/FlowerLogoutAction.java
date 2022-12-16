@@ -16,7 +16,7 @@ public class FlowerLogoutAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "flower/main.jsp";
+		String url = "FlowerServlet?command=flower_main";
 		
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 

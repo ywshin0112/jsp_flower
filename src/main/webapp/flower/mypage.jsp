@@ -29,7 +29,7 @@
 		<div class="main">
 
 			<form method="post" name="frm" action="FlowerServlet">
-				<input type="hidden" name="command" value="flowerClient_update" />
+<!-- 				<input type="hidden" name="command" value="flowerClient_update" /> -->
 
 				<div class="mainBox">
 					<h1>기본정보</h1>

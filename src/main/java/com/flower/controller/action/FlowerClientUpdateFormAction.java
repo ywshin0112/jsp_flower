@@ -18,17 +18,13 @@ public class FlowerClientUpdateFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/update.jsp";
-		String id = request.getParameter("id");
-
+		
+		// 헤더
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
 
-		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
-		FlowerClientVO fvo = fdao.getFlowerClient(id);
-		request.setAttribute("fvo", fvo);
-		System.out.println(fvo);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

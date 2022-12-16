@@ -1,7 +1,6 @@
 package com.flower.controller.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,12 +18,13 @@ public class FlowerClientMypageAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/mypage.jsp";
-
+		
+		// 헤더
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
 
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
-
+		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

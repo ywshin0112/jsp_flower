@@ -31,7 +31,6 @@ public class FlowerLoginAction implements Action {
 		int result = fdao.userCheck(id, pass);
 
 		if (result == 1) { // 로그인 성공
-			// 로그인 성공
 			System.out.println("로그인 성공");
 			// 아이디 저장 여부를 보고 쿠키로 아이디값 저장
 			if (saveId != null) {
@@ -47,12 +46,12 @@ public class FlowerLoginAction implements Action {
 			FlowerClientVO fvo = new FlowerClientVO();
 			fvo = fdao.getFlowerClient(id);
 
-//			출력하는 부분
+			// 출력하는 부분
 			HttpSession session = request.getSession();
 			session.setAttribute("flowerClient", fvo); // 객체 담기
 			session.setAttribute("result", result);
-
-			url = "flower/main.jsp";
+			
+			url = "FlowerServlet?command=flower_main";
 		} else {
 			url = "flower/login.jsp";
 			if (result == 2) {
