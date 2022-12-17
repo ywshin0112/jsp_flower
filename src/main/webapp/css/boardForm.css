@@ -118,6 +118,7 @@ a:hover {
 	#wrap {
 		width: 1024px;
 		margin: 0 auto;
+		min-height:600px;
 	}
 
 }

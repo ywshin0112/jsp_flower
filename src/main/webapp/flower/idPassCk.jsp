@@ -68,7 +68,7 @@
 						</tr>
 						<tr>
 							<td class="logBox btnSet" style="padding-left: 40%;">
-							<input type="submit" value="비밀번호 찾기" name="passCk" class="logBtn">	
+							<input type="submit" value="비밀번호 수정" name="passCk" class="logBtn">	
 							</td>
 						</tr>
 					</table>

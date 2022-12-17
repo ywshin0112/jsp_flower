@@ -1,25 +1,27 @@
 .hr-sect {
-        display: flex;
-        flex-basis: 100%;
-        align-items: center;
-        font-size: 30px;
-        margin: 8px 0px;
-        font-family: 'Noto Serif KR', serif;
-        
-      }
-      .hr-sect::before,
-      .hr-sect::after {
-        content: "";
-        flex-grow: 1;
-        background: rgba(0, 0, 0, 0.35);
-        height: 1px;
-        font-size: 0px;
-        line-height: 0px;
-        margin: 0px 16px;
-      }
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	font-size: 30px;
+	margin: 8px 0px;
+	font-family: 'Noto Serif KR', serif;
+}
+
+.hr-sect::before, .hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
 
 @media screen and (min-width:1024px) {
 	/*컨테이너*/
+	#wrap {
+		min-height: 600px;
+	}
 	.container {
 		width: 1024px;
 		margin: 0 auto;
@@ -156,7 +158,6 @@
 	main .slider div {
 		position: relative;
 		width: 100%;
-
 		margin-right: 10px;
 	}
 	main .slider img {
@@ -227,7 +228,6 @@
 	}
 	main .boxList .box2 ul {
 		width: 100%;
-		
 	}
 	main .boxList .box2 ul li {
 		width: 100%;
@@ -255,6 +255,7 @@
 		top: 45px;
 	}
 }
+
 @media screen and (max-width: 700px) {
 	main .slider h2 {
 		font-size: 36px;

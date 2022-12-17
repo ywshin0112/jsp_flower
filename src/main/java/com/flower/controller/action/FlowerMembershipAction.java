@@ -1,6 +1,7 @@
 package com.flower.controller.action;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerClientDAO;
+import com.flower.unit.Pwd;
 import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerClientVO;
 
@@ -24,9 +26,18 @@ public class FlowerMembershipAction implements Action {
 		List<FlowerCategoryVO> mainList = cdao.selectMainCategory();
 		request.setAttribute("mainList", mainList);
 		
+		String pass = request.getParameter("pass");
+		Pwd pwd = Pwd.getInstance();
+		try {
+			pass = pwd.cryptPwd(pass);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		FlowerClientVO fvo = new FlowerClientVO();
 		fvo.setId(request.getParameter("id"));
-		fvo.setPass(request.getParameter("pass"));
+		fvo.setPass(pass);
 		fvo.setName(request.getParameter("name"));
 		fvo.setPhone(request.getParameter("phone"));
 		fvo.setEmail(request.getParameter("email"));

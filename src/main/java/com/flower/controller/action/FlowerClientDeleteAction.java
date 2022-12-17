@@ -2,6 +2,7 @@ package com.flower.controller.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.flower.dao.FlowerCategoryDAO;
 import com.flower.dao.FlowerClientDAO;
+import com.flower.unit.Pwd;
 import com.flower.vo.FlowerCategoryVO;
 import com.flower.vo.FlowerClientVO;
 
@@ -26,7 +28,17 @@ public class FlowerClientDeleteAction implements Action {
 		request.setAttribute("mainList", mainList);
 
 		String id = request.getParameter("id");
+		
+		
 		String pass = request.getParameter("pass");
+		Pwd pwd = Pwd.getInstance();
+		try {
+			pass = pwd.cryptPwd(pass);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		FlowerClientDAO fdao = FlowerClientDAO.getInstance();
 		FlowerClientVO fvo = fdao.getFlowerClient(id);
 		if (fvo.getPass().equals(pass)) { // 성공
