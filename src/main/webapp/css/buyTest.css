@@ -15,12 +15,15 @@ main {
 }
 
 main section {
-    height: 500px;
+    min-height: 500px;
+    
 }
 
 main .mainTop {
-    height: 662px;
+    min-height: 700px;
     background: none;
+    position: relative;
+    overflow:auto;
 }
 
 main .mainTop .photo {
@@ -129,4 +132,31 @@ main section h3 {
     font-size: 20px;
     padding: 10px 0 15px;
     text-align: center;
+}
+
+
+/*옵션 선택관련*/
+.add .addBox option {
+	text-align-last: center;
+	text-align: left;
+}
+.buyBox .add #optionBlock .addOptionBox{
+	margin: 10px 0;
+	border: 1px #b1b1b1 solid;
+}
+.buyBox .add #optionBlock .addOptionBox div {
+	padding: 3px 0;
+	margin: 5px;
+}
+
+.optionList {
+	position: relative;
+}
+.optionList .deleteBtn {
+	position: absolute;
+	color: red;
+	font-size: 50px;
+	right: 0;
+	top: -20px;
+	cursor: pointer;
 }

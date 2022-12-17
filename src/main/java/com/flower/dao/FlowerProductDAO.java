@@ -254,7 +254,7 @@ public class FlowerProductDAO {
 			try {
 				conn = DBManager.getConnection();
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "--추가상품-–");
+				pstmt.setString(1, "--추가상품--");
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					FlowerCategoryOptionVO pvo = new FlowerCategoryOptionVO();
