@@ -18,19 +18,19 @@
 	<main class="container">
 		<section class="mainTop">
 			<form method="post" name="frm" action="FlowerServlet">
-			<input type="hidden" name="command" value="flower_review_action"/>
+				<input type="hidden" name="command" value="flower_review_action" />
 				<h3 style="padding: 25px 0;">리뷰 작성</h3>
 				<table>
 					<tr>
-						<td>상품명 : <c:out value="${productList.name}" /></td>
+						<td>상품명 : <c:out value="${reviewList.code}" /> <c:out
+								value="${productList.name}" /></td>
 						<td>상품 가격 : <c:out value="${productList.price} 원" /></td>
 					</tr>
 				</table>
 				<table>
 					<tr>
 						<th>작성자</th>
-						<td><input type="hidden" name="id" value="${flowerClient.id}">
-							<c:out value="${flowerClient.id}" /></td>
+						<td><c:out value="${flowerClient.id}" /></td>
 					</tr>
 					<tr>
 						<th>평점</th>
@@ -53,10 +53,8 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td>
-							<textarea id="txtContent" rows="10" cols="100"
-								style="width: 100%;"></textarea>
-						</td>
+						<td><textarea id="txtContent" rows="10" cols="100"
+								style="width: 100%;"></textarea></td>
 					</tr>
 					<tr>
 						<th>이미지 등록</th>
@@ -64,7 +62,7 @@
 					</tr>
 
 				</table>
-				<input type="submit" value="등록" onclick="location.href='FlowerServlet?command=flower_review_action&code=${productList.code}'"/>
+				<input type="submit" value="등록" onclick="save();" />
 			</form>
 		</section>
 	</main>
@@ -74,37 +72,36 @@
 	<script src="js/main.js"></script>
 	<script src="js/buy.js"></script>
 	<!-- 네이버 스마트에디터  -->
-<script type="text/javascript"
-	src="se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript"
-	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
-	function save() {
-		oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
-		//스마트 에디터 값을 텍스트컨텐츠로 전달
-		var content = document.getElementById("smartEditor").value;
-		alert(document.getElementById("txtContent").value);
-		// 값을 불러올 땐 document.get으로 받아오기
-		return;
-	}
-</script>
-							<script id="smartEditor" type="text/javascript">
-								var oEditors = [];
-								nhn.husky.EZCreator
-										.createInIFrame({
-											oAppRef : oEditors,
-											elPlaceHolder : "txtContent", //textarea ID 입력
-											sSkinURI : "se2/SmartEditor2Skin.html", //martEditor2Skin.html 경로 입력
-											fCreator : "createSEditor2",
-											htParams : {
-												// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
-												bUseToolbar : true,
-												// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
-												bUseVerticalResizer : false,
-												// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
-												bUseModeChanger : false
-											}
-										});
-							</script>
+	<script type="text/javascript" src="se2/js/service/HuskyEZCreator.js"
+		charset="utf-8"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		function save() {
+			oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
+			//스마트 에디터 값을 텍스트컨텐츠로 전달
+			var content = document.getElementById("smartEditor").value;
+			alert(document.getElementById("txtContent").value);
+			// 값을 불러올 땐 document.get으로 받아오기
+			return;
+		}
+	</script>
+	<script id="smartEditor" type="text/javascript">
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : oEditors,
+			elPlaceHolder : "txtContent", //textarea ID 입력
+			sSkinURI : "se2/SmartEditor2Skin.html", //martEditor2Skin.html 경로 입력
+			fCreator : "createSEditor2",
+			htParams : {
+				// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
+				bUseToolbar : true,
+				// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
+				bUseVerticalResizer : false,
+				// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
+				bUseModeChanger : false
+			}
+		});
+	</script>
 </body>
 </html>

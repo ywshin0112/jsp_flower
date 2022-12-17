@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerCategoryDAO;
-import com.flower.dao.FlowerClientDAO;
 import com.flower.dao.FlowerProductDAO;
 import com.flower.dao.FlowerProductImageDAO;
 import com.flower.dao.FlowerReviewDAO;
@@ -26,6 +25,7 @@ public class FlowerReviewAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/flower/buy/flowerBuyPage.jsp";
 		String code = request.getParameter("code");
+		System.out.println(code);
 
 		// 메인 카테고리
 		FlowerCategoryDAO cdao = FlowerCategoryDAO.getInstance();
@@ -57,15 +57,14 @@ public class FlowerReviewAction implements Action {
 		// review 정보 등록
 		FlowerReviewVO rvo = new FlowerReviewVO();
 
-		rvo.setScore(Integer.parseInt(request.getParameter("id")));
-		rvo.setId(request.getParameter("lev"));
-		rvo.setCode(request.getParameter("pass"));
-		rvo.setContents(request.getParameter("name"));
-		rvo.setImage(request.getParameter("phone"));
-		FlowerClientDAO fcdao = FlowerClientDAO.getInstance();
+		rvo.setScore(Integer.parseInt(request.getParameter("score")));
+		rvo.setId(request.getParameter("id"));
+		rvo.setCode(request.getParameter("code"));
+		rvo.setContents(request.getParameter("contents"));
+		rvo.setImage(request.getParameter("image"));
+		FlowerReviewDAO frdao = FlowerReviewDAO.getInstance();
 
 		// review
-		FlowerReviewDAO frdao = FlowerReviewDAO.getInstance();
 		ArrayList<FlowerReviewVO> reviewList = frdao.selectReview(code);
 		frdao.insertReview(rvo);
 		request.setAttribute("reviewList", reviewList);
