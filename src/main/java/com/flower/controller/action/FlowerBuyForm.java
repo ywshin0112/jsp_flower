@@ -44,7 +44,7 @@ public class FlowerBuyForm implements Action {
 
 		request.setAttribute("imageList", imageList);
 		
-		//System.out.println(imageList);
+		System.out.println(imageList);
 		
 		
 		// selectOption
@@ -60,7 +60,7 @@ public class FlowerBuyForm implements Action {
 
 		request.setAttribute("reviewList", reviewList);
 		
-		System.out.println(reviewList);
+		//System.out.println(reviewList);
 		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);

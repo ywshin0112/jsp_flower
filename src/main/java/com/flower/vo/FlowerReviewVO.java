@@ -3,7 +3,7 @@ package com.flower.vo;
 import java.sql.Date;
 
 public class FlowerReviewVO {
-	private int num, readcount, score;
+	private int num, score;
 	private String id, code, contents, image;
 	private Date writedate;
 	public int getNum() {
@@ -12,12 +12,7 @@ public class FlowerReviewVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getReadcount() {
-		return readcount;
-	}
-	public void setReadcount(int readcount) {
-		this.readcount = readcount;
-	}
+	
 	public int getScore() {
 		return score;
 	}
@@ -56,7 +51,7 @@ public class FlowerReviewVO {
 	}
 	@Override
 	public String toString() {
-		return "FlowerReviewVO [num=" + num + ", readcount=" + readcount + ", score=" + score + ", id=" + id + ", code="
+		return "FlowerReviewVO [num=" + num + ", score=" + score + ", id=" + id + ", code="
 				+ code + ", contents=" + contents + ", image=" + image + ", writedate=" + writedate + "]";
 	}
 	

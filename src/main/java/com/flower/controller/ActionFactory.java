@@ -33,6 +33,7 @@ import com.flower.controller.action.FlowerFindIdAction;
 import com.flower.controller.action.FlowerFindPassAction;
 import com.flower.controller.action.FlowerProductForm;
 import com.flower.controller.action.FlowerProductList;
+import com.flower.controller.action.FlowerReviewAction;
 import com.flower.controller.action.FlowerReviewForm;
 import com.flower.controller.action.FlowerSelectCategory;
 import com.flower.controller.action.FlowerUpdateCategory;
@@ -106,6 +107,8 @@ public class ActionFactory {
 			action = new FlowerBuyForm();
 		}else if (command.equals("flower_review_form")) {
 			action = new FlowerReviewForm();
+		}else if (command.equals("flower_review_action")) {
+			action = new FlowerReviewAction();
 		}
 		
 		// 로그인

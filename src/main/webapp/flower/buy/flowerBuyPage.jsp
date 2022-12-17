@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="css/slick.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/buyTest.css">
 <link rel="stylesheet" href="css/boardForm.css">
+<link rel="stylesheet" href="css/buyTest.css">
 </head>
 <body>
 	<jsp:include page="/flower/header.jsp"></jsp:include>
@@ -89,15 +89,10 @@
 				</div>
 			</div>
 		</section>
-
-
+		<br>
 		<section>
-			<div>
-
-
-				<h3>상품안내</h3>
-				<br> ${productList.information}
-			</div>
+			<h3>상품안내</h3>
+			<br> ${productList.information}
 		</section>
 
 		<section>
@@ -105,31 +100,56 @@
 			<form>
 				<table>
 					<tr>
-						<td colspan="6" style="border: white; text-align: right"><input
-							style="all: unset;" type="button" value="리뷰 등록"
-							onclick="location.href='FlowerServlet?command=flower_review_form'"></input>
+						<td>
+							전체 평점 : 
+							<c:forEach var="i" begin="1" end="5">
+								<i class="fa fa-star" aria-hidden="true"></i>
+							</c:forEach>
+							5점
 						</td>
 					</tr>
+				</table>
+				<table>
 					<tr>
-						<c:forEach var="reviewList" items="${reviewList}">
-							<th style="text-align: left">${reviewList.id} |
-								${reviewList.writedate} | no${reviewList.num} |
-								${reviewList.readcount} | ${reviewList.code} | 평점 <c:forEach
-									var="i" begin="1" end="${reviewList.score}">
+						<td colspan="6" style="border: white; text-align: right">
+						<c:choose>
+							<c:when test="${empty flowerClient}">
+								<input style="all: unset;" type="button" value="리뷰 등록"
+							onclick="reviewIdNoneCk()"></input>
+							</c:when>
+							<c:otherwise>
+								<input style="all: unset;" type="button" value="리뷰 등록"
+							onclick="location.href='FlowerServlet?command=flower_review_form&code=${productList.code}'"></input>
+							</c:otherwise>
+						</c:choose>
+						
+						</td>
+					</tr>
+					<c:if test="${!empty reviewList}">
+					<c:forEach var="reviewList" items="${reviewList}">
+						<tr>
+							<th style="text-align: left">
+								  no.${reviewList.num}  |  ${reviewList.id}  |  ${reviewList.writedate}  |  ${reviewList.code} <c:out value="${productList.name}"/>  |  평점 
+								<c:forEach var="i" begin="1" end="${reviewList.score}">
 									<i class="fa fa-star" aria-hidden="true"></i>
 								</c:forEach>
 							</th>
-						</c:forEach>
-
-					</tr>
-
-					<tr>
-						<c:forEach var="reviewList" items="${reviewList}">
+						</tr>
+						<tr>
 							<td style="text-align: left">${reviewList.contents} <br>
 								<img src="image/${reviewList.image}">
 							</td>
-						</c:forEach>
-					</tr>
+						</tr>
+					</c:forEach>
+							</c:if>
+							<c:if  test="${empty reviewList}">
+							<tr>
+							<th></th>
+							</tr>
+							<tr>
+							<td>등록된 리뷰가 없습니다.</td>
+							</tr>
+							</c:if>
 				</table>
 			</form>
 		</section>

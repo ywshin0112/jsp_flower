@@ -137,3 +137,8 @@ function totalPrice() {
 	}
 	document.querySelector("#total").innerText = totalPrice;
 }
+
+function reviewIdNoneCk() {
+	alert("로그인이 필요합니다.");
+	return false;
+}

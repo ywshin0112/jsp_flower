@@ -28,7 +28,7 @@ public class FlowerMembershipFormAction implements Action {
 		List<String> clientEmailList = fdao.selectEmail();
 		request.setAttribute("phoneList", clientPhoneList);
 		request.setAttribute("emailList", clientEmailList);
-		System.out.println(clientPhoneList);
+		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

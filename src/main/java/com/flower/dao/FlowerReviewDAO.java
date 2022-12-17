@@ -34,7 +34,6 @@ public class FlowerReviewDAO {
 				FlowerReviewVO rvo = new FlowerReviewVO();
 				
 				rvo.setNum(rs.getInt("num"));
-				rvo.setReadcount(rs.getInt("readcount"));
 				rvo.setScore(rs.getInt("score"));
 				rvo.setId(rs.getString("id"));
 				rvo.setCode(rs.getString("code"));
@@ -52,5 +51,26 @@ public class FlowerReviewDAO {
 
 		return list;
 	}
+	
+	// 회원 등록 메소드
+		public void insertReview(FlowerReviewVO rvo) {
+			String sql = "insert into flower_review(num, score, id, code, contents, image) values(null, ?,?,?,?,?,?)";
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			try {
+				conn = DBManager.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, rvo.getScore());
+				pstmt.setString(2, rvo.getId());
+				pstmt.setString(3, rvo.getCode());
+				pstmt.setString(4, rvo.getContents());
+				pstmt.setString(5, rvo.getImage());
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DBManager.close(conn, pstmt);
+			}
+		}
 
 	}

@@ -95,7 +95,7 @@ public class FlowerProductImageDAO {
 		} finally {
 			DBManager.close(conn, pstmt);
 		}
-		
+
 		sql = "update flower_image set main=? where code=? and num=?";
 
 		conn = null;
@@ -115,34 +115,32 @@ public class FlowerProductImageDAO {
 		} finally {
 			DBManager.close(conn, pstmt);
 		}
-		
+
 	}
-	
+
 	// 상품 초기 기본 이미지 메인으로
-		public void updateProductMainImage(String code) {
+	public void updateProductMainImage(String code) {
 
-			String sql = "update flower_image set main=? where code=?";
+		String sql = "update flower_image set main=? where code=?";
 
-			Connection conn = null;
-			PreparedStatement pstmt = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
 
-			try {
-				conn = DBManager.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "1");
-				pstmt.setString(2, code);
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "1");
+			pstmt.setString(2, code);
 
-				pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				DBManager.close(conn, pstmt);
-			}
-			
-			
-			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt);
 		}
+
+	}
 
 	// 상품 이미지 삭제
 	public void deleteProductMainImage(int num) {
@@ -164,71 +162,67 @@ public class FlowerProductImageDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
-	
+	// 단일 코드로 이미지 전부 가져오기
+
+	public ArrayList<FlowerProductImageVO> selectImage(String code) {
+		ArrayList<FlowerProductImageVO> list = new ArrayList<>();
+		String sql = "select * from flower_image where code=?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				FlowerProductImageVO ivo = new FlowerProductImageVO();
+				ivo.setCode(rs.getString("code"));
+				ivo.setImage(rs.getString("image"));
+				ivo.setMain(rs.getString("main"));
+				ivo.setNum(rs.getInt("num"));
+				list.add(ivo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+
+		return list;
+	}
 	// 첫번째 상세페이지에서 메인 이미지 가져오기
 
-		public ArrayList<FlowerProductImageVO> selectMainImage(ArrayList<FlowerProductImageVO> list0, String code) {
-			ArrayList<FlowerProductImageVO> list = list0;
+	public ArrayList<FlowerProductImageVO> selectMainImage(ArrayList<FlowerProductImageVO> list0, String code) {
+		ArrayList<FlowerProductImageVO> list = list0;
 
-			String sql = "select * from flower_image where code=? and main=?";
+		String sql = "select * from flower_image where code=? and main=?";
 
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-			try {
-				conn = DBManager.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, code);
-				pstmt.setString(2, "1");
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					FlowerProductImageVO ivo = new FlowerProductImageVO();
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, code);
+			pstmt.setString(2, "1");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				FlowerProductImageVO ivo = new FlowerProductImageVO();
 
-					ivo.setCode(rs.getString("code"));
-					ivo.setImage(rs.getString("image"));
-					list.add(ivo);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				DBManager.close(conn, pstmt, rs);
+				ivo.setCode(rs.getString("code"));
+				ivo.setImage(rs.getString("image"));
+				list.add(ivo);
 			}
-
-			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
 		}
-		
-		// 단일 코드로 이미지 전부 가져오기
 
-				public ArrayList<FlowerProductImageVO> selectImage(String code) {
-					ArrayList<FlowerProductImageVO> list = new ArrayList<>();
-					String sql = "select * from flower_image where code=?";
-
-					Connection conn = null;
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
-
-					try {
-						conn = DBManager.getConnection();
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, code);
-						rs = pstmt.executeQuery();
-						System.out.println(rs.next());
-						while (rs.next()) {
-							FlowerProductImageVO ivo = new FlowerProductImageVO();
-
-							ivo.setCode(rs.getString("code"));
-							ivo.setImage(rs.getString("image"));
-							ivo.setMain(rs.getString("main"));
-							ivo.setNum(rs.getInt("num"));
-							list.add(ivo);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						DBManager.close(conn, pstmt, rs);
-					}
-
-					return list;
-				}
+		return list;
+	}
 }
