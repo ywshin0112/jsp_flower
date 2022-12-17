@@ -52,9 +52,9 @@ public class FlowerReviewDAO {
 		return list;
 	}
 	
-	// 회원 등록 메소드
+	// 리뷰 등록 메소드
 		public void insertReview(FlowerReviewVO rvo) {
-			String sql = "insert into flower_review(num, score, id, code, contents, image) values(null, ?,?,?,?,?,?)";
+			String sql = "insert into flower_review(num, score, id, code, contents, image) values(null, ?,?,?,?,?)";
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			try {

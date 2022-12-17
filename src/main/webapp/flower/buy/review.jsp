@@ -17,20 +17,24 @@
 	<jsp:include page="/flower/header.jsp"></jsp:include>
 	<main class="container">
 		<section class="mainTop">
-			<form method="post" name="frm" action="FlowerServlet">
-				<input type="hidden" name="command" value="flower_review_action" />
+			<form method="post" enctype="multipart/form-data" name="frm"
+			action="FlowerServlet?command=flower_review_action&code=${productList.code}&id=${flowerClient.id}">
+				<input type="hidden" name="code" value="${productList.code}" />
 				<h3 style="padding: 25px 0;">리뷰 작성</h3>
 				<table>
 					<tr>
-						<td>상품명 : <c:out value="${reviewList.code}" /> <c:out
+						<td>상품명 : <c:out value="${productList.code}" />
+						<input type="hidden" name="code" value="${reviewList.code}"> <c:out
 								value="${productList.name}" /></td>
-						<td>상품 가격 : <c:out value="${productList.price} 원" /></td>
+						<td>상품 가격 : <c:out value="${productList.price} 원" />
+						</td>
 					</tr>
 				</table>
 				<table>
 					<tr>
 						<th>작성자</th>
-						<td><c:out value="${flowerClient.id}" /></td>
+						<td><c:out value="${flowerClient.id}" />
+						<input type="hidden" name="id" value="${flowerClient.id}"></td>
 					</tr>
 					<tr>
 						<th>평점</th>
@@ -53,12 +57,12 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea id="txtContent" rows="10" cols="100"
+						<td><textarea id="txtContent" rows="10" cols="100" name="contents"
 								style="width: 100%;"></textarea></td>
 					</tr>
 					<tr>
 						<th>이미지 등록</th>
-						<td><input type="file"></td>
+						<td><input type="file" name="image"></td>
 					</tr>
 
 				</table>
