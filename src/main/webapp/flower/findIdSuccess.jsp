@@ -31,7 +31,7 @@
 			<div class="grayBox">
 				<h1>아이디 찾기</h1><br><br><br><br><br><br><br><br>
 				<h2>회원님의 아이디는 ${flowerClient.id} 입니다.<br><br>
-				<a href="FlowerServlet?command=login">로그인 하러가기</a> /
+				<a href="FlowerServlet?command=login_page">로그인 하러가기</a> /
 				<a href="FlowerServlet?command=id_pass_Ck">비밀번호 찾기</a></h2>
 			 	
 			</div>

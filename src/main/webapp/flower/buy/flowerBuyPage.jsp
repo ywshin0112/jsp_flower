@@ -84,7 +84,7 @@
 									<input type="submit" class="button" name="buy" id="buyNow"
 										value="바로구매"> <input type="button" class="button"
 										name="shoppingBasket" value="장바구니">
-									<button class="button">
+									<button class="button" style="transform: translateY(-1px);">
 										<i class="fa fa-heart" aria-hidden="true"></i>
 									</button>
 								</div>
