@@ -52,7 +52,7 @@ public class FlowerMainAction implements Action {
 			///////////////////////////////////////////
 //			FlowerCategoryVO cvo = new FlowerCategoryVO();
 			String mainImage = cdao.selectAllCategory("where category=\'"+ category +"\'").get(0).getImage();
-			System.out.println(mainImage);
+			// System.out.println(mainImage);
 			mpvo.setMainImage(mainImage);
 			
 			//////////////////////////////////////////

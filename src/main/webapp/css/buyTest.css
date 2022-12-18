@@ -8,7 +8,7 @@
 	margin: 0 auto;
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
+.fa { color: orange;}
 /* 메인 */
 main {
 	position: relative;

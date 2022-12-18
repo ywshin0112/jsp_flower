@@ -58,27 +58,32 @@
 							</div>
 
 							<div class="buy">
-								<input type="hidden" name="text1" value="0">
-								<input type="hidden" name="text2" value="0">
-								<input type="hidden" class="optionCode" name="optionCode" value="${productList.code}">
-								<input type="hidden" class="optionQuantity" name="optionQuantity" value="1">
-								
+								<input type="hidden" name="text1" value="0"> <input
+									type="hidden" name="text2" value="0"> <input
+									type="hidden" class="optionCode" name="optionCode"
+									value="${productList.code}"> <input type="hidden"
+									class="optionQuantity" name="optionQuantity" value="1">
+
 								<div>
-									수량 : 	<input type='button' onclick='count("minus", this, "${productList.price}")' value='-' />
-											<span name=" " id='result'>1</span> 
-											<input type='button' onclick='count("plus", this, "${productList.price}")' value='+' />
-											<input type="hidden" class="eachPrice" name="eachPrice" value="${productList.price}">
+									수량 : <input type='button'
+										onclick='count("minus", this, "${productList.price}")'
+										value='-' /> <span name=" " id='result'>1</span> <input
+										type='button'
+										onclick='count("plus", this, "${productList.price}")'
+										value='+' /> <input type="hidden" class="eachPrice"
+										name="eachPrice" value="${productList.price}">
 								</div>
 
 
 								<div>
 									총 금액 : <span id="total">${productList.price}</span>원
-									
+
 								</div>
 
 								<div class=btnSet>
-									<input type="submit" class="button" name="buy" id="buyNow" value="바로구매" >
-									<input type="button" class="button" name="shoppingBasket" value="장바구니" >
+									<input type="submit" class="button" name="buy" id="buyNow"
+										value="바로구매"> <input type="button" class="button"
+										name="shoppingBasket" value="장바구니">
 									<button class="button">
 										<i class="fa fa-heart" aria-hidden="true"></i>
 									</button>
@@ -100,56 +105,119 @@
 			<form>
 				<table>
 					<tr>
-						<td>
-							전체 평점 : 
-							<c:forEach var="i" begin="1" end="5">
-								<i class="fa fa-star" aria-hidden="true"></i>
-							</c:forEach>
-							5점
+						<td>전체 평점 : <c:choose>
+								<c:when test="${scoreAvg==5}">
+									<c:forEach var="i" begin="1" end="5">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg==4}">
+									<c:forEach var="i" begin="1" end="4">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg==3}">
+									<c:forEach var="i" begin="1" end="3">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg==2}">
+									<c:forEach var="i" begin="1" end="2">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg==1}">
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg > 4 && scoreAvg < 5}">
+									<c:forEach var="i" begin="1" end="4">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-half-o" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg > 3 && scoreAvg < 4}">
+									<c:forEach var="i" begin="1" end="3">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-half-o" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg > 2 && scoreAvg < 3}">
+									<c:forEach var="i" begin="1" end="2">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-half-o" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="2">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:when test="${scoreAvg > 1 && scoreAvg < 2}">
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-half-o" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="3">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+								등록된 평점이 없습니다.
+							</c:otherwise>
+							</c:choose> ${scoreAvg}점
 						</td>
 					</tr>
 				</table>
 				<table>
 					<tr>
-						<td colspan="6" style="border: white; text-align: right">
-						<c:choose>
-							<c:when test="${empty flowerClient}">
-								<input style="all: unset;" type="button" value="리뷰 등록"
-							onclick="reviewIdNoneCk()"></input>
-							</c:when>
-							<c:otherwise>
-								<input style="all: unset;" type="button" value="리뷰 등록"
-							onclick="location.href='FlowerServlet?command=flower_review_form&code=${productList.code}'"></input>
-							</c:otherwise>
-						</c:choose>
-						
-						</td>
+						<td colspan="6" style="border: white; text-align: right"><c:choose>
+								<c:when test="${empty flowerClient}">
+									<input style="all: unset;" type="button" value="리뷰 등록"
+										onclick="reviewIdNoneCk()"></input>
+								</c:when>
+								<c:otherwise>
+									<input style="all: unset;" type="button" value="리뷰 등록"
+										onclick="location.href='FlowerServlet?command=flower_review_form&code=${productList.code}'"></input>
+								</c:otherwise>
+							</c:choose></td>
 					</tr>
 					<c:if test="${!empty reviewList}">
-					<c:forEach var="reviewList" items="${reviewList}">
-						<tr>
-							<th style="text-align: left">
-								  no.${reviewList.num}  |  ${reviewList.id}  |  ${reviewList.writedate}  |  ${reviewList.code} <c:out value="${productList.name}"/>  |  평점 
-								<c:forEach var="i" begin="1" end="${reviewList.score}">
-									<i class="fa fa-star" aria-hidden="true"></i>
-								</c:forEach>
-							</th>
-						</tr>
-						<tr>
-							<td style="text-align: left">${reviewList.contents} <br>
-								<img src="image/${reviewList.image}">
-							</td>
-						</tr>
-					</c:forEach>
-							</c:if>
-							<c:if  test="${empty reviewList}">
+						<c:forEach var="reviewList" items="${reviewList}">
 							<tr>
+								<th style="text-align: left">no.${reviewList.num} |
+									${reviewList.id} | ${reviewList.writedate} | ${reviewList.code}
+									<c:out value="${productList.name}" /> | 평점 <c:forEach var="i"
+										begin="1" end="${reviewList.score}">
+										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+								</th>
+							</tr>
+							<tr>
+								<td style="text-align: left">${reviewList.contents}<br>
+									<img src="image/${reviewList.image}">
+								</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty reviewList}">
+						<tr>
 							<th></th>
-							</tr>
-							<tr>
+						</tr>
+						<tr>
 							<td>등록된 리뷰가 없습니다.</td>
-							</tr>
-							</c:if>
+						</tr>
+					</c:if>
 				</table>
 			</form>
 		</section>

@@ -44,23 +44,32 @@ public class FlowerBuyForm implements Action {
 
 		request.setAttribute("imageList", imageList);
 		
-		System.out.println(imageList);
+		//System.out.println(imageList);
 		
 		
 		// selectOption
 		ArrayList<FlowerCategoryOptionVO> coList = pdao.selectOptionCategory();
 		request.setAttribute("coList", coList);
 		
-		//int productPrice = productList.getPrice();
-		//int optionPrice = ((FlowerCategoryOptionVO) coList).getPrice();
-
 		// review
 		FlowerReviewDAO frdao = FlowerReviewDAO.getInstance();
 		ArrayList<FlowerReviewVO> reviewList = frdao.selectReview(code);
-
 		request.setAttribute("reviewList", reviewList);
 		
-		//System.out.println(reviewList);
+		// score
+		double sum = 0.0, avg=0.0, scoreAvg=0.0;
+		for(int i=0; i<reviewList.size(); i++) {
+			sum = sum + reviewList.get(i).getScore(); 
+		}
+		avg = sum/reviewList.size();
+		
+		scoreAvg = Math.floor(avg*100)/100;
+		if (Double.isNaN(scoreAvg)) {
+			scoreAvg=0.0;
+		}
+		
+		//System.out.println(scoreAvg);
+		request.setAttribute("scoreAvg", scoreAvg);
 		
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
