@@ -72,41 +72,41 @@ public class FlowerReviewAction implements Action {
 		request.setAttribute("mainList", mainList);
 
 		// selectProduct
-//		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
-//
-//		FlowerProductVO productList = pdao.selectProduct(code);
-//		request.setAttribute("productList", productList);
-//
-//		// selectImage
-//		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
-//		ArrayList<FlowerProductImageVO> imageList = fpidao.selectImage(code);
-//
-//		request.setAttribute("imageList", imageList);
-//
-//		// selectOption
-//		ArrayList<FlowerCategoryOptionVO> coList = pdao.selectOptionCategory();
-//		request.setAttribute("coList", coList);
-//
-//		// review
-//		ArrayList<FlowerReviewVO> reviewList = frdao.selectReview(code);
-//
-//		request.setAttribute("reviewList", reviewList);
-//
-//		// score
-//		double sum = 0.0, avg = 0.0, scoreAvg = 0.0;
-//		for (int i = 0; i < reviewList.size(); i++) {
-//			sum = sum + reviewList.get(i).getScore();
-//		}
-//		avg = sum / reviewList.size();
-//
-//		scoreAvg = Math.floor(avg * 100) / 100;
-//		if (Double.isNaN(scoreAvg)) {
-//			scoreAvg = 0.0;
-//		}
-//		
-//		request.setAttribute("scoreAvg", scoreAvg);
+		FlowerProductDAO pdao = FlowerProductDAO.getInstance();
 
-		String url = "/flower/mypage.jsp";
+		FlowerProductVO productList = pdao.selectProduct(code);
+		request.setAttribute("productList", productList);
+
+		// selectImage
+		FlowerProductImageDAO fpidao = FlowerProductImageDAO.getInstance();
+		ArrayList<FlowerProductImageVO> imageList = fpidao.selectImage(code);
+
+		request.setAttribute("imageList", imageList);
+
+		// selectOption
+		ArrayList<FlowerCategoryOptionVO> coList = pdao.selectOptionCategory();
+		request.setAttribute("coList", coList);
+
+		// review
+		ArrayList<FlowerReviewVO> reviewList = frdao.selectReview(code);
+
+		request.setAttribute("reviewList", reviewList);
+
+		// score
+		double sum = 0.0, avg = 0.0, scoreAvg = 0.0;
+		for (int i = 0; i < reviewList.size(); i++) {
+			sum = sum + reviewList.get(i).getScore();
+		}
+		avg = sum / reviewList.size();
+
+		scoreAvg = Math.floor(avg * 100) / 100;
+		if (Double.isNaN(scoreAvg)) {
+			scoreAvg = 0.0;
+		}
+		
+		request.setAttribute("scoreAvg", scoreAvg);
+
+		String url = "/flower/buy/flowerBuyPage.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
