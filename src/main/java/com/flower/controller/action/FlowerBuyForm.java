@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flower.dao.FlowerCategoryDAO;
+import com.flower.dao.FlowerInquiryDAO;
 import com.flower.dao.FlowerProductDAO;
 import com.flower.dao.FlowerProductImageDAO;
 import com.flower.dao.FlowerReviewDAO;
 import com.flower.vo.FlowerCategoryOptionVO;
 import com.flower.vo.FlowerCategoryVO;
+import com.flower.vo.FlowerInquiryVO;
 import com.flower.vo.FlowerProductImageVO;
 import com.flower.vo.FlowerProductVO;
 import com.flower.vo.FlowerReviewVO;
@@ -43,34 +45,37 @@ public class FlowerBuyForm implements Action {
 		ArrayList<FlowerProductImageVO> imageList = fpidao.selectImage(code);
 
 		request.setAttribute("imageList", imageList);
-		
-		//System.out.println(imageList);
-		
-		
+
+		// System.out.println(imageList);
+
 		// selectOption
 		ArrayList<FlowerCategoryOptionVO> coList = pdao.selectOptionCategory();
 		request.setAttribute("coList", coList);
-		
+
 		// review
 		FlowerReviewDAO frdao = FlowerReviewDAO.getInstance();
 		ArrayList<FlowerReviewVO> reviewList = frdao.selectReview(code);
 		request.setAttribute("reviewList", reviewList);
-		
+
 		// score
-		double sum = 0.0, avg=0.0, scoreAvg=0.0;
-		for(int i=0; i<reviewList.size(); i++) {
-			sum = sum + reviewList.get(i).getScore(); 
+		double sum = 0.0, avg = 0.0, scoreAvg = 0.0;
+		for (int i = 0; i < reviewList.size(); i++) {
+			sum = sum + reviewList.get(i).getScore();
 		}
-		avg = sum/reviewList.size();
-		
-		scoreAvg = Math.floor(avg*100)/100;
+		avg = sum / reviewList.size();
+
+		scoreAvg = Math.floor(avg * 100) / 100;
 		if (Double.isNaN(scoreAvg)) {
-			scoreAvg=0.0;
+			scoreAvg = 0.0;
 		}
-		
-		//System.out.println(scoreAvg);
+
 		request.setAttribute("scoreAvg", scoreAvg);
-		
+
+		// inquiry
+		FlowerInquiryDAO fidao = FlowerInquiryDAO.getInstance();
+		ArrayList<FlowerInquiryVO> inquiryList = fidao.selectAllInquiry(code);
+		request.setAttribute("inquiryList", inquiryList);
+
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 

@@ -227,11 +227,21 @@
 			<form>
 				<table>
 					<tr>
-						<td colspan="6" style="border: white; text-align: right"><input
-							style="all: unset;" type="button" value="문의하기" onclick=""></input>
+						<td colspan="6" style="border: white; text-align: right">
+						<c:choose>
+								<c:when test="${empty flowerClient}">
+									<input style="all: unset;" type="button" value="문의하기"
+										onclick="reviewIdNoneCk()"></input>
+								</c:when>
+								<c:otherwise>
+									<input style="all: unset;" type="button" value="문의하기"
+										onclick="location.href='FlowerServlet?command=flower_inquiry_form&code=${productList.code}'"></input>
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 					<tr>
+
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
@@ -239,14 +249,31 @@
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>좋아요</td>
-						<td>김콩이</td>
-						<td>최고의 선택!!</td>
-						<td>2022/12/16</td>
-						<td>0</td>
-					<tr>
+					<c:if test="${!empty inquiryList}">
+						<c:forEach var="inquiryList" items="${inquiryList}">
+							<tr>
+								<td>${inquiryList.num}</td>
+								<td>${inquiryList.title}</td>
+								<td>${inquiryList.id}</td>
+								<c:choose>
+									<c:when test="${inquiryList.secret.equals('B')}">
+										<td>${inquiryList.contents}</td>
+									</c:when>
+									<c:otherwise>
+										<td><i style="color: gray;" class="fa fa-lock"
+											aria-hidden="true"></i> 비밀글입니다.</td>
+									</c:otherwise>
+								</c:choose>
+								<td>${inquiryList.writedate}</td>
+								<td>${inquiryList.count}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty inquiryList}">
+						<tr>
+							<td colspan="6">등록된 상품 문의가 없습니다.</td>
+						</tr>
+					</c:if>
 				</table>
 			</form>
 		</section>

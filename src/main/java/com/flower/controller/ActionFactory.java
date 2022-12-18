@@ -19,6 +19,8 @@ import com.flower.controller.action.FlowerClientUpdateFormAction;
 import com.flower.controller.action.FlowerDeleteCategory;
 import com.flower.controller.action.FlowerIdCheckAction;
 import com.flower.controller.action.FlowerIdPassCheckAction;
+import com.flower.controller.action.FlowerInquiryAction;
+import com.flower.controller.action.FlowerInquiryForm;
 import com.flower.controller.action.FlowerLoginAction;
 import com.flower.controller.action.FlowerLoginFormAction;
 import com.flower.controller.action.FlowerLogoutAction;
@@ -109,6 +111,10 @@ public class ActionFactory {
 			action = new FlowerReviewForm();
 		}else if (command.equals("flower_review_action")) {
 			action = new FlowerReviewAction();
+		}else if (command.equals("flower_inquiry_form")) {
+			action = new FlowerInquiryForm();
+		}else if (command.equals("flower_inquiry_action")) {
+			action = new FlowerInquiryAction();
 		}
 		
 		// 로그인

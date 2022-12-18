@@ -82,10 +82,12 @@
 		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		function save() {
+			// 빈값일 때 return false 하려 했으나 외부 모듈이라 실패함
 			oEditors.getById["txtContent"].exec("UPDATE_CONTENTS_FIELD", []);
 			//스마트 에디터 값을 텍스트컨텐츠로 전달
 			var content = document.getElementById("smartEditor").value;
-			alert(document.getElementById("txtContent").value);
+			//alert(document.getElementById("txtContent").value);
+			alert("리뷰를 남겨주셔서 감사합니다.");
 			// 값을 불러올 땐 document.get으로 받아오기
 			return;
 		}
