@@ -82,9 +82,9 @@
 
 								<div class=btnSet>
 									<input type="submit" class="button" name="buy" id="buyNow"
-										value="바로구매"> <input type="button" class="button"
-										name="shoppingBasket" value="장바구니">
-									<button class="button" style="transform: translateY(-1px);">
+										value="바로구매" onclick="return alarm()"> <input type="button" class="button"
+										name="shoppingBasket" value="장바구니" onclick="return alarm()">
+									<button class="button" onclick="return alarm()" style="transform: translateY(-1px);">
 										<i class="fa fa-heart" aria-hidden="true"></i>
 									</button>
 								</div>

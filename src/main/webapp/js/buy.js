@@ -142,3 +142,8 @@ function reviewIdNoneCk() {
 	alert("로그인이 필요합니다.");
 	return false;
 }
+
+function alarm() {
+	alert('꽝! 다음기회에~');
+	return false;
+}
