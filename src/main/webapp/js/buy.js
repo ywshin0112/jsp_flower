@@ -143,7 +143,4 @@ function reviewIdNoneCk() {
 	return false;
 }
 
-function alarm() {
-	alert('꽝! 다음기회에~');
-	return false;
-}
+

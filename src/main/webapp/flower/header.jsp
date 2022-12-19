@@ -45,8 +45,8 @@
 							</c:otherwise>
 						</c:choose>
 
-						<li><a href="delivery.jsp">주문배송조회</a></li>
-						<li><a href="shoppingBasket.jsp">장바구니</a></li>
+						<li><a href="delivery.jsp" onclick="return alarm()">주문배송조회</a></li>
+						<li><a href="shoppingBasket.jsp" onclick="return alarm()">장바구니</a></li>
 						<c:if test="${empty flowerClient}">
 							<li><a href="FlowerServlet?command=membership_page">회원가입</a></li>
 							<li class="visible loginTop"><a
