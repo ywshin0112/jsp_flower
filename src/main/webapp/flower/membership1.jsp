@@ -71,7 +71,7 @@
             <br><br>
             <div class=btnSet>
             <input type="submit" value="동의하기" class="button" onclick="return agreementCheck()">
-            <input type="button" value="동의안함" class="button" onclick="location.href='FlowerServlet?command=main_page'">
+            <input type="button" value="동의안함" class="button" onclick="location.href='FlowerServlet?command=flower_main'">
             </div>
             </form>
         </div>

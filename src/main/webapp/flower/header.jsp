@@ -50,7 +50,6 @@
 						<c:if test="${empty flowerClient}">
 							<li><a href="FlowerServlet?command=membership_page">회원가입</a></li>
 							<li class="visible loginTop"><a
-								href="FlowerServlet?command=flower_product_form">관리자페이지(임시)</a><a
 								href="FlowerServlet?command=login_page">로그인</a></li>
 						</c:if>
 						<c:if test="${!empty flowerClient}">
