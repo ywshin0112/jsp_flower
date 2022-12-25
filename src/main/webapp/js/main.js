@@ -140,7 +140,7 @@ function test(e) {
 // 아이디 중복 체크
 // id 중복 체크 모듈
 function idCheck() {
-	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,11}$/g;
+	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,12}$/g;
 
 	if (document.frm.id.value == "") {
 		alert("아이디를 입력해주세요");
@@ -171,6 +171,34 @@ function idok() {
 	self.close();
 }
 
+// 비번 문구
+function pwCheck() {
+	let passLimit = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
+	if (!passLimit.test(document.frm.pass.value)) {
+		document.querySelector("#pwCk").innerHTML = 'X 8~16자리 영문/숫자/특수문자 조합';
+		document.querySelector("#pwCk").style.color = 'red';
+		//document.querySelector("#pwCkValue").value = '1';
+		return;
+	} else {
+		document.querySelector("#pwCk").innerHTML = '✔ 8~16자리 영문/숫자/특수문자 조합'
+		document.querySelector("#pwCk").style.color = 'green';
+		//document.querySelector("#phoneCkValue").value = '0';
+	}
+}
+
+// 비번 일치 체크 문구
+function pwReCheck() {
+	let passLimit = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
+	if (document.frm.pass.value != document.frm.passCk.value) {
+		document.querySelector("#pwReCk").innerHTML = '비밀번호가 일치하지 않습니다.';
+		document.querySelector("#pwReCk").style.color = 'red';
+		return;
+	} else {
+		document.querySelector("#pwReCk").innerHTML = '✔ 비밀번호가 일치합니다.'
+		document.querySelector("#pwReCk").style.color = 'green';
+	}
+}
+
 // 전화번호 중복시 문구
 function phoneCheck(phoneList, target) {
 	let phoneLimit = /^\d{2,3}-\d{3,4}-\d{4}$/;
@@ -187,7 +215,7 @@ function phoneCheck(phoneList, target) {
 			return;
 		}
 		else {
-			document.querySelector("#phoneCk").innerHTML = '사용 가능한 전화번호입니다.'
+			document.querySelector("#phoneCk").innerHTML = '✔ 사용 가능한 전화번호입니다.'
 			document.querySelector("#phoneCk").style.color = 'green';
 			document.querySelector("#phoneCkValue").value = '0';
 		}
@@ -208,7 +236,7 @@ function emailCheck(emailList, target) {
 			document.querySelector("#emailCk").style.color = 'red';
 			document.querySelector("#emailCkValue").value = '1';
 		} else {
-			document.querySelector("#emailCk").innerHTML = '사용 가능한 이메일입니다.'
+			document.querySelector("#emailCk").innerHTML = '✔ 사용 가능한 이메일입니다.'
 			document.querySelector("#emailCk").style.color = 'green';
 			document.querySelector("#emailCkValue").value = '0';
 		}
@@ -218,7 +246,7 @@ function emailCheck(emailList, target) {
 // 회원가입 유효성 검사
 function joinCheck() {
 	// 정규식 모음
-	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,11}$/g;
+	let idLimit = /^(?=.*[A-Za-z])(?=.*[0-9])[a-z0-9]{3,12}$/g;
 	let passLimit = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
 	let nameLimit = /^[a-zA-Zㄱ-ㅎ가-힣]{0,30}$/g;
 	let phoneLimit = /^\d{2,3}-\d{3,4}-\d{4}$/;
@@ -290,14 +318,67 @@ function joinCheck() {
 	}
 
 	// 주소 조건
-	if (document.frm.address.value == '') {
-		alert("주소를 입력하세요.");
+	if (document.frm.checked_zip_code.value != 'Y') {
+		alert("우편번호 찾기를 확인해 주세요");
+		return false;
+	}
+	if (document.frm.detailed_address.value == '') {
+		alert("상세주소를 입력하세요.");
 		return false;
 	}
 	return true;
 }
 
+function sample6_execDaumPostcode() {
+	// value 값 지정(가입버튼 비활성화 느낌(?)만 줌)
+	var Myelement = document.querySelector('input[name="checked_zip_code"]');
+	Myelement.value = "Y";
+	new daum.Postcode({
+		oncomplete: function(data) {
+			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var addr = ''; // 주소 변수
+			var extraAddr = ''; // 참고항목 변수
+
+			//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				addr = data.roadAddress;
+			} else { // 사용자가 지번 주소를 선택했을 경우(J)
+				addr = data.jibunAddress;
+			}
+
+			// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+			if (data.userSelectedType === 'R') {
+				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+					extraAddr += data.bname;
+				}
+				// 건물명이 있고, 공동주택일 경우 추가한다.
+				if (data.buildingName !== '' && data.apartment === 'Y') {
+					extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+				}
+				// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+				if (extraAddr !== '') {
+					extraAddr = ' (' + extraAddr + ')';
+				}
+				// 조합된 참고항목을 해당 필드에 넣는다.
+				document.getElementById("sample6_extraAddress").value = extraAddr;
+
+			} else {
+				document.getElementById("sample6_extraAddress").value = '';
+			}
+
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('sample6_postcode').value = data.zonecode;
+			document.getElementById("sample6_address").value = addr;
+			// 커서를 상세주소 필드로 이동한다.
+			document.getElementById("sample6_detailAddress").focus();
+		}
+	}).open();
+}
 
 
 // 삭제 확인
@@ -431,7 +512,7 @@ function selectOption(target) {
 	}
 
 
-}	
+}
 
 function alarm() {
 	alert('꽝! 다음기회에~');

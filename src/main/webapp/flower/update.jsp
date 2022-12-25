@@ -57,8 +57,7 @@
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td><input type="password" name="pass"
-								value="${flowerClient.pass}" /></td>
+							<td><input type="password" name="pass"/></td>
 						</tr>
 						<tr>
 							<th>비번 확인</th>
@@ -81,25 +80,41 @@
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td><input type="text" name="address" id="addrBox"
-								value="${flowerClient.address}" /></td>
+							<td><input type="text" name="zip_code" id="sample6_postcode" 
+							value="${flowerClient.zip_code}">&nbsp;&nbsp;&nbsp; <input
+								type="button" onclick="sample6_execDaumPostcode()"
+								value="우편번호 찾기"><input type="hidden"
+								name="checked_zip_code" value="" /><br></td>
 						</tr>
-
-
+						<tr>
+							<th></th>
+							<td><input type="text" name="address" id="sample6_address" value="${flowerClient.address}"
+								placeholder="주소" size="60"></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><input type="text" id="sample6_detailAddress" 
+							value="${flowerClient.detailed_address}" name="detailed_address" size="30"> <input
+								type="text" name="refer" id="sample6_extraAddress" 
+								value="${flowerClient.refer}" size="24"></td>
+						</tr>
 					</table>
 					<div class="btnSet">
 						<input type="submit" name="updateBtn" class="button"
 							value="회원정보 수정" onclick="return updateCheck()"> <input
 							type="button" class="button" value="뒤로가기"
 							onclick="location.href='FlowerServlet?command=mypage'" />
-						
+
 					</div>
 				</div>
 			</form>
 		</div>
 	</main>
+	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="js/main.js"></script>
 	<script src="js/mypage.js"></script>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </body>
 </html>

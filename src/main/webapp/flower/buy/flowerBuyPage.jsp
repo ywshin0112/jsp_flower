@@ -115,20 +115,32 @@
 									<c:forEach var="i" begin="1" end="4">
 										<i class="fa fa-star" aria-hidden="true"></i>
 									</c:forEach>
+									<c:forEach var="i" begin="1" end="1">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+									</c:forEach>
 								</c:when>
 								<c:when test="${scoreAvg==3}">
 									<c:forEach var="i" begin="1" end="3">
 										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="2">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
 									</c:forEach>
 								</c:when>
 								<c:when test="${scoreAvg==2}">
 									<c:forEach var="i" begin="1" end="2">
 										<i class="fa fa-star" aria-hidden="true"></i>
 									</c:forEach>
+									<c:forEach var="i" begin="1" end="3">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
+									</c:forEach>
 								</c:when>
 								<c:when test="${scoreAvg==1}">
 									<c:forEach var="i" begin="1" end="1">
 										<i class="fa fa-star" aria-hidden="true"></i>
+									</c:forEach>
+									<c:forEach var="i" begin="1" end="4">
+										<i class="fa fa-star-o" aria-hidden="true"></i>
 									</c:forEach>
 								</c:when>
 								<c:when test="${scoreAvg > 4 && scoreAvg < 5}">

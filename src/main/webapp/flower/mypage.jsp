@@ -52,7 +52,12 @@
 						</tr>
 						<tr>
 							<th>주소</th>
-							<td>${flowerClient.address}</td>
+							<td>
+								${flowerClient.zip_code}
+								${flowerClient.address}
+								${flowerClient.refer}
+								${flowerClient.detailed_address}
+							</td>
 						</tr>
 					</table>
 					<div class="btnSet">

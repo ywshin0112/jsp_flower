@@ -47,8 +47,10 @@ public class FlowerClientUpdateAction implements Action {
 		fcvo.setName(request.getParameter("name"));
 		fcvo.setPhone(request.getParameter("phone"));
 		fcvo.setEmail(request.getParameter("email"));
-		fcvo.setEmail(request.getParameter("email"));
+		fcvo.setZip_code(Integer.parseInt(request.getParameter("zip_code")));
 		fcvo.setAddress(request.getParameter("address"));
+		fcvo.setDetailed_address(request.getParameter("detailed_address"));
+		fcvo.setRefer(request.getParameter("refer"));
 		
 		FlowerClientDAO fcdao = FlowerClientDAO.getInstance();
 		fcdao.updateFlowerClient(fcvo);

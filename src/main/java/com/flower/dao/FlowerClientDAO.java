@@ -38,8 +38,11 @@ public class FlowerClientDAO {
 				fcvo.setName(rs.getString("name"));
 				fcvo.setPhone(rs.getString("phone"));
 				fcvo.setEmail(rs.getString("email"));
+				fcvo.setZip_code(rs.getInt("zip_code"));
 				fcvo.setAddress(rs.getString("address"));
-				fcvo.setLev(rs.getString("lev"));
+				fcvo.setDetailed_address(rs.getString("detailed_address"));
+				fcvo.setRefer(rs.getString("refer"));
+				//fcvo.setLev(rs.getString("lev"));
 				list.add(fcvo);
 			}
 		} catch (Exception e) {
@@ -49,11 +52,11 @@ public class FlowerClientDAO {
 		}
 		return list;
 	}
-	
+
 	// 전화번호 중복확인
 	public ArrayList<String> selectPhone() {
 		ArrayList<String> list = new ArrayList<>();
-		
+
 		String sql = "select phone from flower_client";
 
 		Connection conn = null;
@@ -67,7 +70,7 @@ public class FlowerClientDAO {
 
 			while (rs.next()) {
 
-				list.add("'"+rs.getString("phone")+"'");
+				list.add("'" + rs.getString("phone") + "'");
 
 			}
 		} catch (Exception e) {
@@ -78,11 +81,11 @@ public class FlowerClientDAO {
 
 		return list;
 	}
-	
+
 	// 이메일 중복확인
 	public ArrayList<String> selectEmail() {
 		ArrayList<String> list = new ArrayList<>();
-		
+
 		String sql = "select email from flower_client";
 
 		Connection conn = null;
@@ -96,7 +99,7 @@ public class FlowerClientDAO {
 
 			while (rs.next()) {
 
-				list.add("'"+rs.getString("email")+"'");
+				list.add("'" + rs.getString("email") + "'");
 
 			}
 		} catch (Exception e) {
@@ -107,21 +110,25 @@ public class FlowerClientDAO {
 
 		return list;
 	}
+
 	// 회원등록 메소드
 	public void insertflowerClient(FlowerClientVO fvo) {
-		String sql = "insert into flower_Client(lev, id, pass, name, phone, email, address) values(?,?,?,?,?,?,?)";
+		String sql = "insert into flower_Client(id, pass, name, phone, email, zip_code, address, detailed_address, refer) values(?,?,?,?,?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, fvo.getLev());
-			pstmt.setString(2, fvo.getId());
-			pstmt.setString(3, fvo.getPass());
-			pstmt.setString(4, fvo.getName());
-			pstmt.setString(5, fvo.getPhone());
-			pstmt.setString(6, fvo.getEmail());
+			//pstmt.setString(1, fvo.getLev());
+			pstmt.setString(1, fvo.getId());
+			pstmt.setString(2, fvo.getPass());
+			pstmt.setString(3, fvo.getName());
+			pstmt.setString(4, fvo.getPhone());
+			pstmt.setString(5, fvo.getEmail());
+			pstmt.setInt(6, fvo.getZip_code());
 			pstmt.setString(7, fvo.getAddress());
+			pstmt.setString(8, fvo.getDetailed_address());
+			pstmt.setString(9, fvo.getRefer());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,7 +196,10 @@ public class FlowerClientDAO {
 				fvo.setLev(rs.getString("lev"));
 				fvo.setPhone(rs.getString("phone"));
 				fvo.setEmail(rs.getString("email"));
+				fvo.setZip_code(rs.getInt("zip_code"));
 				fvo.setAddress(rs.getString("address"));
+				fvo.setDetailed_address(rs.getString("detailed_address"));
+				fvo.setRefer(rs.getString("refer"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -262,7 +272,7 @@ public class FlowerClientDAO {
 				result = 1; // 아이디가 존재할 때
 			} else {
 				result = -1; // 아이디가 존재하지 않을 때
-				
+
 			}
 
 		} catch (Exception e) {
@@ -284,19 +294,22 @@ public class FlowerClientDAO {
 
 	// 회원 정보 수정 메소드
 	public void updateFlowerClient(FlowerClientVO fvo) {
-		String sql = "update flower_client set lev=?, pass=?, name=?, phone=?, email=?, address=? where id=?";
+		String sql = "update flower_client set pass=?, name=?, phone=?, email=?, zip_code=?, address=?, detailed_address=?, refer=? where id=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, fvo.getLev());
-			pstmt.setString(2, fvo.getPass());
-			pstmt.setString(3, fvo.getName());
-			pstmt.setString(4, fvo.getPhone());
-			pstmt.setString(5, fvo.getEmail());
+			//pstmt.setString(1, fvo.getLev());
+			pstmt.setString(1, fvo.getPass());
+			pstmt.setString(2, fvo.getName());
+			pstmt.setString(3, fvo.getPhone());
+			pstmt.setString(4, fvo.getEmail());
+			pstmt.setInt(5, fvo.getZip_code());
 			pstmt.setString(6, fvo.getAddress());
-			pstmt.setString(7, fvo.getId());
+			pstmt.setString(7, fvo.getDetailed_address());
+			pstmt.setString(8, fvo.getRefer());
+			pstmt.setString(9, fvo.getId());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -321,79 +334,79 @@ public class FlowerClientDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
-	
+
 	// 성함, 전화번호 일치하면 아이디 내놓기
-		public FlowerClientVO FindId(String name, String phone) {
-			FlowerClientVO fvo = null;
-			Connection conn = null;
-			String sql = "select id from flower_client where name=? and phone=?";
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
+	public FlowerClientVO FindId(String name, String phone) {
+		FlowerClientVO fvo = null;
+		Connection conn = null;
+		String sql = "select id from flower_client where name=? and phone=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				fvo = new FlowerClientVO();
+				fvo.setId(rs.getString("id"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			try {
-				conn = DBManager.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, name);
-				pstmt.setString(2, phone);
-				rs = pstmt.executeQuery();
-				if (rs.next()) {
-					fvo = new FlowerClientVO();
-					fvo.setId(rs.getString("id"));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					if (rs != null)
-						rs.close();
-					if (pstmt != null)
-						pstmt.close();
-					if (conn != null)
-						conn.close();
-				} catch (Exception e2) {
-					// TODO: handle exception
-				}
-
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
 			}
 
-			return fvo;
 		}
-		
-		// 성함, 전화번호 일치하면 아이디 내놓기
-				public FlowerClientVO FindPass(String id, String email) {
-					FlowerClientVO fvo = null;
-					Connection conn = null;
-					String sql = "select pass from flower_client where id=? and email=?";
-					PreparedStatement pstmt = null;
-					ResultSet rs = null;
 
-					try {
-						conn = DBManager.getConnection();
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, id);
-						pstmt.setString(2, email);
-						rs = pstmt.executeQuery();
-						if (rs.next()) {
-							fvo = new FlowerClientVO();
-							fvo.setPass(rs.getString("pass"));
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						try {
-							if (rs != null)
-								rs.close();
-							if (pstmt != null)
-								pstmt.close();
-							if (conn != null)
-								conn.close();
-						} catch (Exception e2) {
-							// TODO: handle exception
-						}
+		return fvo;
+	}
 
-					}
+	// 성함, 전화번호 일치하면 아이디 내놓기
+	public FlowerClientVO FindPass(String id, String email) {
+		FlowerClientVO fvo = null;
+		Connection conn = null;
+		String sql = "select pass from flower_client where id=? and email=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-					return fvo;
-				}
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				fvo = new FlowerClientVO();
+				fvo.setPass(rs.getString("pass"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+
+		}
+
+		return fvo;
+	}
 
 }
