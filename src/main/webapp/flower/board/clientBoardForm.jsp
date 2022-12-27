@@ -16,8 +16,8 @@
 	<main class="container">
 			<ul class="category">
 				<li>고객 게시판</li>
-				<li><a href="notice.html">리뷰 게시판</a></li>
-				<li><a href="notice01.html">리뷰 작성</a></li>
+				<li><a href="notice.html" onclick="return alarm()">리뷰 게시판</a></li>
+				<li><a href="notice01.html" onclick="return alarm()">리뷰 작성</a></li>
 			</ul>
 
 			<div class="title">

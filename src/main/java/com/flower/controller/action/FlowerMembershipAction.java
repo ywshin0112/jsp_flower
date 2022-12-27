@@ -41,7 +41,7 @@ public class FlowerMembershipAction implements Action {
 		fvo.setName(request.getParameter("name"));
 		fvo.setPhone(request.getParameter("phone"));
 		fvo.setEmail(request.getParameter("email"));
-		fvo.setZip_code(Integer.parseInt(request.getParameter("zip_code")));
+		fvo.setZip_code(request.getParameter("zip_code"));
 		fvo.setAddress(request.getParameter("address"));
 		fvo.setDetailed_address(request.getParameter("detailed_address"));
 		fvo.setRefer(request.getParameter("refer"));

@@ -38,7 +38,7 @@ public class FlowerClientDAO {
 				fcvo.setName(rs.getString("name"));
 				fcvo.setPhone(rs.getString("phone"));
 				fcvo.setEmail(rs.getString("email"));
-				fcvo.setZip_code(rs.getInt("zip_code"));
+				fcvo.setZip_code(rs.getString("zip_code"));
 				fcvo.setAddress(rs.getString("address"));
 				fcvo.setDetailed_address(rs.getString("detailed_address"));
 				fcvo.setRefer(rs.getString("refer"));
@@ -125,7 +125,7 @@ public class FlowerClientDAO {
 			pstmt.setString(3, fvo.getName());
 			pstmt.setString(4, fvo.getPhone());
 			pstmt.setString(5, fvo.getEmail());
-			pstmt.setInt(6, fvo.getZip_code());
+			pstmt.setString(6, fvo.getZip_code());
 			pstmt.setString(7, fvo.getAddress());
 			pstmt.setString(8, fvo.getDetailed_address());
 			pstmt.setString(9, fvo.getRefer());
@@ -196,7 +196,7 @@ public class FlowerClientDAO {
 				fvo.setLev(rs.getString("lev"));
 				fvo.setPhone(rs.getString("phone"));
 				fvo.setEmail(rs.getString("email"));
-				fvo.setZip_code(rs.getInt("zip_code"));
+				fvo.setZip_code(rs.getString("zip_code"));
 				fvo.setAddress(rs.getString("address"));
 				fvo.setDetailed_address(rs.getString("detailed_address"));
 				fvo.setRefer(rs.getString("refer"));
@@ -305,7 +305,7 @@ public class FlowerClientDAO {
 			pstmt.setString(2, fvo.getName());
 			pstmt.setString(3, fvo.getPhone());
 			pstmt.setString(4, fvo.getEmail());
-			pstmt.setInt(5, fvo.getZip_code());
+			pstmt.setString(5, fvo.getZip_code());
 			pstmt.setString(6, fvo.getAddress());
 			pstmt.setString(7, fvo.getDetailed_address());
 			pstmt.setString(8, fvo.getRefer());
